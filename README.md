@@ -1,6 +1,6 @@
-# Deckbuilder Roughlike webapp
+# Deckbuilder  webapp
 
-juego web Deckbuilder Roughlike.
+juego web Deckbuilder.
 
 ## proyecto
 

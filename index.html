@@ -16,12 +16,30 @@
             $('.dragdrop').draggable({
                 revert: true,
                 placeholder: true,
+                droptarget: '.drop',
+                drop: function(evt, droptarget) {
+                    var currentID = evt.target.id;/*- returns  the id. */
+                    $(this).appendTo(droptarget).draggable('destroy');
+                    //console.log(" current ID: "+currentID);//ejecuta el codigo
+                    //alert("hola");
+                    $("#cartas_usadas").append('ID:'+currentID+'</br>');
+                    $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+                }
             });
         });
     </script>
 
   </head>
   <body>
-    <carta class="dragdrop"> carta </carta>
+  	 <div class="drop"><p>Drop here</p></div>
+    <carta class="dragdrop" id=1> carta </carta>
+    <carta class="dragdrop" id=2> carta </carta>
+    <carta class="dragdrop" id=3> carta </carta>
+    <carta class="dragdrop" id=4> carta </carta>
+    <carta class="dragdrop" id=5> carta </carta>
+ <div style="margin: 20px;">
+    cartas usadas:
+    <div id="cartas_usadas"></div>
+    </div>
   </body>
 </html>

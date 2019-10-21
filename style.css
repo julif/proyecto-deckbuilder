@@ -8,7 +8,24 @@ carta{
   color: white;
   cursor: pointer;
 }
+.drop carta {
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    color: black;
+    cursor: default;
+}
 .draggable.dragging, .draggable .dragging {
   opacity: 0.5;
   /*opacity: 0.01;*/
+}
+.drop {
+  margin: 20px 0;
+  padding: 5px;
+  border: 2px dotted orange;
+  border-radius: 5px;
+}
+.drop.hovering {
+  background-color: #F6BF66;
 }
