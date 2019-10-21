@@ -2,6 +2,13 @@
 
 ## [Unreleased]
 
+
+## [v 0.1.0] Pre alpha - 2019-10-21
+### Added
+- mas cartas
+- dropzone
+- div de cartas usadas
+
 ## [v 0.0.2] Pre alpha - 2019-10-21
 ### Added
 - draganddropjs.
