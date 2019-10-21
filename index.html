@@ -7,8 +7,21 @@
     <meta name="viewport" content="width=device-width"/>
       <!-- css -->
     <link rel="stylesheet" href="style.css"/>
+      <!-- javascript -->
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src='draganddrop.js' type='text/javascript'></script>
+
+     <script type='text/javascript'>
+        $(function() {
+            $('.dragdrop').draggable({
+                revert: true,
+                placeholder: true,
+            });
+        });
+    </script>
+
   </head>
   <body>
-    <carta> carta </carta>
+    <carta class="dragdrop"> carta </carta>
   </body>
 </html>

@@ -8,3 +8,7 @@ carta{
   color: white;
   cursor: pointer;
 }
+.draggable.dragging, .draggable .dragging {
+  opacity: 0.5;
+  /*opacity: 0.01;*/
+}
