@@ -10,35 +10,86 @@
     <!-- javascript -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src='draganddrop.js' type='text/javascript'></script>
-    <!-- css -->
-    <style>
-        body { background-color:#fafafa;}
-        .container { margin:0px auto;}
-        carta{
-            background-color: red;
-            padding: 10px;
-            margin: 10px;
-            margin-bottom: 5px;
-            list-style: none;
-            color: white;
-            cursor: pointer;
-        }
-        .drop {
-            margin: 20px 0;
-            padding: 5px;
-            border: 2px dotted orange;
-            border-radius: 5px;
-        }
-        .drop.hovering {
-            background-color: #F6BF66;
-        }
-        .draggable.dragging, .draggable .dragging {
-            opacity: 0.5;
-        }
 
-    </style>
+</head>
+<body>
+    <div>enemy:</div>
+    <div id="enemy_bar"></div>
+    <div class="container">
+        <div class="drop"><p>Drop here</p></div>
+        <div id="mano"  style="display: flex;">
+            <!-- <carta id='1' modifier='0' cardvalue='20' class="dragdrop" > carta id:1 value:20</carta>
+            <carta id='2' modifier='0' cardvalue='10' class="dragdrop" > carta id:2 value:10</carta>
+            <carta id='3' modifier='0' cardvalue='10' class="dragdrop" > carta id:3 value:10</carta>
+            <carta id='4' modifier='0' cardvalue='10' class="dragdrop" > carta id:4 value:10</carta> -->
+        </div>
+        <div>
+            mazo:
+            <ul id="mazo">
+                <li id='1' cardvalue='20'>1</li>
+                <li id='2' cardvalue='10'>2</li>
+                <li id='3' cardvalue='10'>3</li>
+                <li id='4' cardvalue='10'>4</li>
+                <li id='5' cardvalue='10'>5</li>
+                <li id='6' cardvalue='10'>6</li>
+                <li id='7' cardvalue='10'>7</li>
+            </ul>
+            <button onclick="robar()" >Click me</button>
+        </div>
+        <div id="cartas_usadas">
+            cartas usadas:</br>
+        </div>
+    </div>
+</body>
     <!-- javascript -->
     <script type='text/javascript'>
+        //puntos de vida de el enemigo
+        pv = 60;
+
+        document.getElementById("enemy_bar").style.width = pv+"%";
+
+
+
+        function robar(){
+
+            var id = $('#mazo li:first-child').attr('id'); // id de el primer li
+            //var modifier_number = $('#mazo li:first-child').attr('modifier'); // id de el primer li
+            var cardvalue = $('#mazo li:first-child').attr('cardvalue'); // id de el primer li
+
+
+              $('#mazo li:first-child').remove();//quita el primer elemento de mazo
+
+               $("#mano").append('<carta id="'+id+'" cardvalue="'+cardvalue+'" class="dragdrop"  > carta id:'+ id +' value:'+cardvalue+' </carta>');// agregar el nuevo li a la mano
+               //$("#mano").append('hola');
+
+
+                //draggable
+        $('.drag').draggable();
+         $('.draggables').draggable({delegate: 'button', placeholder: true});
+         $('.draghandle').draggable({handle: '.handle', placeholder: true});
+         $('.dragdrop').draggable({
+           revert: true,
+           placeholder: true,
+           droptarget: '.drop',
+          drop: function(evt, droptarget) {
+                    var currentID = evt.target.id;/*- returns  the id. */
+                    var currentVALUE = evt.target.attributes.cardvalue.value;
+                    console.log(currentVALUE);//ejecuta el codigo
+                    $(this).appendTo(droptarget).draggable('destroy');
+                    //console.log(currentVALUE);//ejecuta el codigo
+                    pv = pv - currentVALUE;
+                    
+                    document.getElementById("enemy_bar").style.width = pv+"%";
+                     if (pv <= 0) { alert("victoria!");}
+
+                    $("#cartas_usadas").append('ID:'+currentID+' Value:'+ currentVALUE +'</br>');
+                    $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+                }
+         
+
+         });
+    }
+
         $(function() {
             $('.dragdrop').draggable({
                 revert: true,
@@ -46,27 +97,20 @@
                 droptarget: '.drop',
                 drop: function(evt, droptarget) {
                     var currentID = evt.target.id;/*- returns  the id. */
+                    var currentVALUE = evt.target.attributes.cardvalue.value;
+                    console.log(currentVALUE);//ejecuta el codigo
                     $(this).appendTo(droptarget).draggable('destroy');
-                    //console.log(currentID);//ejecuta el codigo
-                    $("#cartas_usadas").append('ID:'+currentID+'</br>');
+                    //console.log(currentVALUE);//ejecuta el codigo
+                    pv = pv - currentVALUE;
+
+                    document.getElementById("enemy_bar").style.width = pv+"%";
+                     if (pv <= 0) { alert("victoria!");}
+
+                    $("#cartas_usadas").append('ID:'+currentID+' Value:'+ currentVALUE +'</br>');
                     $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
                 }
             });
         });
     </script>
-</head>
-<body>
-    <div class="container">
-        <div class="drop"><p>Drop here</p></div>
-        <div id="mazo"  style="display: flex;">
-            <carta id='1' modifier='0' value='20' class="dragdrop" > carta id:1</carta>
-            <carta id='2' modifier='0' value='10' class="dragdrop" > carta id:2</carta>
-            <carta id='3' modifier='0' value='10' class="dragdrop" > carta id:3</carta>
-            <carta id='4' modifier='0' value='10' class="dragdrop" > carta id:4</carta>
-        </div>
-        <div id="cartas_usadas">
-            cartas usadas:</br>
-        </div>
-    </div>
-</body>
+
 </html>
