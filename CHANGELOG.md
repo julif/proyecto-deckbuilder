@@ -3,6 +3,12 @@
 ## [Unreleased]
 
 
+## [v 0.1.3] Pre alpha - 2019-10-22
+### Added
+- se agrego el boton re-mezclar.
+- ahora al lado del nombre de cada lista se ve lacantidad de items dentro.
+
+
 ## [v 0.1.2] Pre alpha - 2019-10-22
 ### Added
 - se agrego la barra de vida del enemigo
@@ -13,8 +19,11 @@
 - ahora las cartas en la mano aparecen a clickear el boton robar
 
 ### Removed
-
 - se quitaron las cartas harcodeadas en la mano
+
+### Fixed
+- se agrego  la funcion draggeable dentro de la funcion robar para que las cartas creadas dinamicamente puedan dragearse
+
 
 ## [v 0.1.1] Pre alpha - 2019-10-21
 ### Added
