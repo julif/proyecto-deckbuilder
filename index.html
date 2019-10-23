@@ -35,24 +35,35 @@ color: white;
         <div>
             mazo: <span  id="mazo_length"></span>
             <ul id="mazo">
-                <li id='1' cardvalue='20' class='f'>1</li>
+               <!--  <li id='1' cardvalue='20' class='f'>1</li>
                 <li id='2' cardvalue='10' class='f'>2</li>
                 <li id='3' cardvalue='10' class='f'>3</li>
                 <li id='4' cardvalue='10' class='f'>4</li>
                 <li id='5' cardvalue='10' class='f'>5</li>
                 <li id='6' cardvalue='10' class='f'>6</li>
-                <li id='7' cardvalue='10' class='f'>7</li>
+                <li id='7' cardvalue='10' class='f'>7</li> -->
             </ul>
             <button onclick="robar()" > Robar </button>
         </div>
          <span style="color: black;"> cartas usadas:</span><span  id="usadas_length"></span>
         <ul id="cartas_usadas"></ul>
-         <button onclick="re_mezclar()" > Re-mezclar </button>
+         <!-- <button onclick="re_mezclar()" > Re-mezclar </button> -->
     </div>
 </body>
     <!-- javascript -->
     <script type='text/javascript'>
-       
+
+        var mazo_jugador = [
+  " <li id='1' cardvalue='20' class='f'>1</li>",
+  " <li id='2' cardvalue='10' class='f'>2</li>",
+  " <li id='3' cardvalue='10' class='f'>3</li>",
+  " <li id='4' cardvalue='10' class='f'>4</li>" 
+  ];
+
+  var mazo_mezclado = mazo_jugador;
+ mazo_mezclado.sort(function() {return Math.random() - 0.5});
+  document.getElementById("mazo").innerHTML = mazo_mezclado;
+      
 
         var mazolength = document.getElementsByClassName("f").length;
         document.getElementById("mazo_length").innerHTML = mazolength; 
@@ -69,8 +80,9 @@ color: white;
 
 
         function robar(){
-
-            var id = $('#mazo li:first-child').attr('id'); // id de el primer li
+            var mazolength= $("#mazo").find(".f").length ;
+            if (mazolength >= 1) {
+                 var id = $('#mazo li:first-child').attr('id'); // id de el primer li
             //var modifier_number = $('#mazo li:first-child').attr('modifier'); // id de el primer li
             var cardvalue = $('#mazo li:first-child').attr('cardvalue'); // id de el primer li
 
@@ -80,6 +92,10 @@ color: white;
                $("#mano").append('<carta id="'+id+'" cardvalue="'+cardvalue+'" class="dragdrop"  > carta id:'+ id +' value:'+cardvalue+' </carta>');// agregar el nuevo li a la mano
                //$("#mano").append('hola');
 
+            }
+            else if ( mazolength == 0) { re_mezclar(); }
+
+           
 
                //var mazolength = document.getElementsByClassName("f").length;
                var mazolength= $("#mazo").find(".f").length ;
@@ -121,9 +137,15 @@ color: white;
 
         alert("re mezclar");
         
+var mazo_re_mezclado = document.getElementById("cartas_usadas").innerHTML;
 
-        document.getElementById("mazo").innerHTML =  document.getElementById("cartas_usadas").innerHTML;
+       // mazo_re_mezclado.sort(function() {return Math.random() - 0.5});
+  
+
+        document.getElementById("mazo").innerHTML = mazo_re_mezclado;
         document.getElementById("cartas_usadas").innerHTML=" ";
+
+
 
           //var usadaslength = document.getElementsByClassName("fu").length;
           var usadaslength= $("#cartas_usadas").find(".f").length ;
@@ -131,6 +153,8 @@ color: white;
 
                var mazolength= $("#mazo").find(".f").length ;
                document.getElementById("mazo_length").innerHTML = mazolength;
+
+
 
      }
 
