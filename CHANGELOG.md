@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+## [v 0.1.6] Pre alpha - 2019-10-24
+### Added
+- se agrego la carpeta js, para alojar las funciones.
+- ahora se muestra el numero de cartas en la mano
+
+### fixed
+- todas las funciones tienen su propio archivo js.
+- make_draggable se unifico en lugar de ser 2 funciones similares llamadas desde distinto lugares.
+
 ## [v 0.1.5] Pre alpha - 2019-10-23
 ### fixed
 - la primera lista ya no muestra las comas del array inicial.

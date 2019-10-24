@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="style.css"/>
     <!-- javascript -->
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src='draganddrop.js' type='text/javascript'></script>
+    <script src='js/draganddrop.js' type='text/javascript'></script>
 </head>
 <body>
   <!-- enemy zone -->
@@ -20,7 +20,7 @@
       <div class="drop">
         <p>Drop here</p>
       </div>
-      mano:
+      mano:<span  id="mano_length"></span>
       <div id="mano"  style="display: flex;"></div>
       <div>
         <!--  mazo -->
@@ -34,6 +34,7 @@
     </div>
 </body>
 <!-- javascript -->
+<script src='js/lengths.js' type='text/javascript'></script>
 <script type='text/javascript'>
   //-------variables iniciales----------
    //puntos de vida de el enemigo
@@ -59,97 +60,10 @@
 
   document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
 
-  function robar(){
-    var mazolength= $("#mazo").find(".f").length ;
-    if (mazolength >= 1) {
-      var id = $('#mazo li:first-child').attr('id'); // id de el primer li
-      //var modifier_number = $('#mazo li:first-child').attr('modifier'); // id de el primer li
-      var cardvalue = $('#mazo li:first-child').attr('cardvalue'); // id de el primer li
-
-      $('#mazo li:first-child').remove();//quita el primer elemento de mazo
-      $("#mano").append('<carta id="'+id+'" cardvalue="'+cardvalue+'" class="dragdrop"  > carta id:'+ id +' value:'+cardvalue+' </carta>');// agregar el nuevo li a la mano
-    }
-    else if ( mazolength == 0) { re_mezclar(); }
-
-    lengths();//averiguar cuantas cartas tienen los div "mazo" y "cartas_usadas".
-
-    //draggable
-    $('.drag').draggable();
-    $('.draggables').draggable({delegate: 'button', placeholder: true});
-    $('.draghandle').draggable({handle: '.handle', placeholder: true});
-    $('.dragdrop').draggable({
-      revert: true,
-      placeholder: true,
-      droptarget: '.drop',
-      drop: function(evt, droptarget) {
-        var currentID = evt.target.id;/*- returns  the id. */
-        var currentVALUE = evt.target.attributes.cardvalue.value;
-        console.log(currentVALUE);//ejecuta el codigo
-        $(this).appendTo(droptarget).draggable('destroy');
-        //console.log(currentVALUE);//ejecuta el codigo
-        pv = pv - currentVALUE;
-        document.getElementById("enemy_bar").style.width = pv+"%";
-        if (pv <= 0) { alert("victoria!");}
-        //$("#cartas_usadas").append('ID:'+currentID+' Value:'+ currentVALUE +'</br>');
-        $("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");
-        $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-        lengths();//averiguar cuantas cartas tienen los div "mazo" y "cartas_usadas".
-      }
-    });
-  }// funcion robar();
-
-  function re_mezclar(){
-    //mezclar cartas_usadas y mostrarlo en el div "mazo"
-    var mazo_re_mezclado = document.getElementById("cartas_usadas").innerHTML;
-    var elements = $("#cartas_usadas").find(".f");
-    var data = Array();
-    for(var i = 0; i < elements.length; i++){
-      //data.push(elements[i].innerHTML);
-      //.attributes.cardvalue.value;
-      data.push("<li class='f' id='"+elements[i].id+"' cardvalue='"+elements[i].attributes.cardvalue.value+"'>"+elements[i].innerHTML+"</li>");
-    }
-    var mazo_mezclado = data;
-    mazo_mezclado.sort(function() {return Math.random() - 0.5});
-    document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
-
-    document.getElementById("cartas_usadas").innerHTML=" ";//borra la lista de cartas usadas
-    lengths();//averiguar cuantas cartas tienen los div "mazo" y "cartas_usadas".
-    robar();
-  }// funcion re_mezclar();
-
-    $(function() {
-    $('.dragdrop').draggable({
-      revert: true,
-      placeholder: true,
-      droptarget: '.drop',
-      drop: function(evt, droptarget) {
-        var currentID = evt.target.id;/*- returns  the id. */
-        var currentVALUE = evt.target.attributes.cardvalue.value;
-        console.log(currentVALUE);//ejecuta el codigo
-        $(this).appendTo(droptarget).draggable('destroy');
-        //console.log(currentVALUE);//ejecuta el codigo
-        pv = pv - currentVALUE;
-        document.getElementById("enemy_bar").style.width = pv+"%";
-        if (pv <= 0) { alert("victoria!");}
-
-        $("#cartas_usadas").append(" <li id="+currentID+" cardvalue="+currentVALUE +">ID:"+currentID+"  Value:"+currentVALUE+"</li>");
-        $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-        lengths();//averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
-      }
-    }); //draggable
-  });
-
-
-
-  function lengths(){
-    //averiguar cuantas cartas tiene el div "mazo" y mostrarlo.
-    var mazolength = document.getElementsByClassName("f").length;
-    document.getElementById("mazo_length").innerHTML = mazolength; 
-
-    //averiguar cuantas cartas tiene el div "cartas_usadas" y mostrarlo.
-    var usadaslength= $("#cartas_usadas").find(".f").length ;
-    document.getElementById("usadas_length").innerHTML = usadaslength;
-  }
-    </script>
+  $(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
+</script>
+  <script src='js/robar.js' type='text/javascript'></script>
+  <script src='js/make_draggable.js' type='text/javascript'></script>
+  <script src='js/re_mezclar.js' type='text/javascript'></script>
 
 </html>
