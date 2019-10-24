@@ -2,11 +2,19 @@
 
 ## [Unreleased]
 
+## [v 0.1.5] Pre alpha - 2019-10-23
+### fixed
+- la primera lista ya no muestra las comas del array inicial.
+- ahora las cartas en la lista de cartas usadas muestran correctamente la id y el current value.
+- las cartas en el mazo muestran su id y su current value igual que lo harian si pasaran de las cartas usadas.
+- ahora re-mezclar ya no muestra el alert y simplemente pasa las cartas al mazo y despues vuelve a llamar a la funcion robar.
+- lengths(); es la funcion a la que se llama para averiguar la cantidad de cartas en cada div.
+
+
 ## [v 0.1.4] Pre alpha - 2019-10-22
 ### Added
 - se agrego la funcion re-mezclar cuando se quiere robar cartas y ya no quedan en el mazo.
 - el mazo de el jugador es ahora un string.
-- se agrego funcion que mezcla el mazo al iniciar.
 
 ### Removed
 - se quito el boton re-mezclar para que la funcion solo se active al robar cartas cuando no hay cartas en el mazo.

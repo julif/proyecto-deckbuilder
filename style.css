@@ -34,3 +34,8 @@ carta{
   background-color: red;
   width: 100%;
 }
+ #cartas_usadas{
+  background-color: gray;
+  padding: 10px;
+  color: white;
+}
