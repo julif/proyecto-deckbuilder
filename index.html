@@ -73,18 +73,21 @@ flex-wrap: wrap;
         <p>Drop here</p>
       </div>
         <button onclick="end_turn()" > Terminar turno </button></br>
+         <!--  mazo -->
+        mazo: <span  id="mazo_length"></span></br>
+        <!--  mano -->
       mano:<span  id="mano_length"></span>
       <div id="mano"  style="display: flex;"></div>
       <div>
-        <!--  mazo -->
-        mazo: <span  id="mazo_length"></span>
-        <ul id="mazo"></ul>
-        <button onclick="robar()" > Robar </button>
+       
+        
+       <!--  <button onclick="robar()" > Robar </button> -->
       </div>
     
     </br>
-      <span style="color: black;"> cartas usadas:</span><span  id="usadas_length"></span>
-      <ul id="cartas_usadas"></ul>
+      <span style="color: black;"> descarte:</span><span  id="usadas_length"></span>
+      <div  id="lista_cartas_container">  <div>mazo:<ul id="mazo" class="lista_cartas"></ul></div> <div>descarte:<ul id="cartas_usadas" class="lista_cartas" ></ul></div></div>
+     
       <!-- <button onclick="re_mezclar()" > Re-mezclar </button> -->
     </div>
 </body>
@@ -99,6 +102,8 @@ flex-wrap: wrap;
   var turno = "jugador";
    //puntos de vida de el enemigo
    var pv = 100;
+    ataque_enemy = 10;
+
    var usadaslength = 0;
    var mazolength = 0;
 
@@ -142,9 +147,12 @@ flex-wrap: wrap;
     var turno="enemy";
     console.log("turno: "+turno);//ejecuta el codigo
     //---------------------------------------------------------
-
-     life = life - 40;
+    
+     life = life - ataque_enemy;
+     if (life < 0) { life=0;}
      console.log(life+"%");//ejecuta el codigo
+     ataque_enemy =ataque_enemy+30;
+     
     
     document.getElementById("life_bar").style.width = life+"%"; //mostrar la vida del enemigo.
 

@@ -2,6 +2,16 @@
 
 ## [Unreleased]
 
+## [v 0.2.0] alpha - 2019-10-31
+### Added
+- patron basico de ataque enemigo.
+
+### fixed
+- ahora las listas de cartas en el mazo y en la pila de descartes flotan a la derecha de la pantalla y son transparentes
+.
+### Removed
+- se quito el boton robar.
+
 ## [v 0.1.7] Pre alpha - 2019-10-31
 ### Added
 - el mazo inicial ahora cuenta con 10 cartas.
