@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [v 0.1.7] Pre alpha - 2019-10-31
+### Added
+- el mazo inicial ahora cuenta con 10 cartas.
+- 3 cartas se roban automaticamente en el primer turno y cada vez que empieza un turno nuevo.
+- al final de el turno las cartas de la mano son descartadas y van al menu de cartas usadas.
+
 ## [v 0.1.6] Pre alpha - 2019-10-24
 ### Added
 - se agrego la carpeta js, para alojar las funciones.
