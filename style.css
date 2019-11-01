@@ -50,7 +50,7 @@ carta{
    #lista_cartas_container{    display: flex;
     position: absolute;
     top: 0;
-    right: 0;
+    right: 2000px;
     background-color: white;
     opacity: 0.4;
     padding: 5px;
