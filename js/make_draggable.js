@@ -15,7 +15,11 @@ function make_draggable(){
       console.log(currentVALUE);//ejecuta el codigo
       pv = pv - currentVALUE;
       document.getElementById("enemy_bar").style.width = pv+"%";
-      if (pv <= 0) { alert("victoria!");}
+      if (pv <= 0) { 
+
+        //alert("victoria!");
+         document.getElementById("victory_screen_container").style.display ="inherit"; 
+    }
       //$("#cartas_usadas").append('ID:'+currentID+' Value:'+ currentVALUE +'</br>');
       $("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");
       $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop

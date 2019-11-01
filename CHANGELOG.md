@@ -2,7 +2,12 @@
 
 ## [Unreleased]
 
-## [v 0.2.0] alpha - 2019-11-1
+## [v 0.2.2] alpha - 2019-11-1
+### added
+- pantalla de victoria.
+- pantalla de derrota.
+
+## [v 0.2.1] alpha - 2019-11-1
 ### fixed
 - las listas de cartas en el mazo ya no se muestra.
 
