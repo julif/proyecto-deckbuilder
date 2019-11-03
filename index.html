@@ -24,7 +24,7 @@
         max-width: 80%;
       
       }
-      section{
+      #jugadores section{
         width: 50%;
         display: flex;
 justify-content: center;
@@ -55,15 +55,32 @@ flex-wrap: wrap;
   }
   #victory_screen_container{  display: none; }
   #defeat_screen_container{  display: none; }
+
+
+    #tablero{ display: none;   margin-top: -20px; }
+  #menu_inicial{    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: -webkit-fill-available;
+  }
     </style>
   
 </head>
 <body>
+    <section id="menu_inicial"> 
+    <div style="text-align: center;">
+      <h1>Proyecto Juego Deckbuilder </h1>
+      <h2 style="color:#8a8a8a"> creado por Julif </h2>
+      <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('menu_inicial').style.display ='none';
+start();"> empezar </button>
+    </div>
+  </section>
+    <section id="tablero">
   <div id="victory_screen_container">
     <div class="victoryordefeat_screen">
       <div>
-        <p>victoria </p> 
-        <button onClick="window.location.reload();"> volver a empezar </button>
+         <p>victoria </p> 
+          <button onClick="volver();"> volver a empezar </button>
       </div>
     </div> 
   </div>
@@ -108,6 +125,7 @@ flex-wrap: wrap;
       <div>descarte:<ul id="cartas_usadas" class="lista_cartas" ></ul></div>
     </div>
   </div><!-- container -->
+</section>
 </body>
 <!-- javascript -->
 <script src='js/lengths.js' type='text/javascript'></script>
@@ -118,13 +136,12 @@ flex-wrap: wrap;
 <script type='text/javascript'>
   //-------variables iniciales----------
   var turno = "jugador";
-   //puntos de vida de el enemigo
-   var pv = 100;
-     var life= 100;
-    ataque_enemy = 20;
+  var pv = 100;//enemy
+  var life= 100;//player
+  var ataque_enemy = 10;
 
-   var usadaslength = 0;
-   var mazolength = 0;
+  var usadaslength = 0;
+  var mazolength = 0;
 
   //mazo inicial
   var mazo_jugador = [
@@ -140,20 +157,33 @@ flex-wrap: wrap;
   " <li id='10' cardvalue='10' class='f'> id:10 cardvalue: 10 </li>" 
   ];
 
+//--------------------------------------------------------------------------------------------------
+//------------------------------------------| empezar |---------------------------------------------
+//--------------------------------------------------------------------------------------------------
+
+function start(){  
+
+//limpia el tablero
+  document.getElementById("mazo").innerHTML="";   // limpia la mazo
+  document.getElementById("mano").innerHTML="";   // limpia la mano
+  document.getElementById("cartas_usadas").innerHTML="";   // limpia la pila de descarte
+
   //mezclar mazo y mostrarlo en el div "mazo"
   var mazo_mezclado = mazo_jugador;
   mazo_mezclado.sort(function() {return Math.random() - 0.5});
   document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
-    console.log("turno: "+turno);//ejecuta el codigo
+  console.log("turno: "+turno);//ejecuta el codigo
   lengths(); //averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
 
   document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
 
+  robar();robar(); robar();
 
-   robar(); robar(); robar();
 
+  //$(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
 
-  $(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
+}
+
 
 </script>
 <script type="text/javascript">
@@ -166,10 +196,10 @@ flex-wrap: wrap;
     console.log("turno: "+turno);//ejecuta el codigo
     //---------------------------------------------------------
     
-     life = life - ataque_enemy;
+      life = life - ataque_enemy;
      if (life < 0) { life=0;}
-     console.log(life+"%");//ejecuta el codigo
-     ataque_enemy = ataque_enemy+10;
+     console.log(ataque_enemy+" de daño ");//ejecuta el codigo
+     // ataque_enemy = ataque_enemy+10;//<<<---------hacer que cada turno el enemigo ataque con 10 mas de daño
 
      if (life == 0) { 
       //alert("derrota");
@@ -187,33 +217,23 @@ flex-wrap: wrap;
 
 //-------------------------------------------------------------------
  var manolength = document.getElementsByClassName("dragdrop").length;
-//alert("cartas en la mano: " + manolength )
-var i;
-for (i = 0; i < manolength; i++) {
 
- // var currentID = document.getElementsByTagName("dragdrop draggable dragaware")[1].getAttribute("cardvalue");
- // var currentID = document.getElementsByTagName("H1")[0].getAttribute("class");
- // alert("i: " +[i] )
+//
+var i; 
+for (i = 0; i < manolength; i++) { // por cada carta con la clase dragdrop
 
-//var theElement = document.getElementById(elemID);
 var theElement = document.getElementsByTagName("carta")[0]
-
-
 var currentID = theElement.id;
 var currentVALUE = theElement.getAttribute('cardvalue');
 
-//alert(theElement);
-//alert("valor: "+currentVALUE+ " id: " + currentID);
 //--------lleva el primer elemento a cartas usadas
 $("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");
-
 
 //--------remueve el primer elemento de la mano
 var mano_list = document.getElementById("mano");   // Get the <ul> element with id="myList"
 mano_list.removeChild(mano_list.childNodes[0]); 
 
  //alert("i: " + currentID )
-
 }
 
     robar();
@@ -225,6 +245,21 @@ mano_list.removeChild(mano_list.childNodes[0]);
   function turno_jugador(){
 
   }
+</script>
+<script type="text/javascript">
+  function volver(){
+
+    
+     pv= 100;
+     ataque_enemy = 20;
+     document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
+     document.getElementById('victory_screen_container').style.display ='none'; 
+
+     document.getElementById('menu_inicial').style.display ='flex';
+    document.getElementById('tablero').style.display ='none';
+  
+  }
+
 </script>
 
   <script src='js/re_mezclar.js' type='text/javascript'></script>

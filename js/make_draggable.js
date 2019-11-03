@@ -19,6 +19,9 @@ function make_draggable(){
 
         //alert("victoria!");
          document.getElementById("victory_screen_container").style.display ="inherit"; 
+
+        
+
     }
       //$("#cartas_usadas").append('ID:'+currentID+' Value:'+ currentVALUE +'</br>');
       $("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");

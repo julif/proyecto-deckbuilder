@@ -2,6 +2,15 @@
 
 ## [Unreleased]
 
+
+## [v 0.2.3b] alpha - 2019-11-3
+### added
+- pantalla de inicio.
+- el primer enemigo hace 10 de daño consistentemente.
+- al vencer al rival puede luchar contra otro rival.
+- el primer enemigo hace 10 de daño consistentemente.
+- el segundo rival hace 20 de daño consistentemente
+
 ## [v 0.2.2] alpha - 2019-11-1
 ### added
 - pantalla de victoria.
