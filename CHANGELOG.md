@@ -3,6 +3,12 @@
 ## [Unreleased]
 
 
+## [v 0.2.5] alpha - 2019-11-5
+### added
+- la listas de cartas ahora muestra el mazo inicial en orden de id.
+
+### fixed
+- mazo_jugador ahora son objectos dentro de un array.
 
 ## [v 0.2.4] alpha - 2019-11-4
 ### added

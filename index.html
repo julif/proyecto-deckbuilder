@@ -80,6 +80,7 @@ start();"> empezar </button>
     <!--  descarte --> descarte: <span  id="usadas_length"></span>
     <div id="mano"  style="display: flex;"></div>
     <div  id="lista_cartas_container">
+      <div>mazo Inicial:<ul id="mazo_jugador" class="lista_cartas"></ul></div> 
       <div>mazo:<ul id="mazo" class="lista_cartas"></ul></div> 
       <div>descarte:<ul id="cartas_usadas" class="lista_cartas" ></ul></div>
     </div>
@@ -103,24 +104,32 @@ start();"> empezar </button>
   var mazolength = 0;
 
   //mazo inicial
-  var mazo_jugador = [
-  " <li id='1' cardvalue='20' class='f'> id:1 cardvalue: 20 </li>",
-  " <li id='2' cardvalue='10' class='f'> id:2 cardvalue: 10 </li>",
-  " <li id='3' cardvalue='10' class='f'> id:3 cardvalue: 10 </li>",
-  " <li id='4' cardvalue='10' class='f'> id:4 cardvalue: 10 </li>",
-  " <li id='5' cardvalue='10' class='f'> id:5 cardvalue: 10 </li>",
-  " <li id='6' cardvalue='10' class='f'> id:6 cardvalue: 10 </li>",
-  " <li id='7' cardvalue='10' class='f'> id:7 cardvalue: 10 </li>",
-  " <li id='8' cardvalue='10' class='f'> id:8 cardvalue: 10 </li>",
-  " <li id='9' cardvalue='10' class='f'> id:9 cardvalue: 10 </li>",
-  " <li id='10' cardvalue='10' class='f'> id:10 cardvalue: 10 </li>" 
-  ];
-   /* var mazo_jugador  = [
+    var mazo_jugador  = [
       { cardvalue: 20, id: 1}, 
       { cardvalue: 10, id: 2},
-      { cardvalue: 10, id: 3}
+      { cardvalue: 10, id: 3},
+      { cardvalue: 10, id: 4}, 
+      { cardvalue: 10, id: 5},
+      { cardvalue: 10, id: 6},
+      { cardvalue: 10, id: 7},
+      { cardvalue: 10, id: 8},
+      { cardvalue: 10, id: 9}, 
+      { cardvalue: 10, id: 10}
       ];
-*/
+
+
+
+//............................... mazo jugador ...................................................
+// ordenar el array por id ------------------
+  mazo_jugador=  mazo_jugador.sort(function(a, b) {
+    return a.id-b.id; /* ordenar por id */
+    //return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0); /* ordenar por title */
+});
+// mostrar mazo jugador ------------------
+mazo_jugador.forEach( function(element, index) {
+   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
+});
+
 //--------------------------------------------------------------------------------------------------
 //------------------------------------------| empezar |---------------------------------------------
 //--------------------------------------------------------------------------------------------------
@@ -140,7 +149,12 @@ function start(){
   mazo_mezclado.sort(function() {return Math.random() - 0.5});
 
 
-  document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
+  // mostrar mazo mezclado ------------------
+mazo_mezclado.forEach( function(element, index) {
+   //document.getElementById("mazo").innerHTML += "id: "+ element.id +" title: "+ element.title +" </br>"; 
+   document.getElementById("mazo").innerHTML += "<li id='"+ element.id +"' cardvalue='"+ element.cardvalue +"' class='f'> ID:"+ element.id +" Value: "+ element.cardvalue +" </li>"; 
+});
+  //document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
   console.log("turno: "+turno);//ejecuta el codigo
   lengths(); //averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
 
@@ -240,7 +254,14 @@ mano_list.removeChild(mano_list.childNodes[0]);
 
 function agregar_carta(){ 
 
- mazo_jugador.push("<li id='11' cardvalue='30' class='f'> id:11 cardvalue: 30 </li>");
+ mazo_jugador.push({ cardvalue: 30, id: 11});
+
+//limpia el mazo_jugador
+  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
+  // mostrar mazo jugador ------------------
+mazo_jugador.forEach( function(element, index) {
+   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
+});
 
  volver();
 }
@@ -251,6 +272,16 @@ function quitar_carta(){
 
     //delete mazo_jugador[0];
     mazo_jugador.splice(0,1);
+
+
+//limpia el mazo_jugador
+  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
+  // mostrar mazo jugador ------------------
+mazo_jugador.forEach( function(element, index) {
+   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
+});
+
+volver();
 
 }
 
