@@ -11,60 +11,8 @@
     <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
     <script src='js/draganddrop.js' type='text/javascript'></script>
     <style type="text/css">
-      .bar-container {
-        display: block;
-        padding: 5px;
-        background-color: black;
-        /*width: 150px;*/
-         width: -moz-available;          /* For Mozzila */
-         width: -webkit-fill-available;  /* For Chrome */
-         width: stretch;                 /* Unprefixed */
-         
-         max-width: 250px;
-        max-width: 80%;
-      
-      }
-      #jugadores section{
-        width: 50%;
-        display: flex;
-justify-content: center;
-flex-wrap: wrap;
-      }
-       #jugadores{
-        display: flex;
-       }
-#juju{ width: -moz-available;          /* For Mozzila */
-         width: -webkit-fill-available;  /* For Chrome */
-         width: stretch;                 /* Unprefixed */}
-      .bar_relleno{
-
-         background-color: green!important;
-        height: 10px;
-      }
-      .victoryordefeat_screen{background-color: #1d1b33ab;
-    position: absolute;
-    height: 100%;
-    width: -webkit-fill-available;
-    text-align: center;
-    justify-content: center;
-    color: white;
-        display: flex;
-    justify-content: center;
-    align-items: center;
-    
-  }
-  #victory_screen_container{  display: none; }
-  #defeat_screen_container{  display: none; }
-
-
-    #tablero{ display: none;   margin-top: -20px; }
-  #menu_inicial{    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: -webkit-fill-available;
-  }
+ 
     </style>
-  
 </head>
 <body>
     <section id="menu_inicial"> 
@@ -75,11 +23,22 @@ flex-wrap: wrap;
 start();"> empezar </button>
     </div>
   </section>
+  <section id="post_victory">
+    
+    post victory
+     <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('post_victory').style.display ='none';
+start();"> empezar </button>
+  </section>
     <section id="tablero">
   <div id="victory_screen_container">
     <div class="victoryordefeat_screen">
       <div>
          <p>victoria </p> 
+
+           <button onClick=  "agregar_carta(); "> agregar carta nueva </button>
+           <button onClick=  "quitar_carta(); "> quitar carta </button>
+
+
           <button onClick="volver();"> volver a empezar </button>
       </div>
     </div> 
@@ -156,7 +115,12 @@ start();"> empezar </button>
   " <li id='9' cardvalue='10' class='f'> id:9 cardvalue: 10 </li>",
   " <li id='10' cardvalue='10' class='f'> id:10 cardvalue: 10 </li>" 
   ];
-
+   /* var mazo_jugador  = [
+      { cardvalue: 20, id: 1}, 
+      { cardvalue: 10, id: 2},
+      { cardvalue: 10, id: 3}
+      ];
+*/
 //--------------------------------------------------------------------------------------------------
 //------------------------------------------| empezar |---------------------------------------------
 //--------------------------------------------------------------------------------------------------
@@ -169,8 +133,13 @@ function start(){
   document.getElementById("cartas_usadas").innerHTML="";   // limpia la pila de descarte
 
   //mezclar mazo y mostrarlo en el div "mazo"
-  var mazo_mezclado = mazo_jugador;
+  var mazo_mezclado = mazo_jugador.slice();//clona el mazo_jugador pero de manera independiente.
+
+
+
   mazo_mezclado.sort(function() {return Math.random() - 0.5});
+
+
   document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
   console.log("turno: "+turno);//ejecuta el codigo
   lengths(); //averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
@@ -180,7 +149,13 @@ function start(){
   robar();robar(); robar();
 
 
+  //mazo_jugador.sort();
+
+
   //$(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
+
+ // console.log("mazo jugador: "+ mazo_jugador);//ejecuta el codigo
+ // console.log("mazo mezclado: "+ mazo_mezclado);//ejecuta el codigo
 
 }
 
@@ -255,10 +230,30 @@ mano_list.removeChild(mano_list.childNodes[0]);
      document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
      document.getElementById('victory_screen_container').style.display ='none'; 
 
-     document.getElementById('menu_inicial').style.display ='flex';
+    //document.getElementById('menu_inicial').style.display ='flex';
     document.getElementById('tablero').style.display ='none';
-  
+    document.getElementById('post_victory').style.display ='flex';
+    
+
   }
+
+
+function agregar_carta(){ 
+
+ mazo_jugador.push("<li id='11' cardvalue='30' class='f'> id:11 cardvalue: 30 </li>");
+
+ volver();
+}
+function quitar_carta(){ 
+
+  /* var indice =  mazo_jugador.indexOf(1); // obtenemos el indice
+    mazo_jugador.splice(indice, 1); // 1 es la cantidad de elemento a eliminar*/
+
+    //delete mazo_jugador[0];
+    mazo_jugador.splice(0,1);
+
+}
+
 
 </script>
 

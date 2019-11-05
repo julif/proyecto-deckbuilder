@@ -3,6 +3,13 @@
 ## [Unreleased]
 
 
+
+## [v 0.2.4] alpha - 2019-11-4
+### added
+- pantalla de post-victoria.
+- boton agregar carta nueva en la pantalla de victoria (agrega siempre la carta con id 11)
+- boton agregar quitar carta en la pantalla de victoria (borra siempre la carta con index 0)
+
 ## [v 0.2.3b] alpha - 2019-11-3
 ### added
 - pantalla de inicio.
