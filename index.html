@@ -1,293 +1,196 @@
-<!doctype html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proyecto Deckbuilder</title>
-    <!-- css -->
-    <link rel="stylesheet" href="style.css"/>
-    <!-- javascript -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src='js/draganddrop.js' type='text/javascript'></script>
-    <style type="text/css">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <a href="https://your-url" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewBox="0 0 250 250" style="fill:#151513; color: #155799; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+  
+    <header class="page-header" role="banner">
+      <h1 class="project-name"> Proyecto Roguelike Deckbuilder </h1>
+      <h2 class="project-tagline">Un juego web inspirado en "slay the spire".</h2>
+      
+       <a href="demo/index.html" class="btn">demo v 1.0</a>
+       <a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">Download .zip v1.0</a>
+      
+         <!--  <a href="https://github.com/pages-themes/cayman/zipball/master" class="btn">Download .zip</a>
+        <a href="https://github.com/pages-themes/cayman/tarball/master" class="btn">Download .tar.gz</a> -->
+      
+    </header>
+<style>
+  .nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+    
+     max-width: 900px; 
+    margin: auto;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+
+}
+.nav-link {
+  
+  color: #ffffff;
+  
+
+    text-decoration: none;
+}
+.nav-link {    
+  
+  font-size: large;
+    font-weight: 600;
+
+    display: block;
+    padding: .5rem 1rem;
+}
+</style>
+<div style="background-color:  #112b46;">
+    <ul class="nav">
+      <li class="nav-item">
+        <a class="nav-link" href="index.html"  style=" background-color: #155799; "> Proyect </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="devlog.html" > Devblog </a>
+      </li>
+      <!-- <li class="nav-item">
+        <a class="nav-link" href="#">Link</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Disabled</a>
+      </li> -->
+    </ul>
+  </div>
+
+    <main id="content" class="main-content" role="main">
+      <p> mi idea es crear un juego al estilo "slay the spire" con influencias de "pirates outlaw" con un poco de "darkest dungeon". con una UI y diseño de cartas al estilo de gigantic</p>
+      
+      <!-- <button style="
+      /* text-align: center; */
+      background-color: #155799;
+      color: white;
+      border: none;
+      padding: 15px;
+  "> descargar zip </button> -->
+      
+      
+      <h2>features</h2>
+      <ul>
+        <li>idioma de el navegador</li>
+        <li>splash screen</li>
+        <li>precargar el splash-art durante el splash screen y si esta cargado durar al menos 3s</li>
+        <li>splash screen</li>
+      </ul>
+
+      
+      <h2>Ideas</h2>
+      <checkbox>
+        <label class="container">historias y caminos alternos
+           <!-- checked="checked" --> 
+          <input type="checkbox"> 
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="container"> varios personajes
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+        
+        <label class="container">pantallas de carga entre capitulos dependiendo la elecciones, que muestren una imagen en sepia con la barra de cargando debajo
+          <input type="checkbox">
+          <span class="checkmark"></span>
+        </label>
+    
+      </checkbox>
+
+      <h2>splash</h2>
+
+    <p>lo primero que quiero mostrar es un splash que tenga el nombre de julif o algo asi</p>
+    <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;">   <img src="referencias/unity_splash.jpg" style="width: 100%;max-width: 600px;"></div>
+    <h2>splash art</h2>
+    <p> despues paso a un splash de el juego, el cual puede variar random o para fechas especificas </p>
+   
+    <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+    <img src="referencias/gigantic_splash.jpg" style="width: 100%;max-width: 600px;">
+    <img src="referencias/gigantic_splash2.jpg" style="width: 100%;max-width: 600px;">
+  </div>
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+    <img src="referencias/gigantic_splash_portrait.jpg" style="height: 600px;">
+    <img src="referencias/gigantic_splash_portrait_alternative.jpg" style="height: 600px;">
+  </div> <p> el splash principal se usa en parte para cargar la imagen de el splash-art, y el splash-art se usa en parte para cargar el menu principal. y aclaro "en parte" por que de estar todo cargado aun asi deberia mostrarse unos segundos. </p>
+  <p> una vez cargado todo entramos al menu principal</p>
+  <h2>menu principal</h2>
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+  <img src="referencias/main_menu_gigantic.png" style="width: 600px;">
+  <img src="referencias/main_menu_otem_defiance.jpg" style="width: 600px;">
+</div>
+  <p> me gustan un par de cosas de el menu de otem defiance, como que se vea la versiond el juego a un costado y el logo al otro. tambien me gusto la idea de que una de las opciones en el menu sea comic</p>
+  <p> en fin, una vez elejida la opcion play se va a abrir la pantalla de seleccion de personajes</p>
+  <h2>seleccion de personajes</h2>
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+  <img src="referencias/gigantic_character_selection.jpg" style="width: 600px;">
+  <img src="referencias/pirates_character_selection.jpg" style="width: 600px;">
+</div>
+<h2>seleccion de capitulo </h2>
+  <p> no estoy seguro de como afrontar esta parte, quizas haga falta una pantalla con la seleccion de personajes y otra con los detalles y habilidades y mazos</p>
+  <p> tambien me gusta la idea de que los personajes tengan skins</p>
+  <p> una vez terminada la seleccion de personaje entramos al la seccion de seleccion de capitulos o de mapa...aun nose</p>
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+  <img src="referencias/Chapter-Selection.png" style="width: 600px;">
+  <img src="referencias/PO1.jfif" style="width: 600px;">
+</div>
+<h2> el juego </h2>
+<div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+    <img src="referencias/picture-3.jpg" style="width: 600px;">
+    <img src="referencias/maxresdefault (1).jpg" style="width: 600px;">
+    <img src="referencias/c3209a62922903.5aa001157005a.jpg" style="width: 600px;">
+    <img src="referencias/50c78162922903.5aa0011572707.jpg" style="width: 600px;">
+    <img src="referencias/3a097c62922903.5aa00115736e1.jpg" style="width: 600px;"> 
+    <img src="referencias/deck-of-ashes-gameplay-large.jpg" style="width: 600px;">
+  </div>
  
-    </style>
-</head>
-<body>
-    <section id="menu_inicial"> 
-    <div style="text-align: center;">
-      <h1>Proyecto Juego Deckbuilder </h1>
-      <h2 style="color:#8a8a8a"> creado por Julif </h2>
-      <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('menu_inicial').style.display ='none';
-start();"> empezar </button>
-    </div>
-  </section>
-  <section id="post_victory">
-    
-    post victory
-     <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('post_victory').style.display ='none';
-start();"> empezar </button>
-  </section>
-    <section id="tablero">
-  <div id="victory_screen_container">
-    <div class="victoryordefeat_screen">
-      <div>
-         <p>victoria </p> 
+  
+  
+  
+  <h2> las cartas </h2>
+  <p>para las cartas mi idea era que fueran dibujos somples, casi formas geometricas y basarme un poco en ese viejo show de nickelodoen</p>
+ 
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;">   <img src="referencias/gigantic_trading-cards.jpg" style="width: 100%;"></div>
+  <div style="text-align: center;margin-top: 50px;margin-bottom: 50px;"> 
+ 
+  <img src="referencias/eric-dagley-fortunecards-arcana.jpg" style="width: 600px;">
+  <img src="referencias/fortune-cards.jpg" style="width: 600px;">
 
-           <button onClick=  "agregar_carta(); "> agregar carta nueva </button>
-           <button onClick=  "quitar_carta(); "> quitar carta </button>
-
-
-          <button onClick="volver();"> volver a empezar </button>
-      </div>
-    </div> 
-  </div>
-    <div id="defeat_screen_container">
-    <div class="victoryordefeat_screen">
-      <div>
-        <p> derrota </p> 
-        <button onClick="window.location.reload();"> volver a empezar </button>
-      </div>
-    </div> 
-  </div>
-  <div class="container">
-    <!-- drop zone -->
-    <div class="drop">
-      <div id="jugadores">
-        <section><!-- player zone -->
-          <div id="juju">
-            <div>Jugador:</div>
-            <div class="bar-container">
-              <div id="life_bar" class="bar_relleno"></div>
-            </div>
-          </div>
-        </section>
-        <section> <!-- enemy zone -->
-          <div id="juju">
-            <div>enemy:</div>
-            <div class="bar-container">
-              <div id="enemy_bar" class="bar_relleno"></div>
-            </div>
-          </div>
-        </section>
-      </div><!-- jugadores -->
-      <p>Drop here</p>
-    </div><!-- drop -->
-    <button onclick="end_turn()" > Terminar turno </button></br>
-    <!--  mazo --> mazo: <span  id="mazo_length"></span></br>
-    <!--  mano --> mano:<span  id="mano_length"></span></br>
-    <!--  descarte --> descarte: <span  id="usadas_length"></span>
-    <div id="mano"  style="display: flex;"></div>
-    <div  id="lista_cartas_container">
-      <div>Mazo Inicial:<ul id="mazo_jugador" class="lista_cartas"></ul></div> 
-      <div>Mazo:<ul id="mazo" class="lista_cartas"></ul></div> 
-      <div>Descarte:<ul id="cartas_usadas" class="lista_cartas" ></ul></div>
-    </div>
-  </div><!-- container -->
-</section>
-</body>
-<!-- javascript -->
-<script src='js/lengths.js' type='text/javascript'></script>
-  <script src='js/robar.js' type='text/javascript'></script>
-  <script src='js/make_draggable.js' type='text/javascript'></script>
-
-
-<script type='text/javascript'>
-  //-------variables iniciales----------
-  var turno = "jugador";
-  var pv = 100;//enemy
-  var life= 100;//player
-  var ataque_enemy = 10;
-
-  var usadaslength = 0;
-  var mazolength = 0;
-
-  //mazo inicial
-    var mazo_jugador  = [
-      { cardvalue: 20, id: 1}, 
-      { cardvalue: 10, id: 2},
-      { cardvalue: 10, id: 3},
-      { cardvalue: 10, id: 4}, 
-      { cardvalue: 10, id: 5},
-      { cardvalue: 10, id: 6},
-      { cardvalue: 10, id: 7},
-      { cardvalue: 10, id: 8},
-      { cardvalue: 10, id: 9}, 
-      { cardvalue: 10, id: 10}
-      ];
+  <img src="referencias/Hero_Ramsay.jpg" style="height: 600px;"> 
+  <img src="referencias/eric-dagley-lorecard-eternalsfinal.jpg" style="height: 600px;">  
+  <img src="referencias/eric-dagley-lorecard-betrayal-final.jpg" style="height: 600px;"> 
+  <img src="referencias/bn5K5KW2md2EAIBxSi0DB4tRmiC88iLnRBKF4VBEeQE.jpg" style="height: 600px;">  
+  <img src="referencias/Arcana_Priestess.jpg" style="height: 600px;">
+  <img src="referencias/Arcana_Empress.jpg" style="height: 600px;"> 
+  <img src="referencias/Arcana_Emperor.jpg" style="height: 600px;">
+  <img src="referencias/53ff56f37863da5c0928b79cec9ae6e7.jpg" style="height: 600px;">
+  <img src="referencias/445dd2c8fbb2ce248c16533b654d825d.jpg" style="height: 600px;">
+</div>
+  <p> despues tenemos la pantalla de victoria o derrota</p>
 
 
 
-//............................... mazo jugador ...................................................
-// ordenar el array por id ------------------
-  mazo_jugador=  mazo_jugador.sort(function(a, b) {
-    return a.id-b.id; /* ordenar por id */
-    //return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0); /* ordenar por title */
-});
-// mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
+      <footer class="site-footer">
+        
+          <span class="site-footer-owner"><a href="https://github.com/pages-themes/cayman">cayman</a> is maintained by <a href="https://github.com/pages-themes">pages-themes</a>.</span>
+        
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a>.</span>
+      </footer>
+    </main>
+  
 
-//--------------------------------------------------------------------------------------------------
-//------------------------------------------| empezar |---------------------------------------------
-//--------------------------------------------------------------------------------------------------
-
-function start(){  
-
-//limpia el tablero
-  document.getElementById("mazo").innerHTML="";   // limpia la mazo
-  document.getElementById("mano").innerHTML="";   // limpia la mano
-  document.getElementById("cartas_usadas").innerHTML="";   // limpia la pila de descarte
-
-  //mezclar mazo y mostrarlo en el div "mazo"
-  var mazo_mezclado = mazo_jugador.slice();//clona el mazo_jugador pero de manera independiente.
-
-
-
-  mazo_mezclado.sort(function() {return Math.random() - 0.5});
-
-
-  // mostrar mazo mezclado ------------------
-mazo_mezclado.forEach( function(element, index) {
-   //document.getElementById("mazo").innerHTML += "id: "+ element.id +" title: "+ element.title +" </br>"; 
-   document.getElementById("mazo").innerHTML += "<li id='"+ element.id +"' cardvalue='"+ element.cardvalue +"' class='f'> ID:"+ element.id +" Value: "+ element.cardvalue +" </li>"; 
-});
-  //document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
-  console.log("turno: "+turno);//ejecuta el codigo
-  lengths(); //averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
-
-  document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
-
-  robar();robar(); robar();
-
-
-  //mazo_jugador.sort();
-
-
-  //$(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
-
- // console.log("mazo jugador: "+ mazo_jugador);//ejecuta el codigo
- // console.log("mazo mezclado: "+ mazo_mezclado);//ejecuta el codigo
-
-}
-
-
-</script>
-<script type="text/javascript">
-
-
-  function end_turn(){
-    alert("turno finalizado");
-
-    var turno="enemy";
-    console.log("turno: "+turno);//ejecuta el codigo
-    //---------------------------------------------------------
-    
-      life = life - ataque_enemy;
-     if (life < 0) { life=0;}
-     console.log(ataque_enemy+" de daño ");//ejecuta el codigo
-     // ataque_enemy = ataque_enemy+10;//<<<---------hacer que cada turno el enemigo ataque con 10 mas de daño
-
-     if (life == 0) { 
-      //alert("derrota");
-         document.getElementById("defeat_screen_container").style.display ="inherit"; 
-    }
-     
-    
-    document.getElementById("life_bar").style.width = life+"%"; //mostrar la vida del enemigo.
-
-
-    //-------------------------------------------------------------------
-     var turno="jugador";
-      console.log("turno: "+turno);//ejecuta el codigo
-
-
-//-------------------------------------------------------------------
- var manolength = document.getElementsByClassName("dragdrop").length;
-
-//
-var i; 
-for (i = 0; i < manolength; i++) { // por cada carta con la clase dragdrop
-
-var theElement = document.getElementsByTagName("carta")[0]
-var currentID = theElement.id;
-var currentVALUE = theElement.getAttribute('cardvalue');
-
-//--------lleva el primer elemento a cartas usadas
-$("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");
-
-//--------remueve el primer elemento de la mano
-var mano_list = document.getElementById("mano");   // Get the <ul> element with id="myList"
-mano_list.removeChild(mano_list.childNodes[0]); 
-
- //alert("i: " + currentID )
-}
-
-    robar();
-    robar();
-    robar();
-  }
-</script>
-<script type="text/javascript">
-  function turno_jugador(){
-
-  }
-</script>
-<script type="text/javascript">
-  function volver(){
-
-    
-     pv= 100;
-     ataque_enemy = 20;
-     document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
-     document.getElementById('victory_screen_container').style.display ='none'; 
-
-    //document.getElementById('menu_inicial').style.display ='flex';
-    document.getElementById('tablero').style.display ='none';
-    document.getElementById('post_victory').style.display ='flex';
-    
-
-  }
-
-
-function agregar_carta(){ 
-
- mazo_jugador.push({ cardvalue: 30, id: 11});
-
-//limpia el mazo_jugador
-  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
-  // mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
-
- volver();
-}
-function quitar_carta(){ 
-
-  /* var indice =  mazo_jugador.indexOf(1); // obtenemos el indice
-    mazo_jugador.splice(indice, 1); // 1 es la cantidad de elemento a eliminar*/
-
-    //delete mazo_jugador[0];
-    mazo_jugador.splice(0,1);
-
-
-//limpia el mazo_jugador
-  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
-  // mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
-
-volver();
-
-}
-
-
-</script>
-
-  <script src='js/re_mezclar.js' type='text/javascript'></script>
-
-</html>
+</body></html>

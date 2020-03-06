@@ -1,0 +1,128 @@
+body{
+  margin: 0px;
+    
+}
+carta{
+  background-color: red;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-bottom: 5px;
+  list-style: none;
+  color: white;
+  cursor: pointer;
+}
+.drop carta {
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    color: black;
+    cursor: default;
+}
+.draggable.dragging, .draggable .dragging {
+  opacity: 0.5;
+  /*opacity: 0.01;*/
+}
+.drop {
+  margin: 20px 0;
+  padding: 5px;
+  border: 2px dotted orange;
+  border-radius: 5px;
+}
+.drop.hovering {
+  background-color: #F6BF66;
+}
+#enemy_bar{
+  height: 10px;
+  background-color: red;
+  width: 100%;
+}
+#life_bar{
+  height: 10px;
+  background-color: red;
+  width: 100%;
+}
+/* #cartas_usadas{
+  background-color: gray;
+  padding: 10px;
+  color: white;    width: fit-content;margin: 5px;
+}
+#mazo{    background-color: grey;padding: 10px;margin: 5px;
+  color: white;    width: fit-content;}*/
+
+   #lista_cartas_container{    display: flex;
+    /*position: absolute;*/
+    top: 0;
+    right: 2000px;
+    background-color: white;
+    /*opacity: 0.4;*/
+    padding: 5px;
+  }
+ .lista_cartas{ 
+ /* background-color: gray;*/
+   padding: 10px;
+   /*color: white;   */
+    width: fit-content;
+    margin: 5px;}
+
+     .bar-container {
+        display: block;
+        padding: 5px;
+        background-color: black;
+        /*width: 150px;*/
+        width: -moz-available;          /* For Mozzila */
+        width: -webkit-fill-available;  /* For Chrome */
+        width: stretch;                 /* Unprefixed */
+        max-width: 250px;
+        max-width: 80%;
+      }
+      #jugadores section{
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      #jugadores{
+        display: flex;
+      }
+      #juju{ 
+        width: -moz-available;          /* For Mozzila */
+        width: -webkit-fill-available;  /* For Chrome */
+        width: stretch;                 /* Unprefixed */
+      }
+      .bar_relleno{
+        background-color: green!important;
+        height: 10px;
+      }
+      .victoryordefeat_screen{
+        background-color: #1d1b33ab;
+        position: absolute;
+        height: 100%;
+        width: -moz-available;          /* For Mozzila */
+        width: -webkit-fill-available;  /* For Chrome */
+        width: stretch;                 /* Unprefixed */
+        text-align: center;
+         justify-content: center;
+         color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      #victory_screen_container{  display: none; }
+      #defeat_screen_container{  display: none; }
+      #post_victory{  display: none; }
+
+
+      #tablero{ display: none;   margin-top: -20px; }
+      #menu_inicial{    
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: -moz-available;          /* For Mozzila */
+        width: -webkit-fill-available;  
+       /* width: stretch; */                /* Unprefixed */
+       height: -webkit-fill-available;  /* For Chrome */
+       height: -moz-available;          /* For Mozzila */
+
+      }
