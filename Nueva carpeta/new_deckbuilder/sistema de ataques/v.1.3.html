@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<!-- sistema de ataques version 1.3 "sistema de escudos" -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h2>Puntos de vida de el jugador:</h2>
+ <p id="pdv_player"></p>
+ <p style="color: #8589ff;" id="escudos_player"></p>
+  <h2>Puntos de vida de el enemigo:</h2>
+ <p id="pdv_enemy"></p>
+ <p style="color: #8589ff;" id="escudos_enemy"></p>
+ <button onclick="atk_player()"> ataque player 20</button>
+ <button onclick="heal_player()"> cura player 10</button>
+ <button onclick="add_shields_player()"> +30 de escudos player</button>
+</br>
+ <button onclick="atk_enemy()"> ataque enemigo 20</button>
+ <button onclick="heal_enemy()"> cura enemy 10</button>
+ <button onclick="add_shields_enemy()"> +30 de escudos enemy</button>
+</body>
+<script type="text/javascript">
+//............................... vida jugador ...................................................
+var puntos_de_vida_player = 100;
+var max_puntos_de_vida_player = 100;
+var escudos_player = 20;
+document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+document.getElementById("escudos_player").innerHTML =  "escudos:"+ escudos_player +" </br>"; 
+//............................... vida enemy ...................................................
+var puntos_de_vida_enemy = 100;
+var max_puntos_de_vida_enemy = 100;
+var escudos_enemy = 30;
+document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+document.getElementById("escudos_enemy").innerHTML =  "escudos:"+ escudos_enemy +" </br>"; 
+
+
+var ataque_player= 20;
+var regeneracion_player = 10;
+
+var ataque_enemy= 20;
+var regeneracion_enemy = 10;
+</script>
+
+<script type="text/javascript">//player
+  function atk_player(){
+    if (escudos_enemy == 0) {
+      puntos_de_vida_enemy = parseInt(puntos_de_vida_enemy) - parseInt(ataque_player);
+      if ( puntos_de_vida_enemy <= 0) { puntos_de_vida_enemy=0; }
+      document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+    }
+    else if (escudos_enemy > ataque_player) {
+      escudos_enemy= parseInt(escudos_enemy) - parseInt(ataque_player);
+      document.getElementById("escudos_enemy").innerHTML =  "escudos:"+ escudos_enemy +" </br>"; 
+    }
+    else if (escudos_enemy < ataque_player) {
+      ataque_player = parseInt(ataque_player) - parseInt(escudos_enemy);
+      escudos_enemy = 0;
+      puntos_de_vida_enemy = parseInt(puntos_de_vida_enemy) - parseInt(ataque_player);
+      if ( puntos_de_vida_enemy <= 0) { puntos_de_vida_enemy=0; }
+      document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+      document.getElementById("escudos_enemy").innerHTML =  "escudos:"+ escudos_enemy +" </br>"; 
+    }
+    else if (escudos_enemy == ataque_player) {
+      escudos_enemy = 0;
+      document.getElementById("escudos_enemy").innerHTML =  "escudos:"+ escudos_enemy +" </br>"; 
+    }
+  }
+  function heal_player(){
+    puntos_de_vida_player = parseInt( puntos_de_vida_player ) + parseInt(regeneracion_player);
+    if ( puntos_de_vida_player > max_puntos_de_vida_player) {  puntos_de_vida_player = max_puntos_de_vida_player;}
+    document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+  }
+  function add_shields_player(){
+    escudos_player = parseInt(escudos_player) + 20;
+    document.getElementById("escudos_player").innerHTML =  "escudos:"+ escudos_player +" </br>"; 
+  }
+</script>
+<script type="text/javascript">//enemy
+  function atk_enemy(){
+    if (escudos_player == 0) {
+      puntos_de_vida_player = parseInt(puntos_de_vida_player) - parseInt(ataque_enemy);
+      if ( puntos_de_vida_player <= 0) { puntos_de_vida_player=0; }
+      document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+    }
+    else if (escudos_player > ataque_enemy) {
+      escudos_player= parseInt(escudos_player) - parseInt(ataque_enemy);
+      document.getElementById("escudos_player").innerHTML =  "escudos:"+ escudos_player +" </br>"; 
+    }
+    else if (escudos_player < ataque_enemy) {
+      ataque_enemy = parseInt(ataque_enemy) - parseInt(escudos_player);
+      escudos_player = 0;
+      puntos_de_vida_player = parseInt(puntos_de_vida_player) - parseInt(ataque_enemy);
+      if ( puntos_de_vida_player <= 0) { puntos_de_vida_player=0; }
+      document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+      document.getElementById("escudos_player").innerHTML =  "escudos:"+ escudos_player +" </br>"; 
+    }
+    else if (escudos_player == ataque_enemy) {
+      escudos_player = 0;
+      document.getElementById("escudos_player").innerHTML =  "escudos:"+ escudos_player +" </br>"; 
+    }
+  
+  }
+  function heal_enemy(){
+    puntos_de_vida_enemy = parseInt( puntos_de_vida_enemy ) + parseInt(regeneracion_enemy);
+    if ( puntos_de_vida_enemy > max_puntos_de_vida_enemy) {  puntos_de_vida_enemy = max_puntos_de_vida_enemy;}
+    document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+  }
+    function add_shields_enemy(){
+    escudos_enemy = parseInt(escudos_enemy) + 30;
+    document.getElementById("escudos_enemy").innerHTML =  "escudos:"+ escudos_enemy +" </br>"; 
+  }
+</script>
+</html>

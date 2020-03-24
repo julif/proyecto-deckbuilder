@@ -1,0 +1,41 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <h2>Puntos de vida de el jugador:</h2>
+ <p id="pdv_player"></p>
+  <h2>Puntos de vida de el enemigo:</h2>
+ <p id="pdv_enemy"></p>
+ <button onclick="atk_player()"> ataque player 20</button>
+ <button onclick="atk_enemy()"> ataque enemigo 20</button>
+</body>
+<script type="text/javascript">
+//............................... vida jugador ...................................................
+var puntos_de_vida_player = 100;
+var max_puntos_de_vida_player = 100;
+document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+//............................... vida enemy ...................................................
+var puntos_de_vida_enemy = 100;
+var max_puntos_de_vida_enemy = 100;
+document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+
+var ataque_enemy= 20;
+var ataque_player= 20;
+</script>
+<script type="text/javascript">
+  function atk_enemy(){
+   puntos_de_vida_player = puntos_de_vida_player - ataque_enemy;
+   if ( puntos_de_vida_player <= 0) { puntos_de_vida_player=0; }
+   document.getElementById("pdv_player").innerHTML =  puntos_de_vida_player+"/"+ max_puntos_de_vida_player +" </br>"; 
+  }
+  function atk_player(){
+   puntos_de_vida_enemy = puntos_de_vida_enemy - ataque_player;
+   if ( puntos_de_vida_enemy <= 0) { puntos_de_vida_enemy=0; }
+   document.getElementById("pdv_enemy").innerHTML =  puntos_de_vida_enemy+"/"+ max_puntos_de_vida_enemy +" </br>"; 
+  }
+</script>
+</html>

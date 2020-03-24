@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+ <!-- javascript -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> 
+
+ <style type="text/css">
+       
+  ul{ display: inline-block;  }
+ #mano li {
+    background-color: red;
+    padding: 10px;
+    margin-bottom: 5px; 
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+ #mano_enemy li {
+    background-color: black;
+    padding: 10px;
+    margin-bottom: 5px; 
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+.bar-container{    background-color: black;
+    height: 20px;
+    width: 200px;
+        display: flow-root;
+    }
+     #relleno{
+    background-color: green;
+    height: 10px;
+    /* padding: 6px; */
+    margin: 5px;
+}
+  #relleno_enemy{
+    background-color: green;
+    height: 10px;
+    /* padding: 6px; */
+    margin: 5px;
+}
+#div1 {
+  width: 350px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+ </style>
+
+</head>
+<body>
+  puntos de vida enemigo <span id="pvenemy"></span></br>
+  <div class="bar-container">
+    <div id="relleno_enemy"></div>
+  </div><!-- fin de barcontainer -->
+  <ul id="mazo_enemy" style="display: none;"></ul>
+  mano enemigo:
+  <div>
+    <ul id="mano_enemy"></ul>
+  </div>
+  puntos de vida <span id="pv"></span>
+  <div class="bar-container">
+    <div id="relleno"></div>
+  </div><!-- fin de barcontainer -->
+  </br>
+   <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+  mazo: <span id="mazolength"></span>
+  </br>
+  <ul id="mazo" style="display: none;"></ul>
+  mano:
+  <div>
+    <ul id="mano"></ul>
+  </div>
+  <button id="btn_endturn" onclick="endturn()" >terminar turno</button> 
+</body>
+<script type="text/javascript">
+  var mazo_hh_enemy = [
+  "<li id='b1' modifier='0' value='20'  > carta sin robar  </li>",
+  "<li id='b2' modifier='0' value='10' > carta sin robar </li>",
+  "<li id='b3' modifier='0' value='10' > carta sin robar </li>",
+  "<li id='b4' modifier='0' value='10' > carta sin robar </li>" 
+  ];
+  var cartasSinRobar_enemy = mazo_hh_enemy;
+  cartasSinRobar_enemy.sort(function() {return Math.random() - 0.5});
+  document.getElementById("mazo_enemy").innerHTML =cartasSinRobar_enemy;
+
+  var mazo_hh = [
+  "<li id='1' modifier='0' value='20'  draggable='true' ondragstart='drag(event)'> carta sin robar </li>",
+  "<li id='2' modifier='0' value='10'  draggable='true' ondragstart='drag(event)'> carta sin robar </li>",
+  "<li id='3' modifier='0' value='10'  draggable='true' ondragstart='drag(event)'> carta sin robar </li>",
+  "<li id='4' modifier='0' value='10'  draggable='true' ondragstart='drag(event)'> carta sin robar </li>" 
+  ];
+  var cartasSinRobar = mazo_hh;
+  cartasSinRobar.sort(function() {return Math.random() - 0.5});
+  document.getElementById("mazo").innerHTML =cartasSinRobar;
+
+
+
+
+
+
+  //declaracion de variables
+  var pv = 100;
+  var mazo_length_enemy = $('#mazo_enemy li').length;
+  var mano_length_enemy = $('#mano_enemy li').length;
+  var pv_enemy = 100;
+  var mazo_length = $('#mazo li').length;
+  var mano_length = $('#mano li').length;
+  
+  
+  //mostrar los valores de la variables
+  document.getElementById("mazolength").innerHTML = mazo_length;
+  document.getElementById("pvenemy").innerHTML =pv_enemy;
+  document.getElementById("pv").innerHTML =pv;
+
+firstturn();
+function firstturn(){
+  for (var i= $('#mano li').length; i < 3; i++) {
+ 
+    setTimeout(function () {
+ setTimeout(robar, 500);
+ //setTimeout(robar_enemy, 500);
+     }, 200*i);
+    
+   };
+  for (var e= $('#mano_enemy li').length; e < 3; e++) {
+ 
+    setTimeout(function () {
+ setTimeout(robar_enemy, 500);
+     }, 200*e);
+    
+   };
+
+}
+
+
+// function startturn() {  
+//   var i= $('#mano li').length;
+//   while (i < 3) {
+//     setTimeout(robar, 1000);
+//     i++;
+//   }
+function startturn() {
+  for (var i= $('#mano li').length; i < 3; i++) {
+ 
+    setTimeout(function () {
+ setTimeout(robar, 500);
+     }, 200*i);
+    
+   };
+
+
+}
+function endturn() {  
+  alert(" turno terminado ");
+  //-----------------------------------------------------------------------------------------------------------IA enemiga 
+    for (var i= $('#mano_enemy li').length; i < 3; i++) {
+ 
+    setTimeout(function () {
+ setTimeout(robar_enemy, 500);
+     }, 200*i);
+    
+   };
+setTimeout(myFunction2, 2500);
+function myFunction2() {
+  f=0;
+  e= $('#mano_enemy li').length;
+  for (var f = 0; f < e; f++) {
+    setTimeout(function () {
+      var id = $('#mano_enemy li:nth-child(1)').attr('id'); // id de el primer li
+      var modifier_number = $('#mano_enemy li:nth-child(1)').attr('modifier'); // id de el primer li
+      var value_number = $('#mano_enemy li:nth-child(1)').attr('value'); // id de el primer li
+      // text += "<br>The number is " + i;
+      $('#mano_enemy li:nth-child(1)').remove();//remueve el primer li de mano_enemy lo cual si se repite 3 veces hace que sea uno por cada carta.
+      $("#mazo_enemy").append('<li id="'+id+'"  modifier="'+modifier_number+'"   value="'+value_number+'">  '+id+' </li>');
+
+
+       console.log(value_number);
+       pv=pv - value_number;
+
+      document.getElementById("pv").innerHTML =pv;
+      if (pv < 41 ) {  document.getElementById("relleno").style.backgroundColor ="orange";}
+      if (pv < 21 ) {  document.getElementById("relleno").style.backgroundColor ="red";}
+      document.getElementById("relleno").style.width =pv+"%";
+      console.log('f:'+f+'e:'+e);
+      // if (f==e) {setTimeout(startturn(), 19000);}
+    }, 2500*f);
+  };
+}
+ //$.when(myFunction2()).then(startturn());
+ 
+setTimeout(startturn, 9000);
+
+  // -----------------fin IA enemiga
+}
+
+
+  function robar() {
+    var id = $('#mazo li:first-child').attr('id'); // id de el primer li
+    var modifier_number = $('#mazo li:first-child').attr('modifier'); // id de el primer li
+    var value_number = $('#mazo li:first-child').attr('value'); // id de el primer li
+
+      // filtro los id para saber que contenido tiene el li
+      if (id == 1) { var content = " 20 de daño al enemigo ";}
+      if (id == 2) { var content = " 10 de daño al enemigo ";}
+      if (id == 3) { var content = " 10 de daño al enemigo ";}
+      if (id == 4) { var content = " 10 de daño al enemigo ";}
+
+//var fruitCount = plant.getAttribute('data-fruit'); // fruitCount = '12'
+    $("#mano").append('<li id="'+id+'"  modifier="'+modifier_number+'"   value="'+value_number+'" draggable="true" ondragstart="drag(event)" > '+content+' </li>');// agregar el nuevo li a la mano
+    $('#mazo li:first-child').remove();//quita el primer elemento de mazo
+
+    var mazo_length = $('#mazo li').length;
+    var mano_length = $('#mano li').length;
+    document.getElementById("mazolength").innerHTML = mazo_length;
+
+    // if (mazo_length ==  0) {  document.getElementById("btn_robar").disabled = true ;}
+    // else{ document.getElementById("btn_robar").disabled = false ; }
+
+  console.log(mano_length);
+   }
+ function robar_enemy() {
+   var id = $('#mazo_enemy li:first-child').attr('id'); // id de el primer li
+    var modifier_number = $('#mazo_enemy li:first-child').attr('modifier'); // id de el primer li
+     var value_number = $('#mazo_enemy li:first-child').attr('value'); // id de el primer li
+     // filtro los id para saber que contenido tiene el li
+      if (id == 'b1') { var content = " 20 de daño al enemigo ";}
+      if (id == 'b2') { var content = " 10 de daño al enemigo ";}
+      if (id == 'b3') { var content = " 10 de daño al enemigo ";}
+      if (id == 'b4') { var content = " 10 de daño al enemigo ";}
+
+      //var fruitCount = plant.getAttribute('data-fruit'); // fruitCount = '12'
+    $("#mano_enemy").append('<li id="'+id+'"  modifier="'+modifier_number+'"   value="'+value_number+'"> '+content+' </li>');// agregar el nuevo li a la mano
+    $('#mazo_enemy li:first-child').remove();//quita el primer elemento de mazo
+
+
+     var mazo_length_enemy = $('#mazo_enemy li').length;
+    var mano_length_enemy = $('#mano_enemy li').length;
+   // document.getElementById("mazolength").innerHTML = mazo_length;
+     console.log(' mano enemy'+mano_length_enemy);
+  }
+
+
+
+
+ 
+</script>
+
+ <script>
+
+
+ addEventListener("touchstart", drag, false);
+   // addEventListener("touchend", dragEnd, false);
+   addEventListener("touchmove", drag, false);
+
+   addEventListener("mousedown", drag, false);
+    addEventListener("mouseup", drop, false);
+    addEventListener("mousemove", drag, false);
+
+
+  var currentID;
+  var currentvalueNumber;
+  var currentmodifierNumber;
+function allowDrop(ev) {
+  ev.preventDefault();
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+   currentID = ev.target.id;/*- returns  the id. */
+   currentvalueNumber= ev.target.value;/*- returns  the value. */
+   currentmodifierNumber= ev.target.modifier;/*- returns  the value. */
+
+  console.log(currentID);
+   return (currentID);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
+
+  console.log("dropeado:"+currentID);
+  console.log("dropeado:"+currentvalueNumber);
+  //document.getElementById(currentID).style.display = " ";
+  //var id = $(this).attr("id");
+    id = currentID;
+   // var modifier_number = $(this).attr('modifier'); // id de el primer li
+    modifier_number = currentmodifierNumber;
+    value_number= currentvalueNumber
+    //var value_number= $(this).attr('value'); // id de el primer li
+
+
+
+    $( '#'+id).remove();
+    $("#mazo").append('<li id="'+id+'"  modifier="'+modifier_number+'"   value="'+value_number+'">  '+id+' </li>');
+
+    //alert(value_number+" de daño");
+    pv_enemy=pv_enemy - value_number;
+    document.getElementById("pvenemy").innerHTML =pv_enemy;
+
+     if (pv_enemy < 41 ) {  document.getElementById("relleno_enemy").style.backgroundColor ="orange";}
+ if (pv_enemy < 21 ) {  document.getElementById("relleno_enemy").style.backgroundColor ="red";}
+       document.getElementById("relleno_enemy").style.width =pv_enemy+"%";
+
+    mazo_length = $('ul#mazo li').length;
+    document.getElementById("mazolength").innerHTML = mazo_length;
+    document.getElementById("div1").innerHTML = " ";
+
+    // if (mazo_length ==  0) {  document.getElementById("btn_robar").disabled = true ;}
+    // else{ document.getElementById("btn_robar").disabled = false ; }
+
+  
+}
+</script>
+
+<!--  $(document).on('click', '#mano li', function(){
+    var id = $(this).attr("id");
+    var modifier_number = $(this).attr('modifier'); // id de el primer li
+    var value_number= $(this).attr('value'); // id de el primer li
+
+
+
+    $( '#'+id).remove();
+    $("#mazo").append('<li id="'+id+'"  modifier="'+modifier_number+'"   value="'+value_number+'">  '+id+' </li>');
+
+    alert(value_number+" de daño");
+    pv_enemy=pv_enemy - value_number;
+    document.getElementById("pvenemy").innerHTML =pv_enemy;
+
+     if (pv_enemy < 41 ) {  document.getElementById("relleno_enemy").style.backgroundColor ="orange";}
+ if (pv_enemy < 21 ) {  document.getElementById("relleno_enemy").style.backgroundColor ="red";}
+       document.getElementById("relleno_enemy").style.width =pv_enemy+"%";
+
+    mazo_length = $('ul#mazo li').length;
+    document.getElementById("mazolength").innerHTML = mazo_length;
+
+    // if (mazo_length ==  0) {  document.getElementById("btn_robar").disabled = true ;}
+    // else{ document.getElementById("btn_robar").disabled = false ; }
+  }); -->
+
+</html>

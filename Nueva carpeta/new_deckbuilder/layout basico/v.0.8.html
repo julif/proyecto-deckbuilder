@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style type="text/css">
+    body{ margin: 0px auto; }
+    #container{
+      display: flex;      height: 100%;
+    /*  height:  100vh;
+   width: 100vw;*/
+    }
+    .character_container{ 
+      /*background-color: #afa8a8;*/
+      position: relative;    overflow: hidden;
+      /*display: inline-table;*/
+     /* margin-right: 5px;*/
+    }
+    .imagen_container {
+      text-align: center;
+      height: 250px;
+     /* width: 150px;*/
+    }
+    .enemy{transform: rotateY(180deg);height: 170px;}
+    .big_enemy{  height: 250px;    }
+    .bar_container{
+  padding: 5px;
+}
+      .bar{    background-color: black;
+      color: white;
+      text-align: center;}
+    img{height: 100%;}
+    /* .align_bottom{   background-color: red;
+    display: block;
+    position: absolute;
+    bottom: 0px;}*/
+    .align_bottom{ display: flex;
+    /*background-color: red;*/
+    /* width: 100%; */
+    height: 100%;
+    align-items: flex-end;}
+
+
+
+    #player_section{   /* background-color: blue;*/
+    width: 50%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+     #enemy_section{    /*background-color: red;*/
+    width: 70%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;}
+    .negro{    background-color: #00000030;    display: flex;
+    padding: 10px;
+min-height: 278px;
+  }
+
+
+
+  #main_container{
+   height:  100vh;
+   width: 100vw;
+   background-color: #56655d;
+  }
+
+
+ #top{background-color: transparent;
+    height: 75%;
+      position: relative;}
+
+  #bottom{
+    /*background-color: #3333406e;*/
+    display: flex;background-image: linear-gradient(#ff000000, #2c3530);
+    height: 33.3%;}
+#mazo{
+  /*background-color: #121212;*/
+    height: 100%;
+   
+        /* box-shadow: inset -1px -1px 0px 0px;*/
+    width: 15%;}
+     #mano{
+    /*  background-color: #1f1f1f;*/
+    height: 100%;   
+    /* box-shadow: inset -1px -1px 0px 0px;*/
+     width: 70%;    display: flex;
+    justify-content: center;
+     /*padding: 5px;*/
+   }
+    #descarte{
+    /*  background-color: #121212;*/
+    height: 100%;     /*box-shadow: inset -1px -1px 0px 0px;*/
+    width: 15%;}
+
+
+
+
+
+
+
+
+
+
+carta{       background-color: red;
+    /* height: 75px; */
+    
+    display: block;
+    width: 15%;
+    height: 100%;
+    margin-right: 5px;
+  }
+
+
+
+
+
+    /* On screens that are 992px or less, set the background color to blue */
+@media screen and (max-width: 992px) {
+  
+  
+  .imagen_container {height: 150px;}
+  .enemy {height: 100px;}
+  .big_enemy {height: 150px;}
+
+      .negro{ min-height: 178px;}
+
+
+       #player_section{   width: 35%;}
+}
+    </style>
+</head>
+<body>
+
+ <section id="main_container">
+  <div id="top"> 
+
+
+
+
+
+<div id="container">
+  <section id="player_section">
+    <div class="negro">
+         <div class="character_container ">
+    <span class="align_bottom"> 
+      <div> 
+        <div class="imagen_container"><img src="img/1.png"></div>
+        <div class="bar_container"><div class="bar">100/100</div></div>
+      </div>
+    </span>
+  </div>
+   </div>
+  </section>
+  <section id="enemy_section">
+    <div class="negro">
+
+  <div class="character_container ">
+    <span class="align_bottom"> 
+      <div> 
+        <div class="imagen_container enemy  "><img src="img/2.png"></div>
+        <div class="bar_container"><div class="bar">100/100</div></div>
+      </div>
+    </span>
+  </div> 
+
+
+  <div class="character_container ">
+    <span class="align_bottom"> 
+      <div> 
+        <div class="imagen_container enemy  "><img src="img/3.png"></div>
+        <div class="bar_container"><div class="bar">100/100</div></div>
+      </div>
+    </span>
+  </div> 
+
+
+  <div class="character_container ">
+    <span class="align_bottom"> 
+      <div> 
+        <div class="imagen_container enemy big_enemy "><img src="img/4.png"></div>
+        <div class="bar_container"><div class="bar">100/100</div></div>
+      </div>
+    </span>
+  </div> 
+
+
+    </div>
+  </section>
+
+
+  </div> <!-- top -->
+   <div id="bottom">
+      <div id="mazo"></div>
+      <div id="mano">
+        <carta> carta </carta>
+         <carta> carta </carta>
+          <carta> carta </carta>
+         <carta> carta </carta>
+        
+      </div>
+      <div id="descarte"></div>
+      
+    </div>
+    </section>
+</body>
+
+</html>

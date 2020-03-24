@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+</body>
+<script type="text/javascript">
+  var array = [
+  {title: 'new rute5', id: 5},
+  {title: 'new rute1', id: 1},
+  {title: 'new rute4', id: 4},
+  {title: 'new rute12', id: 12},
+  {title: 'new rute2', id: 2},
+  {title: 'new rute3', id: 3}
+];
+
+  array=  array.sort(function(a, b) {
+    return a.id-b.id; /* ordenar por id */
+});
+
+console.log(array);
+
+</script>
+</html>

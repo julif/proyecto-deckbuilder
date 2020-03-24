@@ -1,0 +1,46 @@
+carta{
+  background-color: red;
+  padding: 10px;
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-bottom: 5px;
+  list-style: none;
+  color: white;
+  cursor: pointer;
+}
+.drop carta {
+    background-color: transparent;
+    padding: 0px;
+    margin: 0px;
+    list-style: none;
+    color: black;
+    cursor: default;
+}
+.draggable.dragging, .draggable .dragging {
+  opacity: 0.5;
+  /*opacity: 0.01;*/
+}
+.drop {
+  margin: 20px 0;
+  padding: 5px;
+  border: 2px dotted orange;
+  border-radius: 5px;
+}
+.drop.hovering {
+  background-color: #F6BF66;
+}
+#enemy_bar{
+  height: 10px;
+  background-color: red;
+  width: 100%;
+}
+#life_bar{
+  height: 10px;
+  background-color: red;
+  width: 100%;
+}
+ #cartas_usadas{
+  background-color: gray;
+  padding: 10px;
+  color: white;
+}

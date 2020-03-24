@@ -1,0 +1,154 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+<style type="text/css">
+  body{margin: 0px;}
+  #main_container{
+   height:  100vh;
+   width: 100vw;
+   background-color: red;
+  }
+  #bottom{background-color: blue;display: flex;
+    height: 25%;}
+     #top{background-color: green;
+    height: 75%;
+      position: relative;}
+
+
+    #container{
+        display: flex;
+        background-color: #444444;
+        background-image: url("img/images.jpg");
+        height: 550px;
+        height: -webkit-fill-available;
+
+        /*background-position: center;*/
+        background-position: bottom;
+    background-size: cover;
+    background-blend-mode: soft-light;
+      }
+      .mitad{    
+       /* background-color: #4858b7;*/
+        height: auto;
+        width:35%;
+
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+      }
+
+         .player{
+             /*background-color: white;*/
+    /*overflow: overlay;*/
+    /*height: 70%;
+    width: 30%;*/
+    height: 70%;
+    width: 40%;
+    position: relative;
+      }
+      .enemy{transform: rotateY(160deg);}
+      .barra{
+  background-color: #497b64;
+    border: 5px solid;
+    max-width: 150px;
+    text-align: center;
+    color: white;
+    border: 3px solid black;
+    width: 100%;
+ }
+ .barra_container{
+         text-align: center;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 0px;
+    height: 10%;
+    width: 100%;
+   background-color: blue;
+        display: flex;
+ }
+ .imagen_container{
+ background-color: red;
+ height: 90%;
+
+ }
+ img{
+        width: 100%;
+            /*background-color: red;*/
+    /* height: 100%; */
+    position: absolute;
+    bottom: 28px;
+      }
+
+
+
+    #mazo{background-color: #121212;
+    height: 100%;
+   
+         box-shadow: inset -1px -1px 0px 0px;
+    width: 15%;}
+     #mano{background-color: #1f1f1f;
+    height: 100%;    box-shadow: inset -1px -1px 0px 0px;
+     width: 70%;}
+    #descarte{background-color: #121212;
+    height: 100%;     box-shadow: inset -1px -1px 0px 0px;
+    width: 15%;}
+
+
+    #boton{    position: absolute;
+    /* left: 0px; */
+    right: 10px;    z-index: 50;
+    bottom: 10px;}
+
+    button{ background-color: red;
+    border: navajowhite;
+    color: white;
+    padding: 10px; }
+</style>
+</head>
+<body>
+
+  <section id="main_container">
+    <div id="top">  <button id="boton"> terminar turno </button>
+      <div id="container">
+     <div class="mitad">
+       <div class="player" >
+        <!-- <img src="img/1.png"> -->
+        <div class="imagen_container" style="background-image: url(img/1.png);    background-position: bottom;
+    background-size: contain;background-repeat: no-repeat;"> </div>
+        <div class="barra_container">
+        <div class="barra">100/100</div>
+        </div>
+      </div> 
+       
+     </div>
+      <div class="mitad" style="width: 65%;">
+
+        <div class="player" ><!-- <img  class="enemy" src="img/2.png"> -->
+            <div class="imagen_container enemy" style="background-image: url(img/4.png);    background-position: bottom;
+    background-size: contain;background-repeat: no-repeat;"> </div>
+        <div class="barra_container">
+        <div class="barra">100/100</div>
+        </div></div>
+        
+      </div>
+        
+      </div> 
+    </div>
+    <div id="bottom">
+      <div id="mazo"></div>
+      <div id="mano"></div>
+      <div id="descarte"></div>
+      
+    </div>
+    
+  </section>
+
+</body>
+
+</html>

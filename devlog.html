@@ -72,11 +72,51 @@
   </div>
 
     <main id="content" class="main-content" role="main">
-  
-      <h2 style=" border-bottom: 2px #eff0f1 solid; "> v 1.0 </h2>
-      <p> la version inicial bla bla bla </p>
-
-
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.1 </h2>
+      <p> lo que quiero hacer ahora es crear una pantalla de seleccion de personajes, dependiendo cual personaje se elija  se va a mostrar un mazo inicial diferente</p>
+      <p> ahora supongo que tengo varias opciones para pasar de pantalla, puedo hacer un fade entre distintos divs, puedo usar ajax, o pasar variables por la url.</p>
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1 </h2>
+      <h3> creando el mazo </h3>
+      <p> lo primero que tengo que hacer es crear un mazo inicial, eventualmente van a ser varios mazos iniciales depende de que personae se elija. </p>
+      <p> en esta caso el mazo es un array de obetos, descubri que esta es la mejor manera de mostrar el mazo por que me permite utilizar las funcionalidades de los array.</p>
+      <pre><code>
+        var mazo_inicial = [
+        { name: 'carta 1', id: 1 },
+        { name: 'carta 2', id: 2 },
+        { name: 'carta 3', id: 3 },
+        { name: 'carta 4', id: 4 },
+        { name: 'carta 5', id: 5 },
+        { name: 'carta 6', id: 6 },
+        { name: 'carta 7', id: 7 },
+        { name: 'carta 8', id: 8 },
+        { name: 'carta 9', id: 9 },
+        { name: 'carta 10', id: 10 }
+        ];
+      </code></pre>
+      <h3> mostando el mazo </h3>
+      <p> para mostrar el mazo solo tengo que crear un div con el id: mazo_inicial_div y usar el siguiente codigo: </p>
+      <pre><code>
+        // mostrar mazo jugador ------------------
+        mazo_inicial.forEach( function(element, index) {
+          document.getElementById("mazo_inicial_div").innerHTML += "id: "+ element.id +" name: "+ element.name +" </br>"; 
+        });
+      </code></pre>
+      <p> esto muestra una linea con el id y el nombre por cada objeto dentro del array mazo_inicial </p>
+      <p> una vez que se muestra el mazo se puede elegir como mostrarlo, ya sea por nombre, por id o por cualquier atributo que se le agrege, por el momento creo que lo mejor es mostrarlo por orden alfabetico </p>
+      <h3> ordenar el array por id </h3>
+      <pre><code>
+        // ordenar el array ------------------
+        mazo_inicial=  mazo_inicial.sort(function(a, b) {
+          return a.id-b.id; /* ordenar por id */
+        });
+      </pre></code>
+      <h3> ordenar el array por nombre </h3>
+      <pre><code>
+        // ordenar el array ------------------
+        mazo_inicial=  mazo_inicial.sort(function(a, b) {
+          return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); /* ordenar por nombre */
+        });
+      </pre></code>
 
       <footer class="site-footer">
         
