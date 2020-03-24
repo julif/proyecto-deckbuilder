@@ -585,6 +585,7 @@ a:hover {
     font-weight: normal;    font-weight: 600;
     color: black;
 }
+.main-content h3{ color: #155799!important;}
 .main-content p {
     margin-bottom: 1em
 }
