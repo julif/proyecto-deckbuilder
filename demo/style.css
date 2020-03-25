@@ -1,0 +1,23 @@
+body { background-color:#fafafa;}
+.container { margin:0px auto;}
+carta{
+    background-color: red;
+    padding: 10px;
+    margin: 10px;
+    margin-bottom: 5px;
+    list-style: none;
+    color: white;
+    cursor: pointer;
+}
+.drop {
+    margin: 20px 0;
+    padding: 5px;
+    border: 2px dotted orange;
+    border-radius: 5px;
+}
+.drop.hovering {
+    background-color: #F6BF66;
+}
+.draggable.dragging, .draggable .dragging {
+    opacity: 0.5;
+}

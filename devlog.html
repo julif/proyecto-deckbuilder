@@ -73,6 +73,44 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.2 - drangandrop </h2>
+      <p> decidi que en lugar de hacer una barra de vida y bajarla con el boton el siguiente paso va ser hacer las cartas draggabeables y que al  dropearse en el slime llamen a la funcion atacar</p>
+      <p>  para hacer que mis cartas sean draggables voy a usar <a href="https://github.com/gardiner/draganddrop" >draganddrop.js </a>, es un plugin  para Jquery que funciona incluso en dispositivos mobiles.</p>
+      <p> por eso antes de nada voy llamar a jquery y luego voy a crear una carpeta para plugins y llamar desde ahi a dragandrop. </p>
+      <pre><code>
+        &lt!-- javascript -->
+        &ltscript src="https://code.jquery.com/jquery-1.12.4.min.js"> &lt/script>
+        &ltscript src='plugins/draganddrop.js' type='text/javascript'> &lt/script>
+      </pre></code>
+      <p> ya que estoy voy a crear un archivo style.css para darle estilo a las cartas y a la dropzone...quizas despues lo cambie a draganddrop.css o algo asi </p>
+      <p> dentro de la seccion battle_stage voy a agregar una dropzone, para que se activen  las cartas</p>
+      <pre><code>
+        &ltdiv class="drop">&ltp>Drop here&lt/p>&lt/div>
+      </pre></code>
+      <p> transformo la lista desordenada en cartas.</p>
+      <pre><code>
+      // mostrar mazo de el jugador ------------------
+      mazo_jugador.forEach( function(item, index) {
+      document.getElementById("mazo_jugador_div").innerHTML += " &ltcarta id='"+ item.id +"' class='dragdrop' > "+ item.name +"  &lt/carta>";
+      })
+    </pre></code>
+    <p> y por ultimo llamo a esta funcion( importante!! hay que llamar a la funcion despues de el codigo anterior donde se muestra la lista como cartas ) que convierte las cartas en objetos draganddrop.</p>
+    <pre><code>
+      $(function() {
+          $('.dragdrop').draggable({
+              revert: true,
+              placeholder: true,
+              droptarget: '.drop',
+              drop: function(evt, droptarget) {
+                  var currentID = evt.target.id;/*- returns  the id. */
+                  $(this).appendTo(droptarget).draggable('destroy');
+                  console.log(currentID);//ejecuta el codigo
+                  $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+              }
+          });
+      });
+  </pre></code>
+        
       <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.4 - "Slimey Boy" </h2>
       <p> ahora empieza la parte dificil. no estoy seguro de como diseñar los encuentros con enemigos o como manejar la seleccion de personajes a atacar en el caso de que el numero sea fluctuante y a su vez como manejar sus respectivos puntos de vida. Asi que lo voy a tomar con calma y lo voy a programar poco a poco </p>
       <p> empezemos simple, vamos a crear un enemigo. </p>
