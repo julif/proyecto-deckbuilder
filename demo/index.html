@@ -30,10 +30,10 @@
 <!--  battle stage ----------------------------------------------------------------------- -->
   <section id="battle_stage" style="display: none;">
     <h2>battle stage</h2>
-    <enemy> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
-    <button onclick="atacar()" > atacar al slime  </button>
+    <enemy class="drop" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
+    <!-- <button onclick="atacar()" > atacar al slime  </button> -->
     <h3> mazo </h3>
-    <div class="drop"><p>Drop here</p></div>
+    <!-- <div class="drop"><p>Drop here</p></div> -->
     <p id="mazo_jugador_div" style=" display: flex;"></p>
     
   </section>
@@ -147,6 +147,7 @@ var char_div=  document.getElementById("char");
                     $(this).appendTo(droptarget).draggable('destroy');
                     console.log(currentID);//ejecuta el codigo
                     $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+                    atacar();
                 }
             });
         });
