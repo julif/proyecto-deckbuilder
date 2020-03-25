@@ -6,28 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-<!--  seleccion de personajes -----------------------------------------------------------  -->
   <section id="seleccion_de_personajes"> 
     <h2>Seleccionar personaje:</h2> 
     <div id="char_1" class="selectable_character" > seleccionar personaje 1 </div>
     <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
     <div id="char_3" class="selectable_character" > seleccionar personaje 3 </div>
   </section>
-<!--  personaje -------------------------------------------------------------------------- -->
   <section id="personaje_seleccionado" style="display: none;">
     <h2> mazo inicial:</h2>
     <h3 id="char"></h3>
     <p id="mazo_inicial_div"></p>
-    <button onclick="back_personajes()" > volver a seleccion de personajes</button>
-    <button onclick="play()" > Jugar </button>
-  </section>
-<!--  battle stage ----------------------------------------------------------------------- -->
-  <section id="battle_stage" style="display: none;">
-    <h2>battle stage</h2>
-    <enemy> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
-    <button onclick="atacar()" > atacar al slime  </button>
-    <h3> mazo </h3>
     <p id="mazo_jugador_div"></p>
+    <button onclick="back_personajes()" > volver a seleccion de personajes</button>
   </section>
 </body>
 <script type="text/javascript">
@@ -108,31 +98,27 @@
         document.getElementById("mazo_inicial_div").innerHTML += "id: "+ element.id +" name: "+ element.name +" </br>"; 
       });
 
-      //............................... mazo jugador ...................................................  
+
+       //mezclar mazo y mostrarlo en el div "mazo"
        var mazo_jugador = mazo_inicial.slice();//clona el mazo_jugador pero de manera independiente.
-       mazo_jugador.sort(function() {return Math.random() - 0.5});//mezclar mazo 
+       mazo_jugador.sort(function() {return Math.random() - 0.5});
 
       // mostrar mazo de el jugador ------------------
       mazo_jugador.forEach( function(element, index) {
         document.getElementById("mazo_jugador_div").innerHTML += "id: "+ element.id +" name: "+ element.name +" </br>"; 
       });
 
+       //console.log(" mazo mezclado : "+ mazo_mezclado );//ejecuta el codigo
 	}
 
 
   function back_personajes() {
     document.getElementById("mazo_jugador_div").innerHTML=" ";
-    document.getElementById("mazo_inicial_div").innerHTML=" ";
-    document.getElementById("personaje_seleccionado").style.display="none";
-    document.getElementById("seleccion_de_personajes").style.display="inherit";
-  }
-  function play(){
-    document.getElementById("personaje_seleccionado").style.display="none";
-    document.getElementById("battle_stage").style.display="inherit";
-  }
-  
-  function atacar() {
-  alert( " 10 de daño al slime ");
- }
+  document.getElementById("mazo_inicial_div").innerHTML=" ";
+  document.getElementById("personaje_seleccionado").style.display="none";
+  document.getElementById("seleccion_de_personajes").style.display="inherit";
+}
+
+
 </script>
 </html>

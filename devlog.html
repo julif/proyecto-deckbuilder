@@ -73,6 +73,46 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.4 - "Slimey Boy" </h2>
+      <p> ahora empieza la parte dificil. no estoy seguro de como diseñar los encuentros con enemigos o como manejar la seleccion de personajes a atacar en el caso de que el numero sea fluctuante y a su vez como manejar sus respectivos puntos de vida. Asi que lo voy a tomar con calma y lo voy a programar poco a poco </p>
+      <p> empezemos simple, vamos a crear un enemigo. </p>
+      <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto">
+      <p> este pequeño slime va a servir de placeholder por el momento. </p>
+      <pre><code>
+        &ltenemy>&ltimg src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> &lt/enemy>
+      </pre></code>
+      <p> bien, ahora necesitamos una manera para dañar al adorable bastardo, asi que voy a incluir un boton que daña al slime. </p>
+      <pre><code>
+        &ltbutton onclick="atacar()" > atacar al slime  &lt/button>
+        
+        javascript------
+        
+        function atacar() {
+            alert( " 10 de daño al slime ");
+        }
+        </pre></code>
+        <p> porsupuesto esto no signfica nada, es solo un alerte que dice que daño al slime, pero nada esta pasando realmente. el slime esta bien y las cartas no influyenen lo absoluto. Pero es un inicio, ahora puedo agregarle una barra de vida al slime y quitarle realmente 10 puntos de vida cada vez que presiono el boton.</p>
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.3 - seccion "battle_stage" </h2>
+      <p> por el momento tengo una lista de cartas ordenadas y otra desordenada, claro que sto es solo por el prototipo, en realidad no deberian verse juntas. Asi que voy a cambiar eso.</p>
+      <p> voy a crear un tercera seccion a la que voy a llamar escenario de pelea o battle_stage, en esta seccion se va a mostrar el mazo de el jugador mientras que en la seccion de personaje va a quedar la lista incial</p>
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.2 - mazo editable </h2>
+      <p> cada personaje tiene su mazo, eso es un avanze. Pero esos mazos son los iniciales. son una lista predeterminada, lo que tengo que hacer ahora es clonar los mazos iniciales para que puedean ser editables durante la partida.</p>
+      <pre><code>
+        var mazo_jugador = mazo_inicial.slice();
+      </pre></code>
+      <p> este codigo crea un clon de el mazo incial dentro de la variable "mazo_jugador", y se puede mostrar de la misma manera que el mazo inicial, solo hay que crear un div con la id mazo_jugador_div, y recordar limpiar el div cuando se vuvlve a la selecciond de personajes</p>
+    
+      <pre><code>
+        // mostrar mazo de el jugador ------------------
+        mazo_jugador.forEach( function(element, index) {
+          document.getElementById("mazo_jugador_div").innerHTML += "id: "+ element.id +" name: "+ element.name +" &lt/br>"; 
+        });
+      </pre></code>
+      <p> bien, ahora tengo 2 copias de el mismo catalogo de cartas. lo importante es que son independientes entre si, por lo cual puedo crear una funcion que mezlce el mazo jugador sin afectar el inicial.</p>
+      <pre><code>
+      mazo_jugador.sort(function() {return Math.random() - 0.5});
+      </pre></code>
+      <p> Supongo que en algun momento puedo necesitar una tercera copia que se cree cada vez que quiero revisar el mazo jugador en el medio de un match...pero eso lo vere despues. </p>
       <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.1 - Seleccion de personajes </h2>
       <p> lo que quiero hacer ahora es crear una pantalla de seleccion de personajes, dependiendo cual personaje se elija  se va a mostrar un mazo inicial diferente</p>
       <p> ahora supongo que tengo varias opciones para pasar de pantalla, puedo usar un Eventlistener  para cambiar entre distintos divs, puedo usar ajax, o pasar variables por la url.</p>
