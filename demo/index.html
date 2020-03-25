@@ -4,290 +4,109 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Proyecto Deckbuilder</title>
-    <!-- css -->
-    <link rel="stylesheet" href="style.css"/>
-    <!-- javascript -->
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src='js/draganddrop.js' type='text/javascript'></script>
-    <style type="text/css">
- 
-    </style>
 </head>
 <body>
-    <section id="menu_inicial"> 
-    <div style="text-align: center;">
-      <h1>Proyecto Juego Deckbuilder </h1>
-      <h2 style="color:#8a8a8a"> creado por Julif </h2>
-      <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('menu_inicial').style.display ='none';
-start();"> empezar </button>
-    </div>
+  <section id="seleccion_de_personajes"> 
+    <h2>Seleccionar personaje:</h2> 
+    <div id="char_1" class="selectable_character" > seleccionar personaje 1 </div>
+    <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
+    <div id="char_3" class="selectable_character" > seleccionar personaje 3 </div>
   </section>
-  <section id="post_victory">
-    
-    post victory
-     <button onClick="document.getElementById('tablero').style.display ='inherit';document.getElementById('post_victory').style.display ='none';
-start();"> empezar </button>
+  <section id="personaje_seleccionado" style="display: none;">
+    <h2> mazo inicial:</h2>
+    <h3 id="char"></h3>
+    <p id="mazo_inicial_div"></p>
+    <button onclick="back_personajes()" > volver a seleccion de personajes</button>
   </section>
-    <section id="tablero">
-  <div id="victory_screen_container">
-    <div class="victoryordefeat_screen">
-      <div>
-         <p>victoria </p> 
-
-           <button onClick=  "agregar_carta(); "> agregar carta nueva </button>
-           <button onClick=  "quitar_carta(); "> quitar carta </button>
-
-
-          <button onClick="volver();"> volver a empezar </button>
-      </div>
-    </div> 
-  </div>
-    <div id="defeat_screen_container">
-    <div class="victoryordefeat_screen">
-      <div>
-        <p> derrota </p> 
-        <button onClick="window.location.reload();"> volver a empezar </button>
-      </div>
-    </div> 
-  </div>
-  <div class="container">
-    <!-- drop zone -->
-    <div class="drop">
-      <div id="jugadores">
-        <section><!-- player zone -->
-          <div id="juju">
-            <div>Jugador:</div>
-            <div class="bar-container">
-              <div id="life_bar" class="bar_relleno"></div>
-            </div>
-          </div>
-        </section>
-        <section> <!-- enemy zone -->
-          <div id="juju">
-            <div>enemy:</div>
-            <div class="bar-container">
-              <div id="enemy_bar" class="bar_relleno"></div>
-            </div>
-          </div>
-        </section>
-      </div><!-- jugadores -->
-      <p>Drop here</p>
-    </div><!-- drop -->
-    <button onclick="end_turn()" > Terminar turno </button></br>
-    <!--  mazo --> mazo: <span  id="mazo_length"></span></br>
-    <!--  mano --> mano:<span  id="mano_length"></span></br>
-    <!--  descarte --> descarte: <span  id="usadas_length"></span>
-    <div id="mano"  style="display: flex;"></div>
-    <div  id="lista_cartas_container">
-      <div>Mazo Inicial:<ul id="mazo_jugador" class="lista_cartas"></ul></div> 
-      <div>Mazo:<ul id="mazo" class="lista_cartas"></ul></div> 
-      <div>Descarte:<ul id="cartas_usadas" class="lista_cartas" ></ul></div>
-    </div>
-  </div><!-- container -->
-</section>
 </body>
-<!-- javascript -->
-<script src='js/lengths.js' type='text/javascript'></script>
-  <script src='js/robar.js' type='text/javascript'></script>
-  <script src='js/make_draggable.js' type='text/javascript'></script>
-
-
-<script type='text/javascript'>
-  //-------variables iniciales----------
-  var turno = "jugador";
-  var pv = 100;//enemy
-  var life= 100;//player
-  var ataque_enemy = 10;
-
-  var usadaslength = 0;
-  var mazolength = 0;
-
-  //mazo inicial
-    var mazo_jugador  = [
-      { cardvalue: 20, id: 1}, 
-      { cardvalue: 10, id: 2},
-      { cardvalue: 10, id: 3},
-      { cardvalue: 10, id: 4}, 
-      { cardvalue: 10, id: 5},
-      { cardvalue: 10, id: 6},
-      { cardvalue: 10, id: 7},
-      { cardvalue: 10, id: 8},
-      { cardvalue: 10, id: 9}, 
-      { cardvalue: 10, id: 10}
-      ];
-
-
-
-//............................... mazo jugador ...................................................
-// ordenar el array por id ------------------
-  mazo_jugador=  mazo_jugador.sort(function(a, b) {
-    return a.id-b.id; /* ordenar por id */
-    //return (a.title > b.title) ? 1 : ((b.title > a.title) ? -1 : 0); /* ordenar por title */
-});
-// mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
-
-//--------------------------------------------------------------------------------------------------
-//------------------------------------------| empezar |---------------------------------------------
-//--------------------------------------------------------------------------------------------------
-
-function start(){  
-
-//limpia el tablero
-  document.getElementById("mazo").innerHTML="";   // limpia la mazo
-  document.getElementById("mano").innerHTML="";   // limpia la mano
-  document.getElementById("cartas_usadas").innerHTML="";   // limpia la pila de descarte
-
-  //mezclar mazo y mostrarlo en el div "mazo"
-  var mazo_mezclado = mazo_jugador.slice();//clona el mazo_jugador pero de manera independiente.
-
-
-
-  mazo_mezclado.sort(function() {return Math.random() - 0.5});
-
-
-  // mostrar mazo mezclado ------------------
-mazo_mezclado.forEach( function(element, index) {
-   //document.getElementById("mazo").innerHTML += "id: "+ element.id +" title: "+ element.title +" </br>"; 
-   document.getElementById("mazo").innerHTML += "<li id='"+ element.id +"' cardvalue='"+ element.cardvalue +"' class='f'> ID:"+ element.id +" Value: "+ element.cardvalue +" </li>"; 
-});
-  //document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
-  console.log("turno: "+turno);//ejecuta el codigo
-  lengths(); //averiguar cuantas cartas tienen "mazo" y "cartas_usadas".
-
-  document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
-
-  robar();robar(); robar();
-
-
-  //mazo_jugador.sort();
-
-
-  //$(function() {  make_draggable(); });//cuando el documento este listo llamar a la funcion make_draggable
-
- // console.log("mazo jugador: "+ mazo_jugador);//ejecuta el codigo
- // console.log("mazo mezclado: "+ mazo_mezclado);//ejecuta el codigo
-
-}
-
-
-</script>
 <script type="text/javascript">
 
+//seleccionar un personaje --------------------------------------------------------------------------------------
+  var personajeID;
 
-  function end_turn(){
-    alert("turno finalizado");
-
-    var turno="enemy";
-    console.log("turno: "+turno);//ejecuta el codigo
-    //---------------------------------------------------------
-    
-      life = life - ataque_enemy;
-     if (life < 0) { life=0;}
-     console.log(ataque_enemy+" de daño ");//ejecuta el codigo
-     // ataque_enemy = ataque_enemy+10;//<<<---------hacer que cada turno el enemigo ataque con 10 mas de daño
-
-     if (life == 0) { 
-      //alert("derrota");
-         document.getElementById("defeat_screen_container").style.display ="inherit"; 
-    }
-     
-    
-    document.getElementById("life_bar").style.width = life+"%"; //mostrar la vida del enemigo.
+  const divs = document.querySelectorAll('.selectable_character');
+  divs.forEach(el => el.addEventListener('click', event => {
+    personajeID = el.id;
+    select_personaje();
+  }));
 
 
-    //-------------------------------------------------------------------
-     var turno="jugador";
-      console.log("turno: "+turno);//ejecuta el codigo
+	function select_personaje() {
+
+		document.getElementById("seleccion_de_personajes").style.display="none";
+		document.getElementById("personaje_seleccionado").style.display="inherit";
+
+    var char_div=  document.getElementById("char");
+    switch (personajeID) { 
+      case "char_1":
+        char_div.innerHTML= "Personaje 1: Bunny";
+        var mazo_inicial = [
+          { name: 'carta 1', id: 1 },
+          { name: 'carta 2', id: 2 },
+          { name: 'carta 3', id: 3 },
+          { name: 'carta 4', id: 4 },
+          { name: 'carta 5', id: 5 },
+          { name: 'carta 6', id: 6 },
+          { name: 'carta 7', id: 7 },
+          { name: 'carta 8', id: 8 },
+          { name: 'carta 9', id: 9 },
+          { name: 'carta 10', id: 10 }
+        ];
+      break
+      case "char_2":
+        char_div.innerHTML= "Personaje 2: Nero";
+        var mazo_inicial = [
+          { name: 'carta 11', id: 11 },
+          { name: 'carta 12', id: 12 },
+          { name: 'carta 13', id: 13 },
+          { name: 'carta 14', id: 14 },
+          { name: 'carta 15', id: 15 },
+          { name: 'carta 16', id: 16 },
+          { name: 'carta 17', id: 17 },
+          { name: 'carta 18', id: 18 },
+          { name: 'carta 19', id: 19 },
+          { name: 'carta 20', id: 20 }
+        ];
+      break
+      case "char_3":
+        char_div.innerHTML= "Personaje 3: Shacta";
+        var mazo_inicial = [
+          { name: 'carta 21', id: 21 },
+          { name: 'carta 22', id: 22 },
+          { name: 'carta 23', id: 23 },
+          { name: 'carta 24', id: 24 },
+          { name: 'carta 25', id: 25 },
+          { name: 'carta 26', id: 26 },
+          { name: 'carta 27', id: 27 },
+          { name: 'carta 28', id: 28 },
+          { name: 'carta 29', id: 29 },
+          { name: 'carta 30', id: 30 }
+        ];
+      break
+      default:
+        char_div.innerHTML= " Error ";
+      }
+
+      //............................... mazo inicial ...................................................
+      // ordenar el array  ------------------
+      mazo_inicial=  mazo_inicial.sort(function(a, b) {
+        return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); /* ordenar por nombre */
+      });
+      // mostrar mazo jugador ------------------
+      mazo_inicial.forEach( function(element, index) {
+        document.getElementById("mazo_inicial_div").innerHTML += "id: "+ element.id +" name: "+ element.name +" </br>"; 
+      });
+	}
 
 
-//-------------------------------------------------------------------
- var manolength = document.getElementsByClassName("dragdrop").length;
-
-//
-var i; 
-for (i = 0; i < manolength; i++) { // por cada carta con la clase dragdrop
-
-var theElement = document.getElementsByTagName("carta")[0]
-var currentID = theElement.id;
-var currentVALUE = theElement.getAttribute('cardvalue');
-
-//--------lleva el primer elemento a cartas usadas
-$("#cartas_usadas").append(" <li id="+currentID+" class='f' cardvalue="+currentVALUE +">ID:"+currentID+" Value:"+currentVALUE+"</li>");
-
-//--------remueve el primer elemento de la mano
-var mano_list = document.getElementById("mano");   // Get the <ul> element with id="myList"
-mano_list.removeChild(mano_list.childNodes[0]); 
-
- //alert("i: " + currentID )
-}
-
-    robar();
-    robar();
-    robar();
-  }
-</script>
-<script type="text/javascript">
-  function turno_jugador(){
-
-  }
-</script>
-<script type="text/javascript">
-  function volver(){
-
-    
-     pv= 100;
-     ataque_enemy = 20;
-     document.getElementById("enemy_bar").style.width = pv+"%"; //mostrar la vida del enemigo.
-     document.getElementById('victory_screen_container').style.display ='none'; 
-
-    //document.getElementById('menu_inicial').style.display ='flex';
-    document.getElementById('tablero').style.display ='none';
-    document.getElementById('post_victory').style.display ='flex';
-    
-
-  }
-
-
-function agregar_carta(){ 
-
- mazo_jugador.push({ cardvalue: 30, id: 11});
-
-//limpia el mazo_jugador
-  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
-  // mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
-
- volver();
-}
-function quitar_carta(){ 
-
-  /* var indice =  mazo_jugador.indexOf(1); // obtenemos el indice
-    mazo_jugador.splice(indice, 1); // 1 es la cantidad de elemento a eliminar*/
-
-    //delete mazo_jugador[0];
-    mazo_jugador.splice(0,1);
-
-
-//limpia el mazo_jugador
-  document.getElementById("mazo_jugador").innerHTML="";   // limpia la mazo
-  // mostrar mazo jugador ------------------
-mazo_jugador.forEach( function(element, index) {
-   document.getElementById("mazo_jugador").innerHTML += "id: "+ element.id +" cardvalue: "+ element.cardvalue +" </br>"; 
-});
-
-volver();
-
+  function back_personajes() {
+  personajeID= null;
+  //mazo_inicial= null;
+  document.getElementById("mazo_inicial_div").innerHTML=" ";
+  document.getElementById("personaje_seleccionado").style.display="none";
+  document.getElementById("seleccion_de_personajes").style.display="inherit";
 }
 
 
 </script>
-
-  <script src='js/re_mezclar.js' type='text/javascript'></script>
-
 </html>

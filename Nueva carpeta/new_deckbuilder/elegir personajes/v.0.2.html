@@ -16,7 +16,7 @@
   </div>
   <div id="personaje_seleccionado" style="display: none;">
   	<p id="char"></p>
-  	<button id="back_seleccion_personajes"> volver a seleccion de personajes</button>
+  	<button onclick="myFunction()" > volver a seleccion de personajes</button>
   </div>
 
 </body>
@@ -44,11 +44,15 @@
 	}
 
 
-document.getElementById("back_seleccion_personajes").addEventListener("click", back_personajes);
+//document.getElementById("back_seleccion_personajes").addEventListener("click", back_personajes);
 function back_personajes() {
 	personajeID=" ";
   document.getElementById("personaje_seleccionado").style.display="none";
   document.getElementById("seleccion_personajes").style.display="inherit";
+}
+
+function myFunction() {
+  document.getElementById("demo").innerHTML = "Hello World";
 }
 </script>
 </html>

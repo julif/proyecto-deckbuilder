@@ -73,28 +73,148 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.1 </h2>
+      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.1 - Seleccion de personajes </h2>
       <p> lo que quiero hacer ahora es crear una pantalla de seleccion de personajes, dependiendo cual personaje se elija  se va a mostrar un mazo inicial diferente</p>
-      <p> ahora supongo que tengo varias opciones para pasar de pantalla, puedo hacer un fade entre distintos divs, puedo usar ajax, o pasar variables por la url.</p>
+      <p> ahora supongo que tengo varias opciones para pasar de pantalla, puedo usar un Eventlistener  para cambiar entre distintos divs, puedo usar ajax, o pasar variables por la url.</p>
+      <p> primero voy a intentar la opcion de Eventlistener, y si llego a tener problemas puedo ramificar el proyecto desde este punto.</p>
+      <h3> v 0.1.1a "Eventlisteners" </h3>
+      <p> lo primero que voy a hacer es dividir el programa en 2 secciones, la seccion "seleccion_de_personajes" y la seccion "personaje_seleccionado", una vez creadas estas 2 secciones voy a darle un display:none a "personaje_seleccionado", la idea es que si todo sale bien las secciones van a cambiar entre display none y display inherit</p>
+      <p> ahora voy a crear la variable "personajeID" esta variable es importante porque va a determinar que personaje esta seleccionado y eso es lo que se va a mostrar en la siguiente seccion. pero para que el codigo sepa que personaje esta selccionado necesitamos agregar Eventlisteners. </p>
+      <pre><code>
+      //seleccionar un personaje --------------------------------------------------------------------------------------
+      var personajeID;
+      document.getElementById("char_1").addEventListener("click", function(){ select_personaje("char_1"); });
+      document.getElementById("char_2").addEventListener("click", function(){ select_personaje("char_2"); });
+      document.getElementById("char_3").addEventListener("click", function(){ select_personaje("char_3"); });
+      </pre></code>
+      <p> cada uno de estos Eventlisteners "escucha" si se clickeo el div con el id correspondiente y de ser asi llaman a la funcion  select_personaje() usando de atributo el id recibido... estoy seguro de que debe haber una manera mas eficiente de usar este codigo. </p>
+      <p> despues de investigar un poco en internet, encontre una soluccion con javascript moderno. en lugar de tener un Eventlistener por cada id que quiero buscar les doy a todos los divs que llaman a la funcion la clase "selectable_character", y si detecto que algun elemento con esas clase es clikeado llamo a la funcion select_personaje() con el id de ese elemento. </p>
+      <pre><code>
+      //seleccionar un personaje --------------------------------------------------------------------------------------
+      var personajeID;
+      const divs = document.querySelectorAll('.selectable_character');
+      divs.forEach(el => el.addEventListener('click', event => {
+        personajeID = el.id;
+        select_personaje();
+      }));
+      </pre></code>
+      <p> lo bueno de este codigo es que a diferencia de el anterior este no necesita mantenimiento cuando agrege nuevos personajes.</p>
+      <h3> la funcion "select_personaje()" </h3>
+      <p> bien, ya tengo el id de el div seleccionado, ahora tengo que ver que hago con el</p>
+      <p> antes que nada hay que cambiar de secciones, asi que se le da un display none a "seleccion_de_personajes" y display inherit a "personaje_seleccionado". eventualmente si quiero cambiarlo a un fade, voy a tener que hacerlo aca.</p>
+      <p> inicialmente habia usado unos if para elegir que mostrar dependiendo el id seleccionado </p>
+      <pre><code>
+      if (personajeID=="char_1") { document.getElementById("char").innerHTML= personajeID+" personaje 1: Bunny";}
+      if (personajeID=="char_2") { document.getElementById("char").innerHTML= personajeID+" personaje 2: Nero";}
+      if (personajeID=="char_3") { document.getElementById("char").innerHTML= personajeID+" personaje 3: Shacta" ;} 
+      </pre></code>
+      <p> aun no estoy convencido de el todo, pero en el nombre de el desarrollo web apropiado lo cambie por un switch</p>
+      <pre><code>
+      var char_div=  document.getElementById("char");
+      switch (personajeID) { 
+        case "char_1":
+          char_div.innerHTML= "Personaje 1: Bunny";
+        break
+        case "char_2":
+          char_div.innerHTML= "Personaje 2: Nero";
+        break
+        case "char_3":
+          char_div.innerHTML= "Personaje 3: Shacta";
+        break
+        default:
+          char_div.innerHTML= " Error ";
+        }
+      </pre></code>
+      <p> por el momento parece mas codigo para hacer lo mismo, pero confio en que es simplemente mi falta de constumbre en usar switch.</p>
+      <p> ahora, los nombres de los personajes se ven perfectos y todo funciona bien...pero el mazo sigue siendo el mismo. vamos a cambiar eso.</p>
+      <p> la mejor manera que se me ocurre es incluir el mazo de cada personaje dentro de el switch</p>
+      <pre><code>
+      var char_div=  document.getElementById("char");
+      switch (personajeID) {
+        case "char_1":
+          char_div.innerHTML= "Personaje 1: Bunny";
+          var mazo_inicial = [
+            { name: 'carta 1', id: 1 },
+            { name: 'carta 2', id: 2 },
+            { name: 'carta 3', id: 3 },
+            { name: 'carta 4', id: 4 },
+            { name: 'carta 5', id: 5 },
+            { name: 'carta 6', id: 6 },
+            { name: 'carta 7', id: 7 },
+            { name: 'carta 8', id: 8 },
+            { name: 'carta 9', id: 9 },
+            { name: 'carta 10', id: 10 }
+          ];
+         break
+         case "char_2":
+           char_div.innerHTML= "Personaje 2: Nero";
+           var mazo_inicial = [
+             { name: 'carta 11', id: 11 },
+             { name: 'carta 12', id: 12 },
+             { name: 'carta 13', id: 13 },
+             { name: 'carta 14', id: 14 },
+             { name: 'carta 15', id: 15 },
+             { name: 'carta 16', id: 16 },
+             { name: 'carta 17', id: 17 },
+             { name: 'carta 18', id: 18 },
+             { name: 'carta 19', id: 19 },
+             { name: 'carta 20', id: 20 }
+           ];
+         break
+         case "char_3":
+           char_div.innerHTML= "Personaje 3: Shacta";
+           var mazo_inicial = [
+             { name: 'carta 21', id: 21 },
+             { name: 'carta 22', id: 22 },
+             { name: 'carta 23', id: 23 },
+             { name: 'carta 24', id: 24 },
+             { name: 'carta 25', id: 25 },
+             { name: 'carta 26', id: 26 },
+             { name: 'carta 27', id: 27 },
+             { name: 'carta 28', id: 28 },
+             { name: 'carta 29', id: 29 },
+             { name: 'carta 30', id: 30 }
+           ];
+         break
+         default:
+           char_div.innerHTML= " Error ";
+      }
+      </pre></code>
+      <p>el problema es que ahora el codigo no funciona porque las funciones que buscan al mazo inicial no encuentran nada, esto es soluccionable moviendo toda esa parte de el codigo dentro de la funcion select_personaje(), sin mencionar que me parece mas ordenado.</p>
+      <p> lo unico que me falta agregar es un boton para volver a la seccion de eleccion de personajes, pero sin olvidar limpiar el innerHTML de mazo_inicial_div para que no siga sumando mazos</p>
+      <pre><code>
+        ------------  html -------------
+
+        &lt button onclick="back_personajes()" > volver a seleccion de personajes &lt/button>
+        
+        ----------javascript------------
+        
+        function back_personajes() {
+            document.getElementById("mazo_inicial_div").innerHTML=" ";
+            document.getElementById("personaje_seleccionado").style.display="none";
+            document.getElementById("seleccion_de_personajes").style.display="inherit";
+        }
+      
+      </pre></code>
       <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1 </h2>
       <h3> creando el mazo </h3>
       <p> lo primero que tengo que hacer es crear un mazo inicial, eventualmente van a ser varios mazos iniciales depende de que personae se elija. </p>
       <p> en esta caso el mazo es un array de obetos, descubri que esta es la mejor manera de mostrar el mazo por que me permite utilizar las funcionalidades de los array.</p>
       <pre><code>
-        var mazo_inicial = [
-        { name: 'carta 1', id: 1 },
-        { name: 'carta 2', id: 2 },
-        { name: 'carta 3', id: 3 },
-        { name: 'carta 4', id: 4 },
-        { name: 'carta 5', id: 5 },
-        { name: 'carta 6', id: 6 },
-        { name: 'carta 7', id: 7 },
-        { name: 'carta 8', id: 8 },
-        { name: 'carta 9', id: 9 },
-        { name: 'carta 10', id: 10 }
-        ];
+       var mazo_inicial = [
+       { name: 'carta 1', id: 1 },
+       { name: 'carta 2', id: 2 },
+       { name: 'carta 3', id: 3 },
+       { name: 'carta 4', id: 4 },
+       { name: 'carta 5', id: 5 },
+       { name: 'carta 6', id: 6 },
+       { name: 'carta 7', id: 7 },
+       { name: 'carta 8', id: 8 },
+       { name: 'carta 9', id: 9 },
+       { name: 'carta 10', id: 10 }
+       ];
       </code></pre>
-      <h3> mostando el mazo </h3>
+      <h3> mostrando el mazo </h3>
       <p> para mostrar el mazo solo tengo que crear un div con el id: mazo_inicial_div y usar el siguiente codigo: </p>
       <pre><code>
         // mostrar mazo jugador ------------------
