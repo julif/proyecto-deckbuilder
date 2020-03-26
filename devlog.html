@@ -73,9 +73,40 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.2 - drangandrop </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.1 -  </h2>
+      <p> ahora que el drag and drop funciona voy a cambiar  el codigo para que ejecute la funcion atacar</p><pre><code>
+        $(function() {
+            $('.dragdrop').draggable({
+               revert: true,
+               placeholder: true,
+               droptarget: '.drop',
+               drop: function(evt, droptarget) {
+                   var currentID = evt.target.id;/*- returns  the id. */
+                   $(this).appendTo(droptarget).draggable('destroy');
+                   $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+                   
+                   atacar();
+               }
+            });
+        });
+        </pre></code>        
+        <p> ahora lo que tengo que hacer es crear un segundo slimey boy y ver que al dropear la carta no solo tenga el id de la carta usada, sino el id de el enemigo seleccionado. si no logro esto mi deckbuilder va a tener que ser de enemigos individuales, lo cual no es la idea. </p>
+        <h3> segundo slimey boy</h3>
+        <p> la verdad crei que iba a ser dificil poque el demo de  <a href="https://github.com/gardiner/draganddrop" >draganddrop.js </a> no muestra eemplos de como diferenciar el receptor del drop. pero con un simple codigo pude reslverlo.</p>
+        <pre><code>
+         HTML---
+         
+         &ltenemy class="drop" id="enemy1" style=" display: inline-block; "> &ltimg src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> &lt/enemy>
+         &ltenemy class="drop" id="enemy2" style=" display: inline-block; "> &ltimg src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> &lt/enemy>
+         
+         JS ----
+         
+         console.log(droptarget.id); // ID  de la dropzone
+        </pre></code>
+        <p> droptarget.id te da la ID de la dropzone, asi que tambien puedo buscar otros atributos especificos, en este caso podria ser ataque o defensa o incluso si son minions o no. pero lo importante es que cada id va a estar vinculado a una barra de vida especifica.</p>
+        <h2 style="border-bottom: solid 2px #eff0f1;"> v 0.2 - drangandrop </h2>
       <p> decidi que en lugar de hacer una barra de vida y bajarla con el boton el siguiente paso va ser hacer las cartas draggabeables y que al  dropearse en el slime llamen a la funcion atacar</p>
-      <p>  para hacer que mis cartas sean draggables voy a usar <a href="https://github.com/gardiner/draganddrop" >draganddrop.js </a>, es un plugin  para Jquery que funciona incluso en dispositivos mobiles.</p>
+      <p>  para hacer que mis cartas sean draggables voy a usar <a href="https://github.com/gardiner/draganddrop" >draganddrop.js </a> <a href="hhttps://www.jqueryscript.net/demo/Mobile-Drag-Drop-Plugin-jQuery/" > demo </a> , es un plugin  para Jquery que funciona incluso en dispositivos mobiles.</p>
       <p> por eso antes de nada voy llamar a jquery y luego voy a crear una carpeta para plugins y llamar desde ahi a dragandrop. </p>
       <pre><code>
         &lt!-- javascript -->
@@ -111,7 +142,7 @@ h3{ color: #155799;}
       });
   </pre></code>
         <p> bien. Ahora las cartas son draggables y dropeables, aunque por el momento dropear las cartas solo te muestra su id en la consola, la idea ahora es hacer que todas las cartas al dropear llamen a la funcion atacar().</p>
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.4 - "Slimey Boy" </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.1.4 - "Slimey Boy" </h2>
       <p> ahora empieza la parte dificil. no estoy seguro de como diseñar los encuentros con enemigos o como manejar la seleccion de personajes a atacar en el caso de que el numero sea fluctuante y a su vez como manejar sus respectivos puntos de vida. Asi que lo voy a tomar con calma y lo voy a programar poco a poco </p>
       <p> empezemos simple, vamos a crear un enemigo. </p>
       <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto">
@@ -130,10 +161,10 @@ h3{ color: #155799;}
         }
         </pre></code>
         <p> porsupuesto esto no signfica nada, es solo un alerte que dice que daño al slime, pero nada esta pasando realmente. el slime esta bien y las cartas no influyenen lo absoluto. Pero es un inicio, ahora puedo agregarle una barra de vida al slime y quitarle realmente 10 puntos de vida cada vez que presiono el boton.</p>
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.3 - seccion "battle_stage" </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.1.3 - seccion "battle_stage" </h2>
       <p> por el momento tengo una lista de cartas ordenadas y otra desordenada, claro que sto es solo por el prototipo, en realidad no deberian verse juntas. Asi que voy a cambiar eso.</p>
       <p> voy a crear un tercera seccion a la que voy a llamar escenario de pelea o battle_stage, en esta seccion se va a mostrar el mazo de el jugador mientras que en la seccion de personaje va a quedar la lista incial</p>
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.2 - mazo editable </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.1.2 - mazo editable </h2>
       <p> cada personaje tiene su mazo, eso es un avanze. Pero esos mazos son los iniciales. son una lista predeterminada, lo que tengo que hacer ahora es clonar los mazos iniciales para que puedean ser editables durante la partida.</p>
       <pre><code>
         var mazo_jugador = mazo_inicial.slice();
@@ -151,7 +182,7 @@ h3{ color: #155799;}
       mazo_jugador.sort(function() {return Math.random() - 0.5});
       </pre></code>
       <p> Supongo que en algun momento puedo necesitar una tercera copia que se cree cada vez que quiero revisar el mazo jugador en el medio de un match...pero eso lo vere despues. </p>
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1.1 - Seleccion de personajes </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.1.1 - Seleccion de personajes </h2>
       <p> lo que quiero hacer ahora es crear una pantalla de seleccion de personajes, dependiendo cual personaje se elija  se va a mostrar un mazo inicial diferente</p>
       <p> ahora supongo que tengo varias opciones para pasar de pantalla, puedo usar un Eventlistener  para cambiar entre distintos divs, puedo usar ajax, o pasar variables por la url.</p>
       <p> primero voy a intentar la opcion de Eventlistener, y si llego a tener problemas puedo ramificar el proyecto desde este punto.</p>
@@ -274,7 +305,7 @@ h3{ color: #155799;}
         }
       
       </pre></code>
-      <h2 style="    border-bottom: solid 1px #eff0f1;"> v 0.1 </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.1 </h2>
       <h3> creando el mazo </h3>
       <p> lo primero que tengo que hacer es crear un mazo inicial, eventualmente van a ser varios mazos iniciales depende de que personae se elija. </p>
       <p> en esta caso el mazo es un array de obetos, descubri que esta es la mejor manera de mostrar el mazo por que me permite utilizar las funcionalidades de los array.</p>

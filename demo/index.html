@@ -30,7 +30,8 @@
 <!--  battle stage ----------------------------------------------------------------------- -->
   <section id="battle_stage" style="display: none;">
     <h2>battle stage</h2>
-    <enemy class="drop" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
+    <enemy class="drop" id="enemy1" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
+    <enemy class="drop" id="enemy2" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
     <!-- <button onclick="atacar()" > atacar al slime  </button> -->
     <h3> mazo </h3>
     <!-- <div class="drop"><p>Drop here</p></div> -->
@@ -39,18 +40,6 @@
   </section>
 </body>
 <script>
-        var mazo_inicial = [
-          { name: 'carta 11', id: 11 },
-          { name: 'carta 12', id: 12 },
-          { name: 'carta 13', id: 13 },
-          { name: 'carta 14', id: 14 },
-          { name: 'carta 15', id: 15 },
-          { name: 'carta 16', id: 16 },
-          { name: 'carta 17', id: 17 },
-          { name: 'carta 18', id: 18 },
-          { name: 'carta 19', id: 19 },
-          { name: 'carta 20', id: 20 }
-    ];
 
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
@@ -138,19 +127,20 @@ var char_div=  document.getElementById("char");
 
 
     $(function() {
-            $('.dragdrop').draggable({
-                revert: true,
-                placeholder: true,
-                droptarget: '.drop',
-                drop: function(evt, droptarget) {
-                    var currentID = evt.target.id;/*- returns  the id. */
-                    $(this).appendTo(droptarget).draggable('destroy');
-                    console.log(currentID);//ejecuta el codigo
-                    $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-                    atacar();
-                }
-            });
-        });
+      $('.dragdrop').draggable({
+         revert: true,
+         placeholder: true,
+         droptarget: '.drop',
+         drop: function(evt, droptarget) {
+             var currentID = evt.target.id;/*- returns  the id. */
+             $(this).appendTo(droptarget).draggable('destroy');
+            // console.log(currentID);//ejecuta el codigo
+            console.log(droptarget.id);//ejecuta el codigo
+             $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+             atacar();
+         }
+      });
+    });
 
  }
  
@@ -168,7 +158,7 @@ function play(){
     document.getElementById("battle_stage").style.display="inherit";
   }
   function atacar() {
-  alert( " 10 de daño al slime ");
+  //alert( " 10 de daño al slime ");
  }
 </script>
 </html>
