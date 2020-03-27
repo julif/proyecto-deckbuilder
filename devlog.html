@@ -73,10 +73,39 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.2 -  </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.3 -  </h2>
+     
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.2 - enemigos dinamicos </h2>
       <p> bien, el proyecto esta avanzando muy bien, tengo una seleccion de personajes, mazos independientes de los que se usan para jugar, cartas drageables y varios enemigos dropeables. Pero estos 2 ultimos suceden en la consola, mi meta ahora es crear 2 barras de vida para los 2 slimes y cada carta va a quitarles 10 puntos de vida.  </p>
+       <p> creo que la mejor manera de tratar el asunto de las barras de vida es volverlo un atributo del enemigo... o de el personaje mas bien, de esa manera esta automaticamente asignado al personaje en si y no requiero tantas variables llevando la cuenta de los diferentes puntos de vida, o quizas no funciona asi y de todas maneras tengo que usar variables.</p>
+      <p> una cosa interesante que puedo hacer es mostrar enemigo aleatorios, con cierta probabilidad de enemigo insuales.</p>
+      <h3> mostrar enemigos dinamicamente </h3>
+      <p> hasta ahora los enemigos estan hardcodeados, antes que nada tengo que cambiar eso, para de manera dinamica cambiar el enemigo y la cantidad.</p>
+      <p> para eso voy a crear una funcion que muestra al enemigo show_enemy(), por ahora la funcionva a estar fuera de la  funcion principal pero creo que eventualmente voy a tener que incluirla despues de la seleccion de personae o algo asi. </p>
+      <p> por ahora la funcion solo remplaza el contenido de  el div "enemys" con un elemento harcodeado con una imagen de el slime.</p>
+      <pre><code>
+       show_enemy();
+       function show_enemy() {
+        document.getElementById("enemys").innerHTML="&ltenemy class='drop' id='enemy1' style='display: inline-block;'> &ltimg src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> &lt/enemy>";
+       }
+      </pre></code>
+      <p> este es un buen inicio, en especial porque el codigo del drop funciona perfectamente, ahora lo que puedo hacer es crear una probabilidad del 60% de que aparezcan 2 slimes en lugar de 1.</p>
+      <pre><code>
+        function show_enemy() {
+           var aleatorio = Math.round(Math.random()*10);
+           console.log(aleatorio);
+           if( aleatorio < 6 ){
+             // mostrar un enemigo
+           }
+           else{
+            // mostrar 2 enemigos
+           }
+        }
+        </pre></code>
+        <p> pero por el momento solo sige mostrando a los enemigo harcodeados, lo cual sirve por el momento pero quiero mejorar.</p>
 
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.1 - droptarget.id </h2>
+
+       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.1 -  droptarget.id </h2>
       <p> ahora que el drag and drop funciona voy a cambiar  el codigo para que ejecute la funcion atacar</p><pre><code>
         $(function() {
             $('.dragdrop').draggable({
@@ -93,6 +122,7 @@ h3{ color: #155799;}
             });
         });
         </pre></code>        
+        <p>Lo que tengo que hacer es crear un segundo slimey boy y ver que al dropear la carta no solo tenga el id de la carta usada, sino el id de el enemigo seleccionado. si no logro esto mi deckbuilder va a tener que ser de enemigos individuales, lo cual no es la idea. </p>
         <h3> segundo slimey boy</h3>
         <p> la verdad crei que iba a ser dificil poque el demo de  <a href="https://github.com/gardiner/draganddrop" >draganddrop.js </a> no muestra eemplos de como diferenciar el receptor del drop. pero con un simple codigo pude reslverlo.</p>
         <pre><code>
