@@ -73,8 +73,20 @@ h3{ color: #155799;}
   </div>
 
     <main id="content" class="main-content" role="main">
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.3 -  </h2>
-     
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.3 - pila de descartes </h2>
+      <p> para empezar a darle forma a el verdadero juego tengo que hacer que cada vez que una carta se use, independientemente de en que enemigo se use, la carta pase a formar parte de la lista de cartas usadas.
+      </br>Por el momento no voy a hacer nada con esas cartas, pero eventualmente van a remezclarze en el mazo principal.</p>
+      <p> primero tengo que crear un div que se llame pila_de_descarte,en el voy a almacenar el nombre de todas las cartas usadas</p>
+      <pre><code>
+      $("#pila_de_descarte").append(" carta descartada &lt/br>");
+      </pre></code>
+      <p> simplemente incluyendo este codigo dentro de la funcion del drop crea una lista, cada vez que una carta es usada la frase "carta descartada" aparece dentro. ahora lo que quiero es cambiar eso por el nombre de la carta en si.</p>
+     <p> especificamente en esta version el nombre de la carta esta en su innerHTML, pero eventualmente voy a tener que cambiarlo y convertir name en un atributo de las cartas.</p>
+     <pre><code>
+      $("#pila_de_descarte").append( evt.target.innerHTML + "&lt/br>");
+     </pre></code>
+     <p> las cartas siguen sin hacer nada, pero al menos la battle_stage esta tomando mas forma.</p>
+  
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.2 - enemigos dinamicos </h2>
       <p> bien, el proyecto esta avanzando muy bien, tengo una seleccion de personajes, mazos independientes de los que se usan para jugar, cartas drageables y varios enemigos dropeables. Pero estos 2 ultimos suceden en la consola, mi meta ahora es crear 2 barras de vida para los 2 slimes y cada carta va a quitarles 10 puntos de vida.  </p>
        <p> creo que la mejor manera de tratar el asunto de las barras de vida es volverlo un atributo del enemigo... o de el personaje mas bien, de esa manera esta automaticamente asignado al personaje en si y no requiero tantas variables llevando la cuenta de los diferentes puntos de vida, o quizas no funciona asi y de todas maneras tengo que usar variables.</p>

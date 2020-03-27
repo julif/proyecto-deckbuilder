@@ -30,15 +30,11 @@
 <!--  battle stage ----------------------------------------------------------------------- -->
   <section id="battle_stage" style="display: none;">
     <h2>battle stage</h2>
-    <div id="enemys">
-     <!-- <enemy class="drop" id="enemy1" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy>
-    <enemy class="drop" id="enemy2" style=" display: inline-block; "> <img src="https://opengameart.org/sites/default/files/slime_idle_0.gif" alt="slime" height="150" width="auto"> </enemy> -->
-    </div>
-    
-    <!-- <button onclick="atacar()" > atacar al slime  </button> -->
-    <h3> mazo </h3>
-    <!-- <div class="drop"><p>Drop here</p></div> -->
+    <div id="enemys"></div>
+    <h3> mazo: </h3>
     <p id="mazo_jugador_div" style=" display: flex;"></p>
+    <h3>Pila de descarte:</h3>
+    <div id="pila_de_descarte"></div>
     
   </section>
 </body>
@@ -136,9 +132,13 @@ var char_div=  document.getElementById("char");
          droptarget: '.drop',
          drop: function(evt, droptarget) {
              var currentID = evt.target.id;/*- returns  the id. */
+             //var currentVALUE = evt.target.attributes.name.value;
+
              $(this).appendTo(droptarget).draggable('destroy');
             // console.log(currentID);//ejecuta el codigo
-            console.log(droptarget.id);//ejecuta el codigo
+            //console.log(evt.target.innerHTML);//ejecuta el codigo
+
+            $("#pila_de_descarte").append( evt.target.innerHTML + "</br>");
              $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
              atacar();
          }
