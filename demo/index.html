@@ -34,7 +34,7 @@
     <h3> mazo: </h3>
     <p id="mazo_jugador_div" style=" display: flex;"></p>
     <h3>Pila de descarte:</h3>
-    <div id="pila_de_descarte"></div>
+    <ul id="pila_de_descarte" style="display: grid;"></ul>
     
   </section>
 </body>
@@ -119,7 +119,7 @@ var char_div=  document.getElementById("char");
 
       // mostrar mazo de el jugador ------------------
       mazo_jugador.forEach( function(item, index) {
-        document.getElementById("mazo_jugador_div").innerHTML += "<carta id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+        document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
       });
 
 
@@ -131,14 +131,14 @@ var char_div=  document.getElementById("char");
          placeholder: true,
          droptarget: '.drop',
          drop: function(evt, droptarget) {
-             var currentID = evt.target.id;/*- returns  the id. */
-             //var currentVALUE = evt.target.attributes.name.value;
+             var card_ID = evt.target.id;/*- returns  the id. */
+             var card_name = evt.target.attributes.name.value;
 
              $(this).appendTo(droptarget).draggable('destroy');
-            // console.log(currentID);//ejecuta el codigo
+            // console.log(card_ID);//ejecuta el codigo
             //console.log(evt.target.innerHTML);//ejecuta el codigo
 
-            $("#pila_de_descarte").append( evt.target.innerHTML + "</br>");
+            $("#pila_de_descarte").append( "<li>"+ card_name + "</li>");
              $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
              atacar();
          }
