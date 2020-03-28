@@ -32,7 +32,10 @@
     <h2>battle stage</h2>
     <div id="enemys"></div>
     <h3> mazo: </h3>
-    <p id="mazo_jugador_div" style=" display: flex;"></p>
+    <ul id="mazo"></ul>
+    <button onclick="robar_carta()" > Robar carta </button></br>
+    <h3>Mano:</h3>
+    <div  id="mano" style="display: flex;"> </div>
     <h3>Pila de descarte:</h3>
     <ul id="pila_de_descarte" style="display: grid;"></ul>
     
@@ -119,31 +122,13 @@ var char_div=  document.getElementById("char");
 
       // mostrar mazo de el jugador ------------------
       mazo_jugador.forEach( function(item, index) {
-        document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+        //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+        document.getElementById("mazo").innerHTML += "<li name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
       });
 
 
 
 
-    $(function() {
-      $('.dragdrop').draggable({
-         revert: true,
-         placeholder: true,
-         droptarget: '.drop',
-         drop: function(evt, droptarget) {
-             var card_ID = evt.target.id;/*- returns  the id. */
-             var card_name = evt.target.attributes.name.value;
-
-             $(this).appendTo(droptarget).draggable('destroy');
-            // console.log(card_ID);//ejecuta el codigo
-            //console.log(evt.target.innerHTML);//ejecuta el codigo
-
-            $("#pila_de_descarte").append( "<li>"+ card_name + "</li>");
-             $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-             atacar();
-         }
-      });
-    });
 
  }
  
@@ -175,5 +160,47 @@ function play(){
     document.getElementById("enemys").innerHTML+="<enemy class='drop' id='enemy2' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
   }
  }
+ function robar_carta(){
+  var card_id = $('#mazo li:first-child').attr('id'); // id de el primer li
+  var card_name = $('#mazo li:first-child').attr('name'); // name de el primer li
+
+   $('#mazo li:first-child').remove();//quita el primer elemento de mazo
+
+  // agregar la carta a la mano
+   $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'" class="dragdrop">'+ card_name +'</carta>');
+
+
+
+
+
+   
+   $(function() {
+      $('.dragdrop').draggable({
+         revert: true,
+         placeholder: true,
+         droptarget: '.drop',
+         drop: function(evt, droptarget) {
+             var card_ID = evt.target.id;/*- returns  the id. */
+             var card_name = evt.target.attributes.name.value;
+
+             $(this).appendTo(droptarget).draggable('destroy');
+
+
+             console.log(droptarget.id); // ID  de la dropzone
+            // console.log(card_ID);//ejecuta el codigo
+            //console.log(evt.target.innerHTML);//ejecuta el codigo
+
+            $("#pila_de_descarte").append( "<li>"+ card_name + "</li>");
+             $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+             atacar();
+         }
+      });
+    });
+
+
+
+
+
+  }
 </script>
 </html>
