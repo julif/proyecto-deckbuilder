@@ -76,8 +76,6 @@ h3{ color: #155799;}
       <div style="background-color: #112b46;padding-left: 30px;padding-right: 30px;padding-bottom: 10px;padding-top: 1px;color:#5b7794;">
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
-          <li> no permitir que el boton robar funcione si no hay cartas en el mazo </li>
-          <li> mezclado automatico al terminarse las cartas del mazo </li>
           <li> crear enemigos realmente dinamicos </li>
           <li> crear robo automatico</li>
           <li> crear turnos</li>
@@ -91,6 +89,38 @@ h3{ color: #155799;}
           <li> mapa de enemigos </li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.5 - lengths y re_mezclar </h2>
+      <p style=" color: #a0aec1bf;"> 29/3/2020</p>
+      <p> el unico problema con el boton de robar, es que si lo oprimo cuando ya no quedan cartas en el mazo, roba una carta glitch con el nombre undefined. </br>
+      Para evitar eso tengo que crear una funcion que se llame cada vez que se intente robar y no halla cartas en el mazo, dicha funcion va a tomar las cartas de la pila de descartes, mezclarlas y depues ponerlas nuevamente en el mao para poder ser robadas.</p>
+      <p> antes que nada necesito saber el numero exacto de cartas en el mazo, para eso tengo que darle una clase especifica a las cartas que estan en la mano, en este caso "hand_card". </p>
+      <pre><code>
+      var mazolength= $("#mazo").find(".hand_card").length;
+      document.getElementById("mazo_length").innerHTML=mazolength;
+      </pre></code>
+      <p> este codigo deberia ejecutarse una vez cuando empieza la partida y luego dentro de robar_carta y re_mezclar.</p>
+      <p> ya que tengo el numero de las cartas en mazo, podria hacer lo mismo con las cartas en la mano y en la pila de descarte </p>
+      <pre><code>
+        var mazolength= $("#mazo").find(".hand_card").length ;
+        var manolength= $("#mano").find(".dragdrop").length ;
+        var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
+        
+        document.getElementById("mazo_length").innerHTML= mazolength;
+        document.getElementById("mano_length").innerHTML= manolength;
+        document.getElementById("pila_descarte_length").innerHTML= piladedescartelength; 
+      </pre></code>
+      <p> el codigo quedaria asi, y deberia ejecutarse justo despues de las cartas mecladas entran al mazo, al final de la funcion para robar cartas y al final de la funcion drop, que son las unicas 3 maneras por el momento de cambair el numero de cartas dentro de las 3 listas de cartas.</p>
+
+      <p> ahora tengo que hacer que al empezar una partida automaticamente se ejecute la funcion para robar cartas 3 veces, incluso puedo darle un pequeño delay conbinado con una animacion para simular que se estan robando cartas</p>
+
+      <h3> alert "no quedan cartas"</h3>
+      <p> antes de crear la funcion quiero probar si el codigo funciona bien con un alert, basicamente dentro de la funcion robar_carta agrege un if que chequea si el mazo tiene al menos 1 carta, si la tiene roba una carta normalmente, y si no sale el alert. </p>
+
+
+
+
+
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.4 -  mazo y mano </h2>
       <p style=" color: #a0aec1bf;"> 28/3/2020</p>
       <p> llegue a esta seccion de el codigo que estaba evitando por que todo los demas funciona muy bien,

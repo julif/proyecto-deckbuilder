@@ -31,12 +31,12 @@
   <section id="battle_stage" style="display: none;">
     <h2>battle stage</h2>
     <div id="enemys"></div>
-    <h3> mazo: </h3>
+    <h3> mazo: <span id="mazo_length"></span></h3>
     <ul id="mazo"></ul>
     <button onclick="robar_carta()" > Robar carta </button></br>
-    <h3>Mano:</h3>
+    <h3>Mano:  <span id="mano_length"></span></h3>
     <div  id="mano" style="display: flex;"> </div>
-    <h3>Pila de descarte:</h3>
+    <h3>Pila de descarte:  <span id="pila_descarte_length"></span> </h3>
     <ul id="pila_de_descarte" style="display: grid;"></ul>
     
   </section>
@@ -123,8 +123,18 @@ var char_div=  document.getElementById("char");
       // mostrar mazo de el jugador ------------------
       mazo_jugador.forEach( function(item, index) {
         //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
-        document.getElementById("mazo").innerHTML += "<li name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
+        document.getElementById("mazo").innerHTML += "<li class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
       });
+      
+
+      var mazolength= $("#mazo").find(".hand_card").length ;
+      var manolength= $("#mano").find(".dragdrop").length ;
+      var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
+      
+
+      document.getElementById("mazo_length").innerHTML= mazolength;
+      document.getElementById("mano_length").innerHTML= manolength;
+      document.getElementById("pila_descarte_length").innerHTML= piladedescartelength;
 
 
 
@@ -161,6 +171,9 @@ function play(){
   }
  }
  function robar_carta(){
+  var mazolength= $("#mazo").find(".hand_card").length ;
+  if (mazolength >= 1) {   
+    
   var card_id = $('#mazo li:first-child').attr('id'); // id de el primer li
   var card_name = $('#mazo li:first-child').attr('name'); // name de el primer li
 
@@ -171,7 +184,15 @@ function play(){
 
 
 
+  }
+  else if ( mazolength == 0) { 
+   
+    re_mezclar(); 
+  }
 
+
+
+   
 
    
    $(function() {
@@ -190,17 +211,69 @@ function play(){
             // console.log(card_ID);//ejecuta el codigo
             //console.log(evt.target.innerHTML);//ejecuta el codigo
 
-            $("#pila_de_descarte").append( "<li>"+ card_name + "</li>");
+           
+
+
+            $("#pila_de_descarte").append( "<li class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"' >"+ card_name + "</li>");
              $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
              atacar();
+
+
+             
+          var mazolength= $("#mazo").find(".hand_card").length ;
+          var manolength= $("#mano").find(".dragdrop").length ;
+          var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
+
+          document.getElementById("mazo_length").innerHTML= mazolength;
+          document.getElementById("mano_length").innerHTML= manolength;
+          document.getElementById("pila_descarte_length").innerHTML= piladedescartelength; 
+
          }
       });
     });
 
+    var mazolength= $("#mazo").find(".hand_card").length ;
+    var manolength= $("#mano").find(".dragdrop").length ;
+    var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
+      
 
+    document.getElementById("mazo_length").innerHTML= mazolength;
+    document.getElementById("mano_length").innerHTML= manolength;
+    document.getElementById("pila_descarte_length").innerHTML= piladedescartelength; 
+   
 
 
 
   }
+  function re_mezclar(){
+    //alert("no quedan cartas");
+    var elements = $("#pila_de_descarte").find(".pila_descarte_card"); // busca cada carta dentro de la pila de descartes
+    var data = Array();
+    for(var i = 0; i < elements.length; i++){
+     data.push("<li class='hand_card'  name='"+elements[i].attributes.name.value+"' id='"+elements[i].id+"'>"+elements[i].innerHTML+"</li>");
+    }
+
+    var mazo_mezclado = data;
+    mazo_mezclado.sort(function() {return Math.random() - 0.5});
+    document.getElementById("mazo").innerHTML = mazo_mezclado.join('');
+    
+    document.getElementById("pila_de_descarte").innerHTML=" ";// vacia la pila de descarte
+
+
+    var mazolength= $("#mazo").find(".hand_card").length ;
+    var manolength= $("#mano").find(".dragdrop").length ;
+    var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
+      
+
+    document.getElementById("mazo_length").innerHTML= mazolength;
+    document.getElementById("mano_length").innerHTML= manolength;
+    document.getElementById("pila_descarte_length").innerHTML= piladedescartelength; 
+    
+
+    robar_carta();
+
+
+}// funcion re_mezclar();
+ 
 </script>
 </html>
