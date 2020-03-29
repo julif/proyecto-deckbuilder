@@ -36,6 +36,7 @@
     <h3> mazo: <span id="mazo_length"></span></h3>
     <ul id="mazo"></ul>
     <button onclick="robar_carta()" > Robar carta </button></br>
+    <button onclick="new_turn()" > nuevo turno </button></br>
     <h3>Mano:  <span id="mano_length"></span></h3>
     <div  id="mano" style="display: flex;"> </div>
     <h3>Pila de descarte:  <span id="pila_descarte_length"></span> </h3>
@@ -117,18 +118,17 @@ var char_div=  document.getElementById("char");
     function myFunction(item, index) {
         document.getElementById("mazo_inicial_div").innerHTML += "id: "+ item.id +" name: "+ item.name +" </br>"; 
     }
+    //mezclar mazo y mostrarlo en el div "mazo"
+    var mazo_jugador = mazo_inicial.slice();//clona el mazo_jugador pero de manera independiente.
+    mazo_jugador.sort(function() {return Math.random() - 0.5});
 
-     //mezclar mazo y mostrarlo en el div "mazo"
-     var mazo_jugador = mazo_inicial.slice();//clona el mazo_jugador pero de manera independiente.
-       mazo_jugador.sort(function() {return Math.random() - 0.5});
+    // mostrar mazo de el jugador ------------------
+    mazo_jugador.forEach( function(item, index) {
+    //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+    document.getElementById("mazo").innerHTML += "<li class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
+    });
 
-      // mostrar mazo de el jugador ------------------
-      mazo_jugador.forEach( function(item, index) {
-        //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
-        document.getElementById("mazo").innerHTML += "<li class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
-      });
-
-      actualizar_mazos_lengths();
+     actualizar_mazos_lengths();
 
  }
  
@@ -215,6 +215,9 @@ function play(){
          }
       });
     });
+
+
+
     actualizar_mazos_lengths();
 
 
@@ -240,6 +243,21 @@ function play(){
 
 
 }// funcion re_mezclar();
- 
+function new_turn(){
+  var elements = $("#mano").find(".dragdrop"); // busca cada carta dentro de la mano
+  var data = Array();
+  for(var i = 0; i < elements.length; i++){
+    data.push("<li class='pila_descarte_card'  name='"+elements[i].attributes.name.value+"' id='"+elements[i].id+"'>"+elements[i].innerHTML+"</li>");
+  }
+  var mazo_mezclado = data;
+  mazo_mezclado.sort(function() {return Math.random() - 0.5});
+  document.getElementById("pila_de_descarte").innerHTML += mazo_mezclado.join('');
+
+  document.getElementById("mano").innerHTML=" ";// vacia la mano
+    
+  actualizar_mazos_lengths();
+
+  robar_carta(); robar_carta(); robar_carta();
+}
 </script>
 </html>
