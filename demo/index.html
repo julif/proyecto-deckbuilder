@@ -144,6 +144,10 @@ var char_div=  document.getElementById("char");
 function play(){
     document.getElementById("personaje_seleccionado").style.display="none";
     document.getElementById("battle_stage").style.display="inherit";
+    
+    new_turn()
+
+
   }
   function atacar() {
   //alert( " 10 de daño al slime ");
@@ -161,31 +165,20 @@ function play(){
   }
  }
  function robar_carta(){
-  var mazolength= $("#mazo").find(".hand_card").length ;
-  if (mazolength >= 1) {   
+    var mazolength= $("#mazo").find(".hand_card").length ;
+    if (mazolength >= 1) { 
+      var card_id = $('#mazo li:first-child').attr('id'); // id de el primer li
+      var card_name = $('#mazo li:first-child').attr('name'); // name de el primer li
+      
+      $('#mazo li:first-child').remove();//quita el primer elemento de mazo
+      // agregar la carta a la mano
+      $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'" class="dragdrop">'+ card_name +'</carta>');
+    }
+    else if ( mazolength == 0) {
+      re_mezclar(); 
+    }
     
-  var card_id = $('#mazo li:first-child').attr('id'); // id de el primer li
-  var card_name = $('#mazo li:first-child').attr('name'); // name de el primer li
-
-   $('#mazo li:first-child').remove();//quita el primer elemento de mazo
-
-  // agregar la carta a la mano
-   $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'" class="dragdrop">'+ card_name +'</carta>');
-
-
-
-  }
-  else if ( mazolength == 0) { 
-   
-    re_mezclar(); 
-  }
-
-
-
-   
-
-   
-   $(function() {
+    $(function() {
       $('.dragdrop').draggable({
          revert: true,
          placeholder: true,
@@ -196,32 +189,19 @@ function play(){
 
              $(this).appendTo(droptarget).draggable('destroy');
 
-
              console.log(droptarget.id); // ID  de la dropzone
             // console.log(card_ID);//ejecuta el codigo
             //console.log(evt.target.innerHTML);//ejecuta el codigo
-
-           
-
-
             $("#pila_de_descarte").append( "<li class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"' >"+ card_name + "</li>");
-             $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-             atacar();
-
-
-             
+            $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
+             atacar(); 
              actualizar_mazos_lengths();
-
          }
       });
     });
-
-
-
     actualizar_mazos_lengths();
-
-
   }
+
   function re_mezclar(){
     //alert("no quedan cartas");
     var elements = $("#pila_de_descarte").find(".pila_descarte_card"); // busca cada carta dentro de la pila de descartes
@@ -237,12 +217,10 @@ function play(){
     document.getElementById("pila_de_descarte").innerHTML=" ";// vacia la pila de descarte
     
     actualizar_mazos_lengths();
-    
 
     robar_carta();
-
-
 }// funcion re_mezclar();
+
 function new_turn(){
   var elements = $("#mano").find(".dragdrop"); // busca cada carta dentro de la mano
   var data = Array();
@@ -256,8 +234,11 @@ function new_turn(){
   document.getElementById("mano").innerHTML=" ";// vacia la mano
     
   actualizar_mazos_lengths();
-
-  robar_carta(); robar_carta(); robar_carta();
+  
+  setTimeout(robar_carta, 500);
+  setTimeout(robar_carta, 1000);
+  setTimeout(robar_carta, 1500);
+  // robar_carta(); robar_carta(); robar_carta();
 }
 </script>
 </html>

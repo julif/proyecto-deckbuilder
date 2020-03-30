@@ -77,8 +77,8 @@ h3{ color: #155799;}
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
           <li> crear enemigos realmente dinamicos </li>
-          <li> crear robo automatico</li>
-          <li> crear turnos</li>
+          <li> hacer que la funcion new_turn() robe hasta llegar al limite de cartas en mano por personaje </li>
+          <li> crear turnos </li>
           <li> cartas de distintos valores </li>
           <li> barra de vida de los enmigos</li>
           <li> barra de vida de el jugador</li>
@@ -89,6 +89,12 @@ h3{ color: #155799;}
           <li> mapa de enemigos </li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.6.1 - Robar automaticamente </h2>
+      <p style=" color: #a0aec1bf;"> 30/3/2020</p>
+      <p>la funcion new_turn() ahora me permite robar 3 cartas con medio segundo de diferencia entre cada una, eso da la ilusion de estar robando cartas, pero para eso hay que cliquear un boton.</br>
+      Ahora quiero hacer que la funcion new_turn() se aplique automaticamente cuando inicie la partida, para eso necesito llamar a new_turn() al final de la funcion play(). </p>
+      <p> sigue existiendo el problema de que la funcion new_turn() roba 3 cartas, numero hardcodeado. Eventualmente voy a necesitar robar hasta llegar al numero de cartas en mano, sea cual sea.</p>
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.6 - new_turn</h2>
       <p style=" color: #a0aec1bf;"> 29/3/2020</p>
       <p>al clickear el boton new_turn roba 3 cartas y lleva  las cartas restantes en la mano a la pila de descartes.</p>
