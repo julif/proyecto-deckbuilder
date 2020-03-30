@@ -89,6 +89,41 @@ h3{ color: #155799;}
           <li> mapa de enemigos </li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.7 - Turno enemigo </h2>
+      <p style=" color: #a0aec1bf;"> 30/3/2020</p>
+      <p> ahora que las cartas se roban automaticamente y se van de la mano al final de cada turno, estaba pensando que las cartas deberian quedarse en la mano hasta el inicio de el suguiente turno de usuario,
+        asi que me parece que para aclarar eso primero tengo que crear turnos.
+      </p>
+      <p> en su forma mas basica el turno enemigo deberia ser una funcion que quita la interactividad a las cartas en la mano la cual vuelve junto con la nueva mano al turno siguiente. </p>
+      <p> para hacer eso primero necesito saber cuales son las cartas que tengo en la mano, y no puedo usar el mismo codigo que uso para pasar las cartas de la mano a la pila de descartes por que estas se basan en
+        encontrar cuantos elementos con la classe draggable existen.
+      </p>
+      <p> asi encontre este codigo el cual crea un array de los elemento child de un padre.( quizas me convenga cambiar algunos de los codigos anteriores para encontrar elementos por este)</p>
+      <pre><code>
+      //var cartas_en_mano =  $("#mano > carta").length
+      var cartas_en_mano =  $("#mano > carta").id;
+      console.log(cartas_en_mano);
+      </pre></code>
+      <p> mi obetivo es descubrir el id de cada una de las cartas en la mano para poder quitarles la classe draggable.</p>
+      <pre><code>
+        var ids = $('#mano carta').map(function(){
+            return $(this).attr('id');
+        }).get();
+              
+        ids.forEach( function( element ) {
+             console.log(+element);
+             document.getElementById(element).classList.remove("dragdrop");
+            document.getElementById(element).classList.remove("draggable");
+            document.getElementById(element).classList.remove("dragaware");
+         });
+        </pre></code>
+        <p> logre conseguir los ids de cada una de las cartas en mano y quitarles las classes dragables. pero aun asi funcionan...creo que voy a tener que buscar una alternativa</p>
+        <h3> alternativa 1: div transparente</h3>
+        <p> esta me parece una soluccion poco elegante. pero puedo colocar un div transparente sobre la mano para evitar interaccion durante el turno rival. la contra es que no permite
+          hacer click en la carta para ver detalles o cosas asi.
+        </p>
+
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.6.1 - Robar automaticamente </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
       <p>la funcion new_turn() ahora me permite robar 3 cartas con medio segundo de diferencia entre cada una, eso da la ilusion de estar robando cartas, pero para eso hay que cliquear un boton.</br>

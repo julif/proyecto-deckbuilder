@@ -39,6 +39,7 @@
     <button onclick="new_turn()" > nuevo turno </button></br>
     <h3>Mano:  <span id="mano_length"></span></h3>
     <div  id="mano" style="display: flex;"> </div>
+    <button onclick="end_turn()" > terminar turno  </button></br>
     <h3>Pila de descarte:  <span id="pila_descarte_length"></span> </h3>
     <ul id="pila_de_descarte" style="display: grid;"></ul>
     
@@ -145,7 +146,7 @@ function play(){
     document.getElementById("personaje_seleccionado").style.display="none";
     document.getElementById("battle_stage").style.display="inherit";
     
-    new_turn()
+    new_turn();
 
 
   }
@@ -240,5 +241,37 @@ function new_turn(){
   setTimeout(robar_carta, 1500);
   // robar_carta(); robar_carta(); robar_carta();
 }
+ function end_turn(){
+/*  //var cartas_en_mano =  $("#mano > carta").length
+ var cartas_en_mano =  $("#mano > carta").id;
+   console.log(cartas_en_mano); */
+
+
+   var ids = $('#mano carta').map(function(){
+  return $(this).attr('id');
+  }).get();
+
+//console.log(ids)
+//alert(ids);
+//ids.forEach(element => console.log(element));
+ids.forEach( function( element ) {
+
+  console.log(+element);
+ // $("#"+element).removeClass( "dragdrop draggable dragaware" ).addClass( "yourClass" );
+ //document.getElementById('"+element+"').innerHTML='dede';
+ document.getElementById(element).classList.remove("dragdrop");
+ document.getElementById(element).classList.remove("draggable");
+ document.getElementById(element).classList.remove("dragaware");
+
+    });
+
+
+/* mazo_jugador.forEach( function(item, index) {
+    //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+    document.getElementById("mazo").innerHTML += "<li class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
+    });
+ */
+
+  }
 </script>
 </html>
