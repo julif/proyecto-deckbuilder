@@ -78,7 +78,6 @@ h3{ color: #155799;}
         <ul>
           <li> crear enemigos realmente dinamicos </li>
           <li> hacer que la funcion new_turn() robe hasta llegar al limite de cartas en mano por personaje </li>
-          <li> crear turnos </li>
           <li> cartas de distintos valores </li>
           <li> barra de vida de los enmigos</li>
           <li> barra de vida de el jugador</li>
@@ -91,7 +90,20 @@ h3{ color: #155799;}
       </div>
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.8 - desabilitar cartas en turno enemigo </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
-      <p> ahora que hay un boton para finalizar el turno deberia empezar a trabajar en el turno del rival.</p>
+      <p> ahora que hay un boton para finalizar el turno deberia empezar a trabajar en el turno del rival.Por ejemplo, 
+        si el turno de el rival comenzo deberia contar la cantidad de enemigos en el tablero, y ejecutar una accion por cada uno. en este caso atacar.
+      </p>
+      <pre><code>
+        function turno_enemigo(){
+            var enemys_ids = $('#enemys enemy').map(function(){
+              return $(this).attr('id');
+            }).get();
+                      
+            enemys_ids.forEach( function( element ) {
+              alert("ataque de  " + element);
+            });
+          } 
+       </pre></code>
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.7 - desabilitar cartas en turno enemigo </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
       <p> ahora que las cartas se roban automaticamente y se van de la mano al final de cada turno, estaba pensando que las cartas deberian quedarse en la mano hasta el inicio de el suguiente turno de usuario,

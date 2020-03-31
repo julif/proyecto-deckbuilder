@@ -229,7 +229,7 @@ function play(){
 
 function new_turn(){
   turno_jugador = true;
-  
+
   var elements = $("#mano").find(".dragdrop"); // busca cada carta dentro de la mano
   var data = Array();
   for(var i = 0; i < elements.length; i++){
@@ -253,8 +253,10 @@ function new_turn(){
  var cartas_en_mano =  $("#mano > carta").id;
    console.log(cartas_en_mano); */
     turno_jugador = false;
-
-    //new_turn();
+    turno_enemigo();
+    
+    setTimeout( new_turn(), 500);
+   
     //turno_jugador = true;
 
    
@@ -265,6 +267,17 @@ function new_turn(){
     });
  */
 
+  }
+  function turno_enemigo(){
+
+    var enemys_ids = $('#enemys enemy').map(function(){
+            return $(this).attr('id');
+        }).get();
+              
+        enemys_ids.forEach( function( element ) {
+             //console.log("el id de el enemigo es: " + element);
+           alert("ataque de  " + element);
+         });
   }
 </script>
 </html>
