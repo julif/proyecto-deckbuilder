@@ -160,14 +160,18 @@ function play(){
   var aleatorio = Math.round(Math.random()*10);
   console.log(aleatorio);
   if( aleatorio < 6 ){
-    document.getElementById("enemys").innerHTML="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-   //var enemy1_health= 100;
+    document.getElementById("enemys").innerHTML="<enemy class='drop'  id='enemy1' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+   var enemy1_health= 100;
     //window.enemy1_health=100; 
-    //console.log("la salud de el enemigo es: " + enemy1_health);
+    console.log("la salud de el enemigo es: " + enemy1_health);
   }
   else{
     document.getElementById("enemys").innerHTML="<enemy class='drop' id='enemy1' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
     document.getElementById("enemys").innerHTML+="<enemy class='drop' id='enemy2' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+    var enemy1_health= 100;
+    console.log("la salud de el enemigo es: " + enemy1_health);
+    var enemy2_health= 100;
+    console.log("la salud de el enemigo es: " + enemy2_health);
   }
  }
  function robar_carta(){
@@ -193,17 +197,12 @@ function play(){
           var card_ID = evt.target.id;/*- returns  the id. */
           var card_name = evt.target.attributes.name.value;
 
-          var enemy_health = droptarget.attributes.health.value;
+         
 
           if ( turno_jugador === true) {
             $(this).appendTo(droptarget).draggable('destroy');
-
-            console.log(droptarget.id); // ID  de la dropzone
-
-            var enemy_health = enemy_health-10;
-            console.log(enemy_health); // ID  de la dropzone
-
-            document.getElementById(droptarget.id).setAttribute("health", enemy_health );
+          var a = droptarget.id +"_health";
+            console.log("la sasssslud de el enemigo es: " + a );
             //Number( enemy1_health1);
            // enemy1_health1  =   enemy1_health -10;
             //console.log("la salud de el enemigo es: " + enemy1_health);

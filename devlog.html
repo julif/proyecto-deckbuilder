@@ -86,23 +86,44 @@ h3{ color: #155799;}
           <li> cartas de curacion </li>
           <li> editar el mazo al terminar un match </li>
           <li> mapa de enemigos </li>
+          <li> crear una manera para hacerle zoom a la carta</li>
         </ul>
       </div>
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.8 - desabilitar cartas en turno enemigo </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.9 - barras de vida rival </h2>
+      <p style=" color: #a0aec1bf;"> 31/3/2020</p>
+      <p> creo que ahora si es finalmente el momento para crear las barras de vida</p>
+      <p> lo que tengo que determinar es como voy a hacer para que cada rival tenga su propia barra de vida, imagino que ya en la funcion que crea al enemigo deberia crearlas.</p>
+      <p> se me ocurren 2 maneras de lograr esto </p>
+      <h3> opcion 1: usar atributos </h3>
+      <p> puedo usar el echo de que ya recibo el id de el drop.target en  la funcion drop y usarlo para buscar el atributo health </p>
+      <pre><code>
+      var enemy_health = droptarget.attributes.health.value;
+      </pre></code>
+      <p> y despues una vez que tenga ese valor puedo restarle la cantidad de daño que haga la carta y despues cambie el valor del atributo. </p>
+      <pre><code>
+      var enemy_health = enemy_health-10;
+      document.getElementById(droptarget.id).setAttribute("health", enemy_health );
+      console.log(enemy_health); // salud de el enemigo
+      </pre></code>
+      <p> el problema es que si despues quiero agregar opciones como que el rival recupere toda su salud o algo asi, necesitaria otro atributo especificamente para almacenar la sauld inicial de el rival.</p>
+      <h3> opcion 2: usar variables </h3>
+      <p> no se como hacerlo </p>
+
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.8 - ataque rival </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
       <p> ahora que hay un boton para finalizar el turno deberia empezar a trabajar en el turno del rival.Por ejemplo, 
         si el turno de el rival comenzo deberia contar la cantidad de enemigos en el tablero, y ejecutar una accion por cada uno. en este caso atacar.
       </p>
       <pre><code>
-        function turno_enemigo(){
-            var enemys_ids = $('#enemys enemy').map(function(){
-              return $(this).attr('id');
-            }).get();
+      function turno_enemigo(){
+        var enemys_ids = $('#enemys enemy').map(function(){
+          return $(this).attr('id');
+        }).get();
                       
-            enemys_ids.forEach( function( element ) {
-              alert("ataque de  " + element);
-            });
-          } 
+        enemys_ids.forEach( function( element ) {
+          alert("ataque de  " + element);
+        });
+      } 
        </pre></code>
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.7 - desabilitar cartas en turno enemigo </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
