@@ -89,7 +89,10 @@ h3{ color: #155799;}
           <li> mapa de enemigos </li>
         </ul>
       </div>
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.7 - Turno enemigo </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.8 - desabilitar cartas en turno enemigo </h2>
+      <p style=" color: #a0aec1bf;"> 30/3/2020</p>
+      <p> ahora que hay un boton para finalizar el turno deberia empezar a trabajar en el turno del rival.</p>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.7 - desabilitar cartas en turno enemigo </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
       <p> ahora que las cartas se roban automaticamente y se van de la mano al final de cada turno, estaba pensando que las cartas deberian quedarse en la mano hasta el inicio de el suguiente turno de usuario,
         asi que me parece que para aclarar eso primero tengo que crear turnos.
@@ -122,8 +125,12 @@ h3{ color: #155799;}
         <p> esta me parece una soluccion poco elegante. pero puedo colocar un div transparente sobre la mano para evitar interaccion durante el turno rival. la contra es que no permite
           hacer click en la carta para ver detalles o cosas asi.
         </p>
-
-
+        <h3> alternativa 2: draggables pero inutiles</h3>
+        <p>Esta es la version mas plausible, podria simplemente agregar un if dentro de el drop para volver la funcion inutil si es el turno del rival.</p>
+        <p> </p>     
+        <h3> alternativa 3: clonar la mano</h3>
+       <p> existe la opcion de crear un div que clone a la mano y se vea en el mismo lugar de la mano cada vez que sea el turno del oponente</p>
+      <p> el pro de esta opcion seria que puedo darle un comportamiento diferente a las cartas en la mano cuando es el turno del rival</p>
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.6.1 - Robar automaticamente </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>
       <p>la funcion new_turn() ahora me permite robar 3 cartas con medio segundo de diferencia entre cada una, eso da la ilusion de estar robando cartas, pero para eso hay que cliquear un boton.</br>

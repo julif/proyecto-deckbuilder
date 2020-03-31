@@ -46,6 +46,7 @@
   </section>
 </body>
 <script>
+   var turno_jugador = true;
 
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
@@ -181,22 +182,26 @@ function play(){
     
     $(function() {
       $('.dragdrop').draggable({
-         revert: true,
-         placeholder: true,
-         droptarget: '.drop',
-         drop: function(evt, droptarget) {
-             var card_ID = evt.target.id;/*- returns  the id. */
-             var card_name = evt.target.attributes.name.value;
+        revert: true,
+        placeholder: true,
+        droptarget: '.drop',
+        drop: function(evt, droptarget) {
+          var card_ID = evt.target.id;/*- returns  the id. */
+          var card_name = evt.target.attributes.name.value;
 
-             $(this).appendTo(droptarget).draggable('destroy');
+          if ( turno_jugador === true) {
+            $(this).appendTo(droptarget).draggable('destroy');
 
-             console.log(droptarget.id); // ID  de la dropzone
+            console.log(droptarget.id); // ID  de la dropzone
             // console.log(card_ID);//ejecuta el codigo
             //console.log(evt.target.innerHTML);//ejecuta el codigo
             $("#pila_de_descarte").append( "<li class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"' >"+ card_name + "</li>");
             $('.drop').find('.dragdrop').remove(); // borra los elementos una vez dentro de el drop
-             atacar(); 
-             actualizar_mazos_lengths();
+            atacar(); 
+            actualizar_mazos_lengths();
+          }
+          else if( turno_jugador === false){ }
+
          }
       });
     });
@@ -223,6 +228,8 @@ function play(){
 }// funcion re_mezclar();
 
 function new_turn(){
+  turno_jugador = true;
+  
   var elements = $("#mano").find(".dragdrop"); // busca cada carta dentro de la mano
   var data = Array();
   for(var i = 0; i < elements.length; i++){
@@ -245,26 +252,12 @@ function new_turn(){
 /*  //var cartas_en_mano =  $("#mano > carta").length
  var cartas_en_mano =  $("#mano > carta").id;
    console.log(cartas_en_mano); */
+    turno_jugador = false;
 
+    //new_turn();
+    //turno_jugador = true;
 
-   var ids = $('#mano carta').map(function(){
-  return $(this).attr('id');
-  }).get();
-
-//console.log(ids)
-//alert(ids);
-//ids.forEach(element => console.log(element));
-ids.forEach( function( element ) {
-
-  console.log(+element);
- // $("#"+element).removeClass( "dragdrop draggable dragaware" ).addClass( "yourClass" );
- //document.getElementById('"+element+"').innerHTML='dede';
- document.getElementById(element).classList.remove("dragdrop");
- document.getElementById(element).classList.remove("draggable");
- document.getElementById(element).classList.remove("dragaware");
-
-    });
-
+   
 
 /* mazo_jugador.forEach( function(item, index) {
     //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
