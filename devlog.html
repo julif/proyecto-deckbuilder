@@ -87,8 +87,27 @@ h3{ color: #155799;}
           <li> editar el mazo al terminar un match </li>
           <li> mapa de enemigos </li>
           <li> crear una manera para hacerle zoom a la carta</li>
+          <li> sistema de cartas que afectan multiples objetivos </li>
+          <li> sistema de cartas que afectan al jugador</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.9.1 - barras de vida rival </h2>
+      <p style=" color: #a0aec1bf;"> 1/4/2020</p>
+      <p> siguiendo con la version de el codigo anterior, decidi que lo mejor es usar la version que utiliza los atributos para almacenar la vida actual delenemigo,
+        quizas lo conbine con la idea  de tener un filtro de los stats de los enemigos. Pero por ahora me conformo con ver barras de vida.
+      </p>
+      <h3> numero de vida </h3>
+      <p> dentro de cada enemy cree un div con el id enemy1_health_number ... , es el id de el enemigo seguido por heath_number, eventualmente puedo cambiarlo por algo que valla mas con barras de vida.</br>
+      En fin, este pequeño codigo en query me deja cambiar el contenido de el div por el resultado de la cuenta del codigo anterior.
+      </p>
+      <pre><code>
+      $("#"+droptarget.id+"_health_number").html( enemy_health);
+      </pre></code>
+      <p> esto significa que automaticamente todos los enemigos tienen numeros que representan sus puntos de vida individuales, aunque por el momento no succede nada si los numeros llegan a 0.</p>
+      <p> lo que tendria que hacer ahora es un if, que revise si entre todos los enemigos, si todos tienen 0 puntos de vida gane la pelea, tambien tengo que ver la manera de destruir o volver inutil los enemys muertos</p>
+    
+    
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.9 - barras de vida rival </h2>
       <p style=" color: #a0aec1bf;"> 31/3/2020</p>
       <p> creo que ahora si es finalmente el momento para crear las barras de vida</p>
@@ -107,7 +126,7 @@ h3{ color: #155799;}
       </pre></code>
       <p> el problema es que si despues quiero agregar opciones como que el rival recupere toda su salud o algo asi, necesitaria otro atributo especificamente para almacenar la sauld inicial de el rival.</p>
       <h3> opcion 2: usar variables </h3>
-      <p> no se como hacerlo </p>
+      <p> supongo que podria poner una lista de variables y filtrarlas por el id de la dropzone, seria como un bestiario y dependiendo el monstruo podria conseguir datos como su hp inicial y su hp actual o su resistencia and stuff </p>
 
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.8 - ataque rival </h2>
       <p style=" color: #a0aec1bf;"> 30/3/2020</p>

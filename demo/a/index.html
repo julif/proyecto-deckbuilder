@@ -161,16 +161,17 @@ function play(){
   console.log(aleatorio);
   if( aleatorio < 6 ){
     document.getElementById("enemys").innerHTML="<enemy class='drop'  id='enemy1' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-   var enemy1_health= 100;
+    enemy1_health= 100;
     //window.enemy1_health=100; 
-    console.log("la salud de el enemigo es: " + enemy1_health);
+    //console.log("la salud de el enemigo es: " + enemy1_health);
   }
   else{
     document.getElementById("enemys").innerHTML="<enemy class='drop' id='enemy1' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-    document.getElementById("enemys").innerHTML+="<enemy class='drop' id='enemy2' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-    var enemy1_health= 100;
+     enemy1_health= 100;
     console.log("la salud de el enemigo es: " + enemy1_health);
-    var enemy2_health= 100;
+    
+    document.getElementById("enemys").innerHTML+="<enemy class='drop' id='enemy2' style='display: inline-block;'> <img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+     enemy2_health= 100;
     console.log("la salud de el enemigo es: " + enemy2_health);
   }
  }
@@ -201,8 +202,13 @@ function play(){
 
           if ( turno_jugador === true) {
             $(this).appendTo(droptarget).draggable('destroy');
-          var a = droptarget.id +"_health";
-            console.log("la sasssslud de el enemigo es: " + a );
+         // var a = droptarget.id+"_health";
+        // a =  this[droptarget.id+'_health'];
+       //  a = eval("droptarget.id") + "_health";
+       // b =  "enemy"+evt.target.id+"_health";
+        b= eval(droptarget.id+"_health");
+        
+            console.log("la salud de "+ droptarget.id +" es: " + b );
             //Number( enemy1_health1);
            // enemy1_health1  =   enemy1_health -10;
             //console.log("la salud de el enemigo es: " + enemy1_health);
