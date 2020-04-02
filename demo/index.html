@@ -12,6 +12,13 @@
     <script src='js/actualizar_mazos_length.js' type='text/javascript'></script>
     <!-- css -->
     <link rel="stylesheet" href="style.css">
+    <style>
+     .pdv{
+       color: white;
+       background-color: red;
+     }
+    </style>
+
 </head>
 <body>
     <!--  seleccion de personajes -----------------------------------------------------------  -->
@@ -146,7 +153,7 @@ var char_div=  document.getElementById("char");
 function play(){
     document.getElementById("personaje_seleccionado").style.display="none";
     document.getElementById("battle_stage").style.display="inherit";
-    
+    show_enemy("enemy_1", "enemy_2");
     new_turn();
 
 
@@ -155,21 +162,48 @@ function play(){
   //alert( " 10 de daño al slime ");
   
  }
- show_enemy();
+/* 
  function show_enemy() {
   var aleatorio = Math.round(Math.random()*10);
   console.log(aleatorio);
   if( aleatorio < 6 ){
-    document.getElementById("enemys").innerHTML="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'><p id='enemy1_health_number'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-   //var enemy1_health= 100;
-    //window.enemy1_health=100; 
-    //console.log("la salud de el enemigo es: " + enemy1_health);
+    document.getElementById("enemys").innerHTML="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'><p id='pdv_enemy1' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
   }
   else{
-    document.getElementById("enemys").innerHTML="<enemy class='drop'  health='100' id='enemy1' style='display: inline-block;'> <p id='enemy1_health_number'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-    document.getElementById("enemys").innerHTML+="<enemy class='drop'  health='100' id='enemy2' style='display: inline-block;'> <p id='enemy2_health_number'>100</p><img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+    document.getElementById("enemys").innerHTML="<enemy class='drop'  health='100' id='enemy1' style='display: inline-block;'> <div id='enemy_bar'class='barradevida'><p id='pdv_enemy1'>100</p></div><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+    document.getElementById("enemys").innerHTML+="<enemy class='drop'  health='100' id='enemy2' style='display: inline-block;'> <div id='enemy_bar'class='barradevida'><p id='pdv_enemy2'>100</p></div><img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
   }
- }
+ } */
+/*  function show_enemy(a) {
+  var i;
+
+  for(i = 0; i < arguments.length; i++) {
+    a = arguments[i];
+    if ( a == "enemy_1" ) {
+    document.getElementById("enemys").innerHTML+="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'><p id='pdv_enemy1' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+   }
+   if ( a == "enemy_2" ) {
+    document.getElementById("enemys").innerHTML+="<enemy class='drop' health='100' id='enemy2' style='display: inline-block;'><p id='pdv_enemy2' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
+   }
+  } */
+  function show_enemy(a) {
+  var i;
+
+  for(i = 0; i < arguments.length; i++) {
+    a = arguments[i];
+    if ( a == "enemy_1" ) {
+      enemy_img = 'https://opengameart.org/sites/default/files/slime_idle_0.gif';
+      enemy_initial_health = 100;
+   }
+   if ( a == "enemy_2" ) {
+    enemy_img = 'https://opengameart.org/sites/default/files/slime_walk_0.gif';
+    enemy_initial_health = 200;
+   }
+   document.getElementById("enemys").innerHTML+="<enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'><p id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  height='150' width='auto'> </enemy>";
+  }
+ //var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+
+  }
  function robar_carta(){
     var mazolength= $("#mazo").find(".hand_card").length ;
     if (mazolength >= 1) { 
@@ -194,6 +228,7 @@ function play(){
           var card_name = evt.target.attributes.name.value;
 
           var enemy_health = droptarget.attributes.health.value;
+          var enemy_initial_health = droptarget.attributes.initial_health.value;
 
           if ( turno_jugador === true) {
             $(this).appendTo(droptarget).draggable('destroy');
@@ -203,14 +238,29 @@ function play(){
             var enemy_health = enemy_health-10;
 
             document.getElementById(droptarget.id).setAttribute("health", enemy_health );
-            $("#"+droptarget.id+"_health_number").html( enemy_health);
+            $("#pdv_"+droptarget.id).html( enemy_health );
+            //document.getElementById("#pdv_"+droptarget.id).style.color = "blue";
+            var porcentaje_pdv_enemy = parseInt(enemy_health)/parseInt(enemy_initial_health)*100;
+            $("#pdv_"+droptarget.id).css({'color':'white','width': porcentaje_pdv_enemy +"%" ,'background':'#ff1700'});//cambiar el css de el droptarget
+         // var cosas =  $("#pdv_"+droptarget.id).html;
+        // $("#enemy_bar").css( "width", "50%!important");
+            var cosas= $("#pdv_"+droptarget.id).html();
+
+          console.log("coas:"+ cosas); // ID  de la dropzone
             console.log(enemy_health); // ID  de la dropzone
 
-            
-            //Number( enemy1_health1);
-           // enemy1_health1  =   enemy1_health -10;
-            //console.log("la salud de el enemigo es: " + enemy1_health);
+            //document.getElementById("enemy_bar").style.width =  enemy_health +"%"; 
 
+
+           if( enemy_health <= 70 ){ 
+             alert("muerto")
+             $("#"+droptarget.id).remove();
+             
+          
+             var enemys_length = $("#enemys enemy").length;
+             //console.log(enemys_length);
+              if(enemys_length == 0 ){ alert("pantalla de victoria");}
+             }
          
             // console.log(card_ID);//ejecuta el codigo
             //console.log(evt.target.innerHTML);//ejecuta el codigo
