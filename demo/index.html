@@ -42,7 +42,7 @@
 
 </head>
 <body>
-    <!--  seleccion de personajes -----------------------------------------------------------  -->
+ <!--  seleccion de personajes -----------------------------------------------------------  -->
   <section id="seleccion_de_personajes"> 
     <h2>Seleccionar personaje:</h2> 
     <div id="char_1" class="selectable_character" > seleccionar personaje 1 </div>
@@ -55,7 +55,15 @@
     <h3 id="char"></h3>
     <p id="mazo_inicial_div"></p>
     <button onclick="back_personajes()" > volver a seleccion de personajes</button>
-    <button onclick="play()" > Jugar </button>
+    <button onclick="go_to_seleecion_de_enemigos()" > enemigos </button>
+  </section>
+  <!--  mapa de enemigos  ------------------------------------------------------------------ -->
+  <section id="seleccion_de_enemigo" style="display: none;">
+    <h2> Seleccion de enemigos:</h2>
+    <!-- <button onclick="back_personajes()" > volver a seleccion de personajes</button> -->
+    <button onclick="show_enemy('enemy_1'); play()" > slime 1 </button>
+    <button onclick="show_enemy('enemy_2'); play()" > slime 2 </button>
+    <button onclick="show_enemy('enemy_1','enemy_2'); play()" > ambos slimes </button>
   </section>
 <!--  battle stage ----------------------------------------------------------------------- -->
   <section id="battle_stage" style="display: none;">
@@ -76,6 +84,7 @@
       <div class="modal-content">
        
         <p>Victoria!!!</p>
+        <button onclick="volver_seleccion_enemigos()" > volver a la seleecion de enemigos</button>
       </div>
     </div>
   </section>
@@ -86,6 +95,7 @@
 
 
    var max_hand_Size; //tengo que declarar esta variable para que sea global 
+   var mazo_inicial;
 
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
@@ -105,7 +115,7 @@ var char_div=  document.getElementById("char");
       case "char_1":
         char_div.innerHTML= "Personaje 1: Bunny";
          max_hand_Size = 3; 
-        var mazo_inicial = [
+         mazo_inicial = [
           { name: 'carta 1', id: 1 },
           { name: 'carta 2', id: 2 },
           { name: 'carta 3', id: 3 },
@@ -121,7 +131,7 @@ var char_div=  document.getElementById("char");
       case "char_2":
         char_div.innerHTML= "Personaje 2: Nero";
          max_hand_Size = 4; 
-        var mazo_inicial = [
+         mazo_inicial = [
           { name: 'carta 11', id: 11 },
           { name: 'carta 12', id: 12 },
           { name: 'carta 13', id: 13 },
@@ -137,7 +147,7 @@ var char_div=  document.getElementById("char");
       case "char_3":
         char_div.innerHTML= "Personaje 3: Shacta";
         max_hand_Size = 5; 
-        var mazo_inicial = [
+         mazo_inicial = [
           { name: 'carta 21', id: 21 },
           { name: 'carta 22', id: 22 },
           { name: 'carta 23', id: 23 },
@@ -185,11 +195,39 @@ var char_div=  document.getElementById("char");
   document.getElementById("personaje_seleccionado").style.display="none";
   document.getElementById("seleccion_de_personajes").style.display="inherit";
 }
+function volver_seleccion_enemigos(){
+  
+
+  document.getElementById("victory_screen").style.display = "none";
+  document.getElementById("battle_stage").style.display="none";
+  document.getElementById("seleccion_de_enemigo").style.display="inherit";
+
+  document.getElementById("mazo").innerHTML = " "; 
+
+
+  var mazo_jugador = mazo_inicial.slice();//clona el mazo_jugador pero de manera independiente.
+    mazo_jugador.sort(function() {return Math.random() - 0.5});
+
+  // mostrar mazo de el jugador ------------------
+  mazo_jugador.forEach( function(item, index) {
+    //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+    document.getElementById("mazo").innerHTML += "<li class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
+    });
+    document.getElementById("mano").innerHTML = " ";
+    document.getElementById("pila_de_descarte").innerHTML = " ";
+  
+}
+
+function go_to_seleecion_de_enemigos(){
+  document.getElementById("personaje_seleccionado").style.display="none";
+  document.getElementById("seleccion_de_enemigo").style.display="inherit";
+}
 function play(){
-    document.getElementById("personaje_seleccionado").style.display="none";
+    //document.getElementById("personaje_seleccionado").style.display="none";
+    document.getElementById("seleccion_de_enemigo").style.display="none";
     document.getElementById("battle_stage").style.display="inherit";
     //show_enemy("enemy_1", "enemy_2");
-    show_enemy("enemy_1");
+    
 
     new_turn();
 
