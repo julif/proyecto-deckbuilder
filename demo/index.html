@@ -55,6 +55,10 @@
 <script>
    var turno_jugador = true;
 
+
+
+   var max_hand_Size; //tengo que declarar esta variable para que sea global 
+
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
     
@@ -72,6 +76,7 @@ var char_div=  document.getElementById("char");
     switch (personajeID) { 
       case "char_1":
         char_div.innerHTML= "Personaje 1: Bunny";
+         max_hand_Size = 3; 
         var mazo_inicial = [
           { name: 'carta 1', id: 1 },
           { name: 'carta 2', id: 2 },
@@ -87,6 +92,7 @@ var char_div=  document.getElementById("char");
       break
       case "char_2":
         char_div.innerHTML= "Personaje 2: Nero";
+         max_hand_Size = 4; 
         var mazo_inicial = [
           { name: 'carta 11', id: 11 },
           { name: 'carta 12', id: 12 },
@@ -102,6 +108,7 @@ var char_div=  document.getElementById("char");
       break
       case "char_3":
         char_div.innerHTML= "Personaje 3: Shacta";
+        max_hand_Size = 5; 
         var mazo_inicial = [
           { name: 'carta 21', id: 21 },
           { name: 'carta 22', id: 22 },
@@ -187,23 +194,24 @@ function play(){
    }
   } */
   function show_enemy(a) {
-  var i;
+    var i;
+    for(i = 0; i < arguments.length; i++) {
+      a = arguments[i];
+      if ( a == "enemy_1" ) {
+        enemy_img = 'https://opengameart.org/sites/default/files/slime_idle_0.gif';
+        enemy_initial_health = 100;
+      }
+      if ( a == "enemy_2" ) {
+        enemy_img = 'https://opengameart.org/sites/default/files/slime_walk_0.gif';
+        enemy_initial_health = 200;
+      }
+      document.getElementById("enemys").innerHTML+="<enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'><p id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  height='150' width='auto'> </enemy>";
+    }
 
-  for(i = 0; i < arguments.length; i++) {
-    a = arguments[i];
-    if ( a == "enemy_1" ) {
-      enemy_img = 'https://opengameart.org/sites/default/files/slime_idle_0.gif';
-      enemy_initial_health = 100;
-   }
-   if ( a == "enemy_2" ) {
-    enemy_img = 'https://opengameart.org/sites/default/files/slime_walk_0.gif';
-    enemy_initial_health = 200;
-   }
-   document.getElementById("enemys").innerHTML+="<enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'><p id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  height='150' width='auto'> </enemy>";
-  }
- //var person = {firstName:"John", lastName:"Doe", age:50, eyeColor:"blue"};
+  }// show_enemy();
 
-  }
+
+
  function robar_carta(){
     var mazolength= $("#mazo").find(".hand_card").length ;
     if (mazolength >= 1) { 
@@ -311,10 +319,23 @@ function new_turn(){
   document.getElementById("mano").innerHTML=" ";// vacia la mano
     
   actualizar_mazos_lengths();
+
+
+
+
+  var i = 0;
+  var separador= 500;
+ // var max_hand_Size = 3; 
+for (i = 0; i <  max_hand_Size; i++ ) {
+  setTimeout(robar_carta, separador);
+  separador = separador + 500;
+};
+
+
+
   
-  setTimeout(robar_carta, 500);
-  setTimeout(robar_carta, 1000);
-  setTimeout(robar_carta, 1500);
+  //setTimeout(robar_carta, 1000);
+ // setTimeout(robar_carta, 1500);
   // robar_carta(); robar_carta(); robar_carta();
 }
  function end_turn(){
@@ -324,6 +345,7 @@ function new_turn(){
     turno_jugador = false;
     turno_enemigo();
     
+  
     setTimeout( new_turn(), 500);
    
     //turno_jugador = true;

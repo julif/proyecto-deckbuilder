@@ -76,19 +76,38 @@ h3{ color: #155799;}
       <div style="background-color: #112b46;padding-left: 30px;padding-right: 30px;padding-bottom: 10px;padding-top: 1px;color:#5b7794;">
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
-          <li> hacer que la funcion new_turn() robe hasta llegar al limite de cartas en mano por personaje </li>
+          <li> pantalla de victoria</li>
+          <li> mapa de enemigos </li>
+          <li> editar el mazo al terminar un match </li>
           <li> cartas de distintos valores </li>
           <li> barra de vida de el jugador</li>
-          <li> pantalla de victoria</li>
           <li> pantalla de derrota</li>
           <li> cartas de curacion </li>
-          <li> editar el mazo al terminar un match </li>
-          <li> mapa de enemigos </li>
           <li> crear una manera para hacerle zoom a la carta</li>
           <li> sistema de cartas que afectan multiples objetivos </li>
           <li> sistema de cartas que afectan al jugador</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.11 - limite de carta en mano  </h2>
+      <p style=" color: #a0aec1bf;"> 3/4/2020</p>
+      <p> hasta el momento la funcion new_turn() roba 3 cartas, independientemente de el contexto. pero para poder hacerlo dinamico y para poder darle mas personalidad a los 3 arquetipos que arme. Voy a 
+        darles 3 numeros distintos de cartas en mano.
+      </p>
+      <p> tambien mejore la funcion para que robe cartas cada medio segundo.</p>
+      <pre><code>
+        var i = 0;
+        var separador= 500;
+        var max_hand_Size = 3; 
+        for (i = 0; i < 3; i++ ) {
+           setTimeout(robar_carta, separador);
+           separador = separador + 500;
+        };
+        </pre></code>
+      <p> la variable max_hand_size, hay que declararla  globalmente  pero hay que asignarle  el valor dentro de el personaje </p>
+
+
+
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.10 - creando enemigos dinamicamente </h2>
       <p style=" color: #a0aec1bf;"> 2/4/2020</p>
       <p>La funcion aleatoria que estaba usando para  mostrar a los enemigos puede llegar a a ser util, pero no es lo que necesito.Lo que necesito es que los paramentros de la funcion show_enemy() sean los id de los enemigos que voy a enfrentar.</p>
