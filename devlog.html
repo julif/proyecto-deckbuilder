@@ -76,18 +76,194 @@ h3{ color: #155799;}
       <div style="background-color: #112b46;padding-left: 30px;padding-right: 30px;padding-bottom: 10px;padding-top: 1px;color:#5b7794;">
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
-          <li> mapa de enemigos </li>
           <li> editar el mazo al terminar un match </li>
-          <li> cartas de distintos valores </li>
           <li> barra de vida de el jugador</li>
           <li> pantalla de derrota</li>
+          <li> mapa de enemigos </li>
+          <li> cambiar id por card_id y crear un contador de actuall id´s</li>
+          <li> cartas de distintos valores </li>
           <li> cartas de curacion </li>
           <li> crear una manera para hacerle zoom a la carta</li>
           <li> sistema de cartas que afectan multiples objetivos </li>
           <li> sistema de cartas que afectan al jugador</li>
         </ul>
       </div>
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.13 -   </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.14 -   </h2>
+      <p style=" color: #a0aec1bf;"> 6/4/2020</p>
+      <p> despues de cada batalla la pantalla de victoria deberia dar la opcion de agregar una carta al mazo o quitar una.</p>
+      <p> para hacer eso supongo que voy a necesitar una tercera copia de el mazo, tengo el mazo inicial, el que uso para jugar que puede ser modificado dentro de la partida y ahora necesito uno que 
+        pueda guardar modificiaciones permanentes y no sea afectado por cartas basura o cambios temporales.
+      </p>
+      <p> este mazo tambien puede ser accesible en la navbar, para saber que cartas hay.</p>
+      <h3>Clonando el mazo </h3>
+      <p> lo primero que tengo que hacer es clonar el mazo inicial en una variable que voy a llamar permanent_deck ..o algo asi.</p>
+      <pre><code>
+      var mazo_permanente; //la variable debe declararse globalmente
+      mazo_permanente = mazo_inicial.slice();//clona el mazo_jugador pero de manera independiente.
+      </pre></code>
+      <p> despues tengo que hacer que cada vez que inicia una partida el contenido de el mazo jugador sea un clon de el mazo permanente</p>
+      <pre><code>
+      var mazo_jugador = mazo_permanente.slice();//clona el mazo_permanente pero de manera independiente.
+      mazo_jugador.sort(function() {return Math.random() - 0.5});
+      </pre></code>
+      <h3>Agregando carta</h3>
+      <p> ahora tecnicamente podria crear un boton que agrege una carta nueva a la variable mazo_permanente al terminar la partida. </p>
+      <pre><code>
+      function agregar_carta() {
+        mazo_permanente.push({ name:'carta 11', id: 31 });
+      }
+      </pre></code>
+      <p> podria llegar a aparecer problemas por agregar siempre cartas con el mismo id... quizas deberia cambiar el id por card_id o algo asi y usar el verdadero id con un contador que agrege un id unico y especifico a esa carta al ser agregada al mazo,
+        de esa manera podria agregar cambios especificos a ciertas cartas.
+      </p>
+      <p> un pequeño problema es que la carta nueva siempre aparece al final del mazo, eso se solucciona mezclando el mazo jugador despues de llamar a la funcion agregar carta </p>
+      <pre><code>
+      var mazo_jugador = mazo_permanente.slice();//clona el mazo_permanente pero de manera independiente.
+      mazo_jugador.sort(function() {return Math.random() - 0.5});
+      </pre></code>
+      <p> bien, ya funcion perfectamente aunque por el momento solo puede agregar la misma carta una y otra vez.</p>
+      <h3>Carta aleatoria</h3>
+      <p> en lugar de mostrar una y otra vez la misma carta para agregar al mazo, mi idea es crear listas de cartas por rareza y dependiendo la dificultad de el combate dar un mejor premio.</p>
+      <p> pero por el momento, simplemente voy a iniciar con una lista de 2 cartas, y una probabilidad de el 50% de recibir una u otra.</p>
+      <pre><code>
+      var aleatorio = Math.round(Math.random()*10);
+      console.log(aleatorio);
+      if( aleatorio < 5 ){
+        mazo_permanente.push({ name:'carta 11', id: 31 });
+      }
+      else{
+        mazo_permanente.push({ name:'carta 12', id: 32 });
+      }
+      </pre></code>
+      <h3> Mostrar carta a agregar </h3>
+      <p> ahora lo ideal seria que la funcion que selecciona la carta aleatoria se muestre en la pantalla de victoria para saber si vale la pena agregarla o no (tambien para saber que carta es).</p>
+      <p> para hacer eso necesito 2  variables que almacenen los datos de carta a agregar, carta_a_agregar_nombre y carta_a_agregar_id (mas adelante puedo pensar en una soluccion mas elegante).Las variables deben ser declaradas globalmente.</p>
+      <p> una vez agregadas las variables, dentro de show_victory_screen() se puede agregar el siguiente codigo</p>
+      <pre><code>
+      carta_a_agregar_nombre = "carta 11";
+      carta_a_agregar_id = 31;
+      document.getElementById("carta_a_agregar").innerHTML = "name:"+ carta_a_agregar_nombre+", id: "+ carta_a_agregar_id +";";
+      </pre></code>
+      <p> y luego en la funcion agregar_carta </p>
+      <pre><code>
+      mazo_permanente.push({ name: carta_a_agregar_nombre, id: carta_a_agregar_id });
+      </pre></code>
+      <p> ahora puedo conbinarla con el codigo de 50% de probabilidad</p>
+      <pre><code>
+      var aleatorio = Math.round(Math.random()*10);
+      console.log(aleatorio);
+      if( aleatorio < 5 ){
+         carta_a_agregar_nombre = "carta 11";
+         carta_a_agregar_id = 31;
+      }
+      else{
+         carta_a_agregar_nombre = "carta 12";
+         carta_a_agregar_id = 32;
+      }
+      document.getElementById("carta_a_agregar").innerHTML = "name:"+ carta_a_agregar_nombre+", id: "+ carta_a_agregar_id +";";
+      </pre></code>
+      <p> se que no es la mejor solucion, pero puedo optimizarlo mas tarde.</p>
+      <h3>Mostrar varias cartas </h3>
+      <p> ok, volvamos a lo basico. La idea final es tener 3 cartas aleatorias dependiendo de la rareza, y que al cliquearlas las otras desaparezcan y la seleccionada se agrege al mazo.</p>
+      <p> la version actual solo te muestra 1 de 2 cartas aleatorias, asi que vamos a empezar desde el final otra vez, por el momento voy a dejar de lado el codigo anterior y a mostrar hardcodeadas 3 cartas con alerts.</p>
+      <pre><code>
+      &ltdiv id="recompenzas">
+        &ltp onclick="alert('carta 1'),volver_seleccion_enemigos()" > carta 1  &lt/p> 
+        &ltp onclick="alert('carta 2'),volver_seleccion_enemigos()" > carta 2  &lt/p>
+        &ltp onclick="alert('carta 3'),volver_seleccion_enemigos()" > carta 3  &lt/p>
+      &lt/div>
+      </pre></code>
+      <p> ahora podemos reemplazar los alerts por la funcion con agregar_carta con 2 parametros para name e id.</p>
+      <pre><code>
+      &ltdiv id="recompenzas">
+        &ltp onclick="agregar_carta('carta 11', 31),volver_seleccion_enemigos()" > carta 11 &lt/p> 
+        &ltp onclick="agregar_carta('carta 12', 32),volver_seleccion_enemigos()" > carta 12 &lt/p>
+        &ltp onclick="agregar_carta('carta 13', 33),volver_seleccion_enemigos()" > carta 13 &lt/p>
+      &lt/div>
+      </pre></code> 
+      <p> tambien hay que cambiar la funcion agregar_carta para que acepte estos parametros. </p>
+      <pre><code>
+      function agregar_carta(a,b) {
+           mazo_permanente.push({ name: a, id: b });
+           // resto de la funcion
+       }
+      </pre></code>
+      <p> esto funciona perfecto, pero esta hardcodeado, para hacer la transicion mas fluida simplemente voy a poner un inner html con la misma informacion </p>
+      <p>problema: on click inside innerhtml </p><pre><code>
+      document.getElementById("recompenzas").innerHTML='&ltdiv onclick="agregar_carta(\'carta 11\',31),volver_seleccion_enemigos()"> carta 11 &lt/div>';
+      document.getElementById("recompenzas").innerHTML+='&ltdiv onclick="agregar_carta(\'carta 12\',32),volver_seleccion_enemigos()"> carta 12 &lt/div>';
+      document.getElementById("recompenzas").innerHTML+='&ltdiv onclick="agregar_carta(\'carta 13\',33),volver_seleccion_enemigos()"> carta 13 &lt/div>';
+      </pre></code>
+      <p> bien, ya pude copiar lo hardcodeado, es hora de hacerlo mas dinamico.</p>
+      <p> la variable aleatorio  genera un numero entre 0 y 10, luego la carta recompenzas muestra una carta con ese id y nombre. podria crear una funcion asi y llamarla 3 veces.</p>
+      <pre><code>
+      var aleatorio = Math.round(Math.random()*10);
+      document.getElementById("recompenzas").innerHTML+='&ltdiv onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' &lt/div>';
+      </pre></code>
+      <p> se puede cambiar el codigo para que muestre un numero entre 1 y 100, pero despues en la funcion agregar carta hay que limpiar el inner html de  recompenzas</p>
+      <pre><code>
+      var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+      document.getElementById("recompenzas").innerHTML ='&ltdiv onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' &lt/div>';
+      var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+      document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' &lt/div>';
+      var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
+      document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' &lt/div>';
+      </pre></code>
+      <p> bien, ahora voy a necesitar una lista de cartas de las cuales sacar los datos, para que no sean simplemente un numero repetido en nombre e id.</p>
+      <pre><code>
+      cartas_recompenza = [
+        { name: 'carta de recompenza 1', id: 21 },
+        { name: 'carta de recompenza 2', id: 22 },
+        { name: 'carta de recompenza 3', id: 23 },
+        { name: 'carta de recompenza 4', id: 24 },
+        { name: 'carta de recompenza 5', id: 25 },
+        { name: 'carta de recompenza 6', id: 26 },
+        { name: 'carta de recompenza 7', id: 27 },
+        { name: 'carta de recompenza 8', id: 28 },
+        { name: 'carta de recompenza 9', id: 29 },
+        { name: 'carta de recompenza 10', id: 30 }
+      ];
+      val_max = cartas_recompenza.length - 1; // el -1 es para que se incluya el 0 de length
+        
+      var aleatorio = Math.round(Math.random()* val_max );
+      document.getElementById("recompenzas").innerHTML ='&ltdiv onclick="agregar_carta(\''+cartas_recompenza[aleatorio].name+'\','+cartas_recompenza[aleatorio].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[aleatorio].name+' &lt/div>';
+      var aleatorio = Math.round(Math.random()* val_max );
+      document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\''+cartas_recompenza[aleatorio].name+'\','+cartas_recompenza[aleatorio].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[aleatorio].name+' &lt/div>';
+      var aleatorio = Math.round(Math.random()* val_max );
+      document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\''+cartas_recompenza[aleatorio].name+'\','+cartas_recompenza[aleatorio].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[aleatorio].name+' &lt/div>';
+      </pre></code>
+      <p> ahora tengo que hacer que todo esto sea una funcion que se repite dependiendo la cantidad de loot que el personaje tenga asignado. y que los numeros no puedan repetirse.</p>
+      <p> creo que para que no se repitan los numeros la mejor idea es mezclar el array de recompenzas y simplemente repetir la funcion que muestra el inner la cantidad de veces que la variable de loot me permita
+         sumando i++ por cada vez que se repita y mostrando la siguiente carta y asi.
+      </p>
+      <pre><code>
+        var player_loot; //esta funcion hayq ue declararla globlamente  
+        cartas_recompenza = [
+           { name: 'carta de recompenza 1', id: 21 },
+           { name: 'carta de recompenza 2', id: 22 },
+           { name: 'carta de recompenza 3', id: 23 },
+           { name: 'carta de recompenza 4', id: 24 },
+           { name: 'carta de recompenza 5', id: 25 },
+           { name: 'carta de recompenza 6', id: 26 },
+           { name: 'carta de recompenza 7', id: 27 },
+           { name: 'carta de recompenza 8', id: 28 },
+           { name: 'carta de recompenza 9', id: 29 },
+           { name: 'carta de recompenza 10', id: 30 }
+        ];
+        //mezcla las cartas
+        cartas_recompenza.sort(function() {return Math.random() - 0.5});
+        
+        var i;
+        for (i = 0; i < player_loot; i++) {
+          document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\''+cartas_recompenza[i].name+'\','+cartas_recompenza[i].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' &lt/div>';
+        }
+        </pre></code>
+
+       
+
+
+
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.13 - volver a "enemigos"  </h2>
       <p style=" color: #a0aec1bf;"> 3/4/2020</p>
       <p> Ahora mismo, una vez que se vence al slime se caba el juego, aparece la pantalla de victoria y no se puede hacer nada mas.</br>
       podria hacer que el codigo vuelva a la seleccion de personajes. pero me parece una mejor idea crear una seccion de seleccion de enemigo.
