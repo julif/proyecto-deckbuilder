@@ -94,11 +94,21 @@
       <div class="modal-content">
        
         <p>Victoria!!!</p>
-        <button onclick="volver_seleccion_enemigos()" > volver a la seleecion de enemigos</button>
-        <div id="carta_a_agregar"></div>
+        <button onclick="volver_seleccion_enemigos()" > volver a la selecion de enemigos</button>
         <div id="recompenzas"></div>
+        <button onclick="seleccion_carta_borrar()" > borrar una carta del mazo </button>
         <!-- <button onclick="agregar_carta(),volver_seleccion_enemigos()" > agregar carta </button> -->
       </div>
+      
+    </div>
+    <div id="borrar_carta" class="modal" style="display: none;" > 
+      <div class="modal-content">
+    
+        <h2>borrar carta</h2>
+        <ul id="mazo_a_borrar"></ul>
+      </div>
+      
+    
     </div>
   </section>
 </body>
@@ -223,12 +233,13 @@ var char_div=  document.getElementById("char");
 }
 function volver_seleccion_enemigos(){
   
-
+  document.getElementById("borrar_carta").style.display = "none";
   document.getElementById("victory_screen").style.display = "none";
   document.getElementById("battle_stage").style.display="none";
   document.getElementById("seleccion_de_enemigo").style.display="inherit";
 
-  document.getElementById("mazo").innerHTML = " "; 
+  document.getElementById("mazo").innerHTML = " ";
+  document.getElementById("mazo_a_borrar").innerHTML = " "; 
   document.getElementById("recompenzas").innerHTML =" ";
 
     var mazo_jugador = mazo_permanente.slice();//clona el mazo_permanente pero de manera independiente.
@@ -299,14 +310,13 @@ function play(){
 
  //var aleatorio = Math.round(Math.random() * (cartas_recompenza.length - 1) + 1);
 
- val_max = cartas_recompenza.length - 1; // el -1 es para que se incluya el 0 de length
+
  //val_max= val_max - 1;
 // if ( val_max < 0){ val_max = 0;}
 
 
 var i;
 for (i = 0; i < player_loot; i++) {
- // text += cars[i] + "<br>";
   document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\''+cartas_recompenza[i].name+'\','+cartas_recompenza[i].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' </div>';
 }
 
@@ -353,6 +363,35 @@ for (i = 0; i < player_loot; i++) {
     
   //alert( " agregar carta ");
   
+ }
+ function seleccion_carta_borrar(){
+   //alert("borrar una carta");
+   document.getElementById("victory_screen").style.display = "none";
+   document.getElementById("borrar_carta").style.display = "flex";
+
+
+   mazo_permanente.forEach( function(item, index) {
+    //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
+
+    //var papaso= $(this).index();
+    document.getElementById("mazo_a_borrar").innerHTML += "<li class='to_delete_card'  onclick='borrar("+ index +")'  name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" </li>";
+
+
+
+//     $('.to_delete_card').on("click", function() {
+//     console.log( $(this).data("idx") );
+// });
+
+
+    
+    });
+
+ }
+ function borrar(e) {
+  //alert( " 10 de daño al slime ");
+  mazo_permanente.splice(e, 1);
+  
+  volver_seleccion_enemigos();
  }
   function atacar() {
   //alert( " 10 de daño al slime ");
