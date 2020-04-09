@@ -74,6 +74,9 @@
     <p>Pila de descarte:  <span id="pila_descarte_length"></span> </p>
     <button onclick="robar_carta()" > Robar carta </button></br>
     <button onclick="new_turn()" > nuevo turno </button></br>
+    <h3>puntos de vida jugador: <span ></span> </h3>
+    <div style="width: 200px;"> <div class='pdv' id="pdv_player" > </div> </div>
+    
     <h3>mano:</h3>
     <div  id="mano" style="display: flex;"> </div>
     <button onclick="end_turn()" > terminar turno  </button></br>
@@ -115,6 +118,10 @@
 <script>
    var turno_jugador = true;
 
+   var vida_jugador;
+   var max_vida_jugador;
+
+
 
 
    var max_hand_Size; //tengo que declarar esta variable para que sea global 
@@ -122,8 +129,8 @@
    var mazo_permanente;
    var player_loot;
 
-   var carta_a_agregar_id;
-   var carta_a_agregar_nombre;
+  //  var carta_a_agregar_id;
+  //  var carta_a_agregar_nombre;
 
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
@@ -144,6 +151,9 @@ var char_div=  document.getElementById("char");
         char_div.innerHTML= "Personaje 1: Bunny";
         player_loot= 3 ;
          max_hand_Size = 3; 
+          
+         max_vida_jugador = 200;
+         vida_jugador =  max_vida_jugador;
          mazo_inicial = [
           { name: 'carta 1', id: 1 },
           { name: 'carta 2', id: 2 },
@@ -160,6 +170,8 @@ var char_div=  document.getElementById("char");
       case "char_2":
         char_div.innerHTML= "Personaje 2: Nero";
         player_loot= 2 ;
+        max_vida_jugador = 300;
+         vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
          mazo_inicial = [
           { name: 'carta 11', id: 11 },
@@ -177,6 +189,8 @@ var char_div=  document.getElementById("char");
       case "char_3":
         char_div.innerHTML= "Personaje 3: Shacta";
         player_loot= 1 ;
+        max_vida_jugador = 300;
+         vida_jugador =  max_vida_jugador;
         max_hand_Size = 5; 
          mazo_inicial = [
           { name: 'carta 21', id: 21 },
@@ -279,17 +293,7 @@ function play(){
 
     document.getElementById("victory_screen").style.display = "flex";
 
-/*   var aleatorio = Math.round(Math.random()*10);
-  console.log(aleatorio);
-  if( aleatorio < 5 ){
-    carta_a_agregar_nombre = "carta 11";
-    carta_a_agregar_id = 31;
-  }
-  else{
-    carta_a_agregar_nombre = "carta 12";
-    carta_a_agregar_id = 32;
-  }
- */
+
  cartas_recompenza = [
           { name: 'carta de recompenza 1', id: 21 },
           { name: 'carta de recompenza 2', id: 22 },
@@ -304,64 +308,22 @@ function play(){
         ];
 
         cartas_recompenza.sort(function() {return Math.random() - 0.5});
-/*  document.getElementById("recompenzas").innerHTML='<div onclick="agregar_carta(\'carta 11\',31),volver_seleccion_enemigos()"> carta 11 </div>';
- document.getElementById("recompenzas").innerHTML+='<div onclick="agregar_carta(\'carta 12\',32),volver_seleccion_enemigos()"> carta 12 </div>';
- document.getElementById("recompenzas").innerHTML+='<div onclick="agregar_carta(\'carta 13\',33),volver_seleccion_enemigos()"> carta 13 </div>'; */
-
- //var aleatorio = Math.round(Math.random() * (cartas_recompenza.length - 1) + 1);
-
-
- //val_max= val_max - 1;
-// if ( val_max < 0){ val_max = 0;}
-
 
 var i;
 for (i = 0; i < player_loot; i++) {
   document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\''+cartas_recompenza[i].name+'\','+cartas_recompenza[i].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' </div>';
 }
 
-// var aleatorio = 0;
-// recompenza();
-// function recompenza(){
-//   document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\''+cartas_recompenza[aleatorio].name+'\','+cartas_recompenza[aleatorio].id+'),volver_seleccion_enemigos()">'+cartas_recompenza[aleatorio].name+' </div>';
-
-
-// }
-
-/* 
- var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
- document.getElementById("recompenzas").innerHTML ='<div onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' </div>';
- var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
- document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' </div>';
- var aleatorio = Math.round(Math.random() * (100 - 1) + 1);
- document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\'carta '+aleatorio+'\','+aleatorio+'),volver_seleccion_enemigos()"> carta '+aleatorio+' </div>'; */
-
- // document.getElementById("carta_a_agregar").innerHTML = "name:"+ carta_a_agregar_nombre+", id: "+ carta_a_agregar_id +";";
- //document.getElementById("recompenzas").innerHTML  = "<p alert='(\"carta 12\")' > carta 11 </p> "
-    //document.getElementById("recompenzas").innerHTML  += "<p onclick'agregar_carta(\'carta 12\', 32),volver_seleccion_enemigos()' > carta 12 </p> "
-    //document.getElementById("recompenzas").innerHTML  += "<p onclick'agregar_carta(\'carta 13\', 33),volver_seleccion_enemigos()' > carta 13 </p> "
-  //agregar_carta(a,b);
 
    }
   function agregar_carta(a,b) {
      mazo_permanente.push({ name: a, id: b });
      document.getElementById("recompenzas").innerHTML =" ";
-   // var poopo = document.getElementById("carta_a_agregar").innerHTML;
-    //mazo_permanente.push({ poopo });
-/*   var aleatorio = Math.round(Math.random()*10);
-  console.log(aleatorio);
-  if( aleatorio < 5 ){
-    mazo_permanente.push({ name:'carta 11', id: 31 });
-  }
-  else{
-    mazo_permanente.push({ name:'carta 12', id: 32 });
-  }
- */
+
 
     var mazo_jugador = mazo_permanente.slice();//clona el mazo_permanente pero de manera independiente.
     mazo_jugador.sort(function() {return Math.random() - 0.5});
     
-  //alert( " agregar carta ");
   
  }
  function seleccion_carta_borrar(){
@@ -397,30 +359,6 @@ for (i = 0; i < player_loot; i++) {
   //alert( " 10 de daño al slime ");
   
  }
-/* 
- function show_enemy() {
-  var aleatorio = Math.round(Math.random()*10);
-  console.log(aleatorio);
-  if( aleatorio < 6 ){
-    document.getElementById("enemys").innerHTML="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'><p id='pdv_enemy1' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-  }
-  else{
-    document.getElementById("enemys").innerHTML="<enemy class='drop'  health='100' id='enemy1' style='display: inline-block;'> <div id='enemy_bar'class='barradevida'><p id='pdv_enemy1'>100</p></div><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-    document.getElementById("enemys").innerHTML+="<enemy class='drop'  health='100' id='enemy2' style='display: inline-block;'> <div id='enemy_bar'class='barradevida'><p id='pdv_enemy2'>100</p></div><img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-  }
- } */
-/*  function show_enemy(a) {
-  var i;
-
-  for(i = 0; i < arguments.length; i++) {
-    a = arguments[i];
-    if ( a == "enemy_1" ) {
-    document.getElementById("enemys").innerHTML+="<enemy class='drop' health='100' id='enemy1' style='display: inline-block;'><p id='pdv_enemy1' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_idle_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-   }
-   if ( a == "enemy_2" ) {
-    document.getElementById("enemys").innerHTML+="<enemy class='drop' health='100' id='enemy2' style='display: inline-block;'><p id='pdv_enemy2' class='pdv'>100</p><img src='https://opengameart.org/sites/default/files/slime_walk_0.gif' alt='slime' height='150' width='auto'> </enemy>";
-   }
-  } */
   function show_enemy(a) {
     var i;
     for(i = 0; i < arguments.length; i++) {
@@ -482,7 +420,7 @@ for (i = 0; i < player_loot; i++) {
         // $("#enemy_bar").css( "width", "50%!important");
             var cosas= $("#pdv_"+droptarget.id).html();
 
-          console.log("coas:"+ cosas); // ID  de la dropzone
+          console.log("cosas:"+ cosas); // ID  de la dropzone
             console.log(enemy_health); // ID  de la dropzone
 
             //document.getElementById("enemy_bar").style.width =  enemy_health +"%"; 
@@ -537,6 +475,8 @@ for (i = 0; i < player_loot; i++) {
 
 function new_turn(){
   turno_jugador = true;
+
+  document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador
 
   var elements = $("#mano").find(".dragdrop"); // busca cada carta dentro de la mano
   var data = Array();
@@ -599,7 +539,17 @@ for (i = 0; i <  max_hand_Size; i++ ) {
               
         enemys_ids.forEach( function( element ) {
              //console.log("el id de el enemigo es: " + element);
-           alert("ataque de  " + element);
+           //alert("ataque de  " + element);
+           vida_jugador = vida_jugador-10;
+           document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador 
+           
+           var porcentaje_pdv_jugador = parseInt(vida_jugador)/parseInt(max_vida_jugador)*100;
+
+
+           
+           $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
+
+           console.log("vida jugador: " + porcentaje_pdv_jugador+"%");
          });
   }
 </script>
