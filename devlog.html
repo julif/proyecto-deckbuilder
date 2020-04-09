@@ -77,6 +77,7 @@ h3{ color: #155799;}
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
           <li> pantalla de derrota</li>
+          <li> mejorar IA de los enemigos </li>
           <li> cartas de distintos valores </li>
           <li> mapa de enemigos </li>
           <li> cambiar id por card_id y crear un contador de actuall id´s</li>
@@ -84,8 +85,20 @@ h3{ color: #155799;}
           <li> crear una manera para hacerle zoom a la carta</li>
           <li> sistema de cartas que afectan multiples objetivos </li>
           <li> sistema de cartas que afectan al jugador</li>
+          <li> boton para ver mazo </li>
+          <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
-      </div>      
+      </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.17 - pantalla de derrota  </h2>
+      <p style=" color: #a0aec1bf;"> 9/4/2020</p>
+      <p>por el momento perder no significa nada, ademas es dificil perder en si mismo, eventualmente voy a necesitar mejorar la IA de los enemigos, pero por el momento voy a hacer que tener 170 active la funcion derrota.</p>
+      <pre><code>
+      if( vida_jugador <= 170 ){ 
+        alert("muerto")
+      }
+      </pre></code>
+      <p>bien, ahora hay que crear la funcion derrota() y un modal.Por el momento el boton de la pantalla de victoria reinicia la pagina, eventualmente me gustaria que llevara al inicio de la app sin reiniciar todo.</p>
+      <p> tambien quiero que halla una barra de experiencia para desbloquear cartas disponibles.</p>
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.16 - barra de vida de el jugador  </h2>
       <p style=" color: #a0aec1bf;"> 9/4/2020</p>
       <p> todo funciona perfectamente, ahora seria hora de empezar con el daño hacia el jugador y las inteligencias artificiales simples.</p>

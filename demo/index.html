@@ -91,19 +91,23 @@
       <ul id="pila_de_descarte" style="display: grid;"></ul>
     </diV>
   </div>
-    <!-- The Modal -->
+    <!-- victoria -->
     <div id="victory_screen" class="modal">
-      <!-- Modal content -->
       <div class="modal-content">
-       
         <p>Victoria!!!</p>
         <button onclick="volver_seleccion_enemigos()" > volver a la selecion de enemigos</button>
         <div id="recompenzas"></div>
         <button onclick="seleccion_carta_borrar()" > borrar una carta del mazo </button>
-        <!-- <button onclick="agregar_carta(),volver_seleccion_enemigos()" > agregar carta </button> -->
       </div>
-      
     </div>
+    <!-- derrota -->
+      <div id="defeat_screen" class="modal">
+        <div class="modal-content">
+          <p>derrota!!! :C</p>
+          <button onclick="location.reload();" > Reiniciar </button>
+        </div>
+      </div>
+
     <div id="borrar_carta" class="modal" style="display: none;" > 
       <div class="modal-content">
     
@@ -550,6 +554,16 @@ for (i = 0; i <  max_hand_Size; i++ ) {
            $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
 
            console.log("vida jugador: " + porcentaje_pdv_jugador+"%");
+
+
+           if( vida_jugador <= 170 ){ 
+             //alert("muerto")
+             document.getElementById("defeat_screen").style.display = "flex";
+             }
+         
+
+
+
          });
   }
 </script>
