@@ -76,9 +76,7 @@ h3{ color: #155799;}
       <div style="background-color: #112b46;padding-left: 30px;padding-right: 30px;padding-bottom: 10px;padding-top: 1px;color:#5b7794;">
         <h3 style="border-bottom: solid 2px #61a3e4; color: #3f97ec!important;padding-bottom: 5px;"> cosas para hacer:</h3>
         <ul>
-          <li> pantalla de derrota</li>
           <li> mejorar IA de los enemigos </li>
-          <li> cartas de distintos valores </li>
           <li> mapa de enemigos </li>
           <li> cambiar id por card_id y crear un contador de actuall id´s</li>
           <li> cartas de curacion </li>
@@ -89,6 +87,78 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.18 - card value  </h2>
+      <p style=" color: #a0aec1bf;"> 10/4/2020</p>
+      <p> Por el momento es imposible ganar por que todas las cartas hacen 10 de daño.</p>
+      <p> se me ocurren 2 maneras de afrontar esto, por una parte puedo darles a las cartas un atributo llamado value o damage_value o quizas podria filtrar la carta por id cuando se use en drop y asi saber cual es su valor.</p>
+      <p> primero tengo que ver como se muestran las cartas en cada lista para saber como agregar el nuevo atributo.</p>
+      <pre><code>
+       // carta declarada en el mazo_inicial
+       { name: 'carta 1', id: 1 }
+    
+       //despues se pasa al mazo 
+       &ltli class='hand_card' name='"+ item.name +"' id='"+ item.id +"'> "+ item.name +" &lt/li>
+       
+       //se roba la carta
+       &ltcarta  id="'+ card_id +'" name="'+ card_name +'" class="dragdrop">'+ card_name +'&lt/carta>
+     
+       //pila de descarte
+       &ltli class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"' >"+ card_name + "&lt/li>
+    
+      </pre></code>
+      <p> ... </p>
+      <pre><code>
+        // tuve que agregar el atributo card_value a todas las cartas de el mazo inicial.
+        { { name: 'carta 1', id: 1, card_value: 10 },
+    
+        // argege card_value a el div donde se muestra el mazo inicial en la pantalla de personaje seleccionado
+        function myFunction(item, index) {
+            document.getElementById("mazo_inicial_div").innerHTML += "id: "+ item.id +" name: "+ item.name +"   card value:"+ item.card_value +"&lt/br>"; 
+        }
+    
+        // agregado en la funcion que muestra el mazo inicial y una copia exacta dentro de volver_seleccion_enemigos (para que este listo para el suigiente match )
+        mazo_jugador.forEach( function(item, index) {
+            document.getElementById("mazo").innerHTML += "&ltli class='hand_card'  name='"+ item.name +"' id='"+ item.id +"' card_value='"+ item.card_value +"'> "+ item.name +" &lt/li>";
+        });
+    
+        //agregado en las cartas de recompenza
+        { name: 'carta de recompenza 9', id: 29, card_value: 50  },
+        
+        // show_victory_screen() en la funcion que muestra las cartas.
+        for (i = 0; i < player_loot; i++) {
+            document.getElementById("recompenzas").innerHTML +='&ltdiv onclick="agregar_carta(\''+cartas_recompenza[i].name+'\','+cartas_recompenza[i].id+','+ cartas_recompenza[i].card_value +') , volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' &lt/div>';
+        }
+        
+        //tuve que agregar un atributo extra "c" para que el array que agrega la funcion al mazo permanente tuviera card_value
+        function agregar_carta(a,b,c ) {
+            mazo_permanente.push({ name: a, id: b , card_value: c });
+            //resto del codigo
+        }
+    
+        // se muestra el la lista de cartas a borrar
+        document.getElementById("mazo_a_borrar").innerHTML += "&ltli class='to_delete_card'  onclick='borrar("+ index +")'  name='"+ item.name +"' id='"+ item.id +" ' card_value='"+ item.card_value +"'> "+ item.name +" &lt/li>";
+    
+        //se muestra en la funcion robar
+        var card_value = $('#mazo li:first-child').attr('card_value'); // name de el primer li
+        $("#mano").append('&ltcarta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="dragdrop">'+ card_name +'&lt/carta>');
+    
+        // en la funcion drop ,para hacer daño  y despues para enviarlo a la pila de descartes
+        var card_value = evt.target.attributes.card_value.value;
+        var enemy_health = enemy_health - card_value;
+        $("#pila_de_descarte").append( "&ltli class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"'card_value='"+ card_value +"' >"+ card_name + "&lt/li>");
+    
+        //en re_mezclar
+        for(var i = 0; i < elements.length; i++){
+         data.push("&ltli class='hand_card'  name='"+elements[i].attributes.name.value+"' id='"+elements[i].id+"' card_value='"+elements[i].attributes.card_value.value+"'>"+elements[i].innerHTML+"&lt/li>");
+        }
+        //lo mismo en new_turn
+        for(var i = 0; i < elements.length; i++){
+         data.push("&ltli class='pila_descarte_card'  name='"+elements[i].attributes.name.value+"' id='"+elements[i].id+"'  card_value='"+elements[i].attributes.card_value.value+"'>"+elements[i].innerHTML+"&lt/li>");
+        }
+       
+    
+    </pre></code>
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.17 - pantalla de derrota  </h2>
       <p style=" color: #a0aec1bf;"> 9/4/2020</p>
       <p>por el momento perder no significa nada, ademas es dificil perder en si mismo, eventualmente voy a necesitar mejorar la IA de los enemigos, pero por el momento voy a hacer que tener 170 active la funcion derrota.</p>
