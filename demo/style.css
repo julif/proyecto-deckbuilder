@@ -15,6 +15,15 @@ carta{
     border: 2px dotted orange;
     border-radius: 5px;
 }
+.drop2 {
+    margin: 20px 0;
+    padding: 5px;
+    border: 2px dotted orange;
+    border-radius: 5px;
+}
+.drop2.hovering {
+    background-color: #F6BF66;
+}
 .drop.hovering {
     background-color: #F6BF66;
 }

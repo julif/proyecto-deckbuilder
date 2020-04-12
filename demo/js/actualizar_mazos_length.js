@@ -1,5 +1,5 @@
 function actualizar_mazos_lengths(){
-    var mazolength= $("#mazo").find(".hand_card").length ;
+    var mazolength= $("#mazo").find(".deck_card").length ;
     var manolength= $("#mano").find(".dragdrop").length ;
     var piladedescartelength= $("#pila_de_descarte").find(".pila_descarte_card").length ;
 

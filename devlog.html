@@ -87,6 +87,51 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.19 - cartas con target global  </h2>
+      <p style=" color: #a0aec1bf;"> 12/4/2020</p>
+      <p> por el momento solo tengo cartas de daño, necesito agregar cartas que curen al jugador, cartas de escudo y eventualmente cartas de basura y maldiciones.</p>
+      <p> se me ocurre que para eso voy a necesitar otra funcion drop y otras cartas en la mano, basados en algun parametro.</p>
+      <p> para empezar voy a crear un div para el grafico de el jugador.</p>
+      <pre><code>
+      &ltdiv id="jugador">&lt/div>
+      </pre></code>
+      <p> ahora tengo que agregar una funcion que permita que las cartas que dropeen en el div de jugador llamen a un alert.</p>
+      <pre><code>
+        $(function() {
+             $('.dragdrop2').draggable({
+               revert: true,
+               placeholder: true,
+               droptarget: '.drop2',
+               drop: function(evt, droptarget) {
+               
+                  $(this).appendTo(droptarget).draggable('destroy');
+
+                  alert(" drop 2")
+
+                  $('.drop2').find('.dragdrop2').remove(); // borra los elementos una vez dentro de el drop
+                   
+                }
+            });
+        });
+        </pre></code>
+        <p> pero para eso tengo que hacer que algunas cartas tengan otra clase. Puedo hacer esto agregano cartd_types, como cartas de ataque y cartas de curacion</p>
+        <p> pensandolo mejor, esto de que el jugador en si sea el target quizas no sea una buena idea, a no ser que mas tarde implemente varios jugadores. Por el momento deberian existir 2 tipos de cartas, las cartas 
+          que tienen un enemigo especifico como target y las que son mas generales, los card types pueden usarse para otras cosas como separar echizos de acciones o armas.
+        </p>
+        <p>Por el momento lo resolvi con un pequeño if, para que solo la carta con id 1 sea una carta que se activa sin un objetivo.</p>
+        <pre><code>
+          if( card_id== 1 ){
+              $("#mano").append('&ltcarta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="dragdrop2">'+ card_name +'&lt/carta>');
+            }
+            else{
+              $("#mano").append('&ltcarta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="dragdrop">'+ card_name +'&lt/carta>');
+          }
+         </pre></code>
+        <h3> cartas de curacion</h3>
+        <p> ahora que tengo cartas que se activan en el tablero en lugar de el enemigo, puedo hacer cartas que afecten al jugador, por ejemplo cartas de curacion</p>
+        <p> solo tengo que hacer que si dropeo la carta con id 1, en lugar de quitarle vida al enenemigo le dara 20 de vida al jugador </p>
+         
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.18 - card value  </h2>
       <p style=" color: #a0aec1bf;"> 10/4/2020</p>
       <p> Por el momento es imposible ganar por que todas las cartas hacen 10 de daño.</p>
