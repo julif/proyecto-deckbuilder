@@ -82,7 +82,7 @@
     <div  id="mano" style="display: flex;"> </div>
     <button onclick="end_turn()" > terminar turno  </button></br>
     
-  <div  style="background-color: #e4e4e4;display: flex;"> 
+  <div  style="background-color: #e4e4e4;display: flex; position: fixed; top: 0;left: -90000000px;"> 
     <div>
       <h3>mazo:</h3>
       <ul id="mazo"></ul>
@@ -137,6 +137,51 @@
   //  var carta_a_agregar_id;
   //  var carta_a_agregar_nombre;
 
+  var todas_las_cartas = [
+    { name: 'curacion', id: 1, card_value: 10, target_type:'dragdrop2', },
+    { name: 'robar', id: 2, card_value: 10 , target_type:'dragdrop2'},
+    { name: 'ataque normal', id: 3, card_value: 10, target_type:'dragdrop'},
+    { name: 'ataque pesado', id: 4, card_value: 40 , target_type:'dragdrop'},
+    { name: 'carta 5', id: 5, card_value: 10, target_type:'dragdrop' },
+    { name: 'carta 6', id: 6, card_value: 10, target_type:'dragdrop' },
+    { name: 'carta 7', id: 7, card_value: 10, target_type:'dragdrop' },
+    { name: 'carta 8', id: 8, card_value: 10, target_type:'dragdrop' },
+    { name: 'carta 9', id: 9, card_value: 10, target_type:'dragdrop' },
+    { name: 'carta 10', id: 10, card_value: 50, target_type:'dragdrop' },
+    { name: 'carta 11', id: 11, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 12', id: 12, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 13', id: 13, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 14', id: 14, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 15', id: 15, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 16', id: 16, card_value: 10 ,target_type:'dragdrop' },
+    { name: 'carta 17', id: 17, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 18', id: 18, card_value: 10 ,target_type:'dragdrop' },
+    { name: 'carta 19', id: 19, card_value: 10 ,target_type:'dragdrop' },
+    { name: 'carta 20', id: 20, card_value: 50  ,target_type:'dragdrop'},
+    { name: 'carta 21', id: 21, card_value: 10 ,target_type:'dragdrop' },
+    { name: 'carta 22', id: 22, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 23', id: 23, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 24', id: 24, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 25', id: 25, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 26', id: 26, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 27', id: 27, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 28', id: 28, card_value: 10  ,target_type:'dragdrop'},
+    { name: 'carta 29', id: 29, card_value: 10 ,target_type:'dragdrop' },
+    { name: 'carta 30', id: 30, card_value: 50 ,target_type:'dragdrop' },
+    { name: 'carta de recompenza 1', id: 21 , card_value: 20  ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 2', id: 22 , card_value: 20  ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 3', id: 23 , card_value: 20 ,target_type:'dragdrop' },
+    { name: 'carta de recompenza 4', id: 24 , card_value: 30 ,target_type:'dragdrop' },
+    { name: 'carta de recompenza 5', id: 25 , card_value: 30  ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 6', id: 26, card_value: 30   ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 7', id: 27, card_value: 30   ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 8', id: 28, card_value: 50   ,target_type:'dragdrop'},
+    { name: 'carta de recompenza 9', id: 29, card_value: 50  ,target_type:'dragdrop' },
+    { name: 'carta de recompenza 10', id: 30, card_value: 50  ,target_type:'dragdrop' }
+  ];
+console.log(todas_las_cartas);
+
+
     //seleccionar un personaje --------------------------------------------------------------------------------------
     var personajeID;
     
@@ -153,43 +198,33 @@ document.getElementById("personaje_seleccionado").style.display="inherit";
 var char_div=  document.getElementById("char");
     switch (personajeID) { 
       case "char_1":
-        char_div.innerHTML= "Personaje 1: Bunny";
+       
         player_loot= 3 ;
          max_hand_Size = 3; 
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-         mazo_inicial = [
-          { name: 'carta 1', id: 1, card_value: 10, target_type:'dragdrop2' },
-          { name: 'carta 2', id: 2, card_value: 10 , target_type:'dragdrop'},
-          { name: 'carta 3', id: 3, card_value: 10, target_type:'dragdrop'},
-          { name: 'carta 4', id: 4, card_value: 10 , target_type:'dragdrop'},
-          { name: 'carta 5', id: 5, card_value: 10, target_type:'dragdrop' },
-          { name: 'carta 6', id: 6, card_value: 10, target_type:'dragdrop' },
-          { name: 'carta 7', id: 7, card_value: 10, target_type:'dragdrop' },
-          { name: 'carta 8', id: 8, card_value: 10, target_type:'dragdrop' },
-          { name: 'carta 9', id: 9, card_value: 10, target_type:'dragdrop' },
-          { name: 'carta 10', id: 10, card_value: 50, target_type:'dragdrop' }
-        ];
+         char_div.innerHTML= "Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         
+         var cartas_iniciales = [
+            "curacion", 
+            "robar", 
+            "ataque normal", 
+            "ataque normal",
+            "ataque normal", 
+            "ataque normal", 
+            "ataque pesado"
+          ];
+
       break
       case "char_2":
-        char_div.innerHTML= "Personaje 2: Nero";
+  
         player_loot= 2 ;
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
-         mazo_inicial = [
-          { name: 'carta 11', id: 11, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 12', id: 12, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 13', id: 13, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 14', id: 14, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 15', id: 15, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 16', id: 16, card_value: 10 ,target_type:'dragdrop' },
-          { name: 'carta 17', id: 17, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 18', id: 18, card_value: 10 ,target_type:'dragdrop' },
-          { name: 'carta 19', id: 19, card_value: 10 ,target_type:'dragdrop' },
-          { name: 'carta 20', id: 20, card_value: 50  ,target_type:'dragdrop'}
-        ];
+         char_div.innerHTML= "Personaje 2: Nero </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque normal", "ataque normal"];
       break
       case "char_3":
        
@@ -197,24 +232,37 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
         max_hand_Size = 5;  
-        char_div.innerHTML= "Personaje 3: Shacta";
+        char_div.innerHTML= "Personaje 2: Shacta </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
 
-         mazo_inicial = [
-          { name: 'carta 21', id: 21, card_value: 10 ,target_type:'dragdrop' },
-          { name: 'carta 22', id: 22, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 23', id: 23, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 24', id: 24, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 25', id: 25, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 26', id: 26, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 27', id: 27, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 28', id: 28, card_value: 10  ,target_type:'dragdrop'},
-          { name: 'carta 29', id: 29, card_value: 10 ,target_type:'dragdrop' },
-          { name: 'carta 30', id: 30, card_value: 50 ,target_type:'dragdrop' }
-        ];
+        var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque pesado", "ataque pesado"];
       break
       default:
         char_div.innerHTML= " Error ";
       }
+
+
+
+
+
+ // crear el array  de mazo inicial ------------------
+      var i=1;
+        var mazo_inicial = [];
+        cartas_iniciales.forEach(crear_mazo_inicial);
+
+function crear_mazo_inicial(item, index) {
+  var filter_results = todas_las_cartas.filter(function (carta) { return carta.name == item; });
+  var firstObj = (filter_results.length > 0) ? filter_results[0] : null;
+        mazo_inicial.push(firstObj);
+
+ }
+
+
+
+
+
+
+
+
      // ordenar el array ------------------
      mazo_inicial=  mazo_inicial.sort(function(a, b) {
         return (a.name > b.name) ? 1 : ((b.name > a.name) ? -1 : 0); /* ordenar por nombre */
@@ -429,7 +477,9 @@ for (i = 0; i < player_loot; i++) {
             console.log(card_target); // ID  de la dropzone
             //console.log(evt.target.innerHTML);//ejecuta el codigo
             //console.log(evt.target);//ejecuta el codigo
-            console.log("daño: "+card_value);//ejecuta el codigo
+            
+           // card_efect( card_ID , card_value);
+           
             var enemy_health = enemy_health - card_value;
 
             document.getElementById(droptarget.id).setAttribute("health", enemy_health );
@@ -437,14 +487,6 @@ for (i = 0; i < player_loot; i++) {
             //document.getElementById("#pdv_"+droptarget.id).style.color = "blue";
             var porcentaje_pdv_enemy = parseInt(enemy_health)/parseInt(enemy_initial_health)*100;
             $("#pdv_"+droptarget.id).css({'color':'white','width': porcentaje_pdv_enemy +"%" ,'background':'#ff1700'});//cambiar el css de el droptarget
-         // var cosas =  $("#pdv_"+droptarget.id).html;
-        // $("#enemy_bar").css( "width", "50%!important");
-            var cosas= $("#pdv_"+droptarget.id).html();
-
-          console.log("cosas:"+ cosas); // ID  de la dropzone
-            console.log(enemy_health); // ID  de la dropzone
-
-            //document.getElementById("enemy_bar").style.width =  enemy_health +"%"; 
 
 
            if( enemy_health <= 70 ){ 
@@ -488,9 +530,11 @@ for (i = 0; i < player_loot; i++) {
           console.log(card_target); // ID  de la dropzone
             $(this).appendTo(droptarget).draggable('destroy');
 
+            card_efect( card_ID, card_value );
+
+          
 
            
-            vida_jugador = vida_jugador + 10;
             document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador 
             var porcentaje_pdv_jugador = parseInt(vida_jugador)/parseInt(max_vida_jugador)*100;
             $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
@@ -506,7 +550,23 @@ for (i = 0; i < player_loot; i++) {
 
     actualizar_mazos_lengths();
   }
+  function card_efect(a,b){ 
+    var card_value = b;
+            if( a == 1){  vida_jugador = vida_jugador + 20; }
+            if( a == 2){
 
+              var i = 0;
+              var separador= 500;
+              for (i = 0; i <  2 ; i++ ) {
+                setTimeout(robar_carta, separador);
+                separador = separador + 500;
+              };
+
+            }
+            //else{ alert("else");}
+        
+
+          }
   function re_mezclar(){
     //alert("no quedan cartas");
     var elements = $("#pila_de_descarte").find(".pila_descarte_card"); // busca cada carta dentro de la pila de descartes
