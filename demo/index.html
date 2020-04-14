@@ -121,6 +121,7 @@
   </section>
 </body>
 <script>
+   // variables globales  --------------------------------------------------------------------------------------
    var turno_jugador = true;
 
    var vida_jugador;
@@ -142,16 +143,7 @@
     { name: 'robar', id: 2, card_value: 10 , target_type:'dragdrop2'},
     { name: 'ataque normal', id: 3, card_value: 10, target_type:'dragdrop'},
     { name: 'ataque pesado', id: 4, card_value: 40 , target_type:'dragdrop'},
-    { name: 'carta de recompenza 1', id: 21 , card_value: 20  ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 2', id: 22 , card_value: 20  ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 3', id: 23 , card_value: 20 ,target_type:'dragdrop' },
-    { name: 'carta de recompenza 4', id: 24 , card_value: 30 ,target_type:'dragdrop' },
-    { name: 'carta de recompenza 5', id: 25 , card_value: 30  ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 6', id: 26, card_value: 30   ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 7', id: 27, card_value: 30   ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 8', id: 28, card_value: 50   ,target_type:'dragdrop'},
-    { name: 'carta de recompenza 9', id: 29, card_value: 50  ,target_type:'dragdrop' },
-    { name: 'carta de recompenza 10', id: 30, card_value: 50  ,target_type:'dragdrop' }
+    { name: 'ataque super pesado', id: 5 , card_value: 50  ,target_type:'dragdrop'}
   ];
 console.log(todas_las_cartas);
 
@@ -178,13 +170,14 @@ var char_div=  document.getElementById("char");
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-         char_div.innerHTML= "Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         char_div.innerHTML= "  <img  src='img/1.png'></br> Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/1.png";
         
 
          var cartas_iniciales = [
-            "curacion", 
-            "robar", 
+            // "curacion", 
+            "ataque normal", 
+            "ataque normal", 
             "ataque normal", 
             "ataque normal",
             "ataque normal", 
@@ -199,7 +192,7 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
-         char_div.innerHTML= "Personaje 2: Shacta </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         char_div.innerHTML= "<img  src='img/2.png'></br>Personaje 2: Shacta </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/2.png";
          var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque normal", "ataque normal"];
       break
@@ -209,7 +202,7 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
         max_hand_Size = 5;  
-        char_div.innerHTML= "Personaje 2: Nero </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+        char_div.innerHTML= "<img  src='img/3.png'></br>Personaje 2: Nero </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
         document.getElementById("player_img_div").src="img/3.png";
 
         var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque pesado", "ataque pesado"];
@@ -329,8 +322,8 @@ function play(){
 
     document.getElementById("victory_screen").style.display = "flex";
 
-
- cartas_recompenza = [
+    var cartas_recompenza = todas_las_cartas.slice();
+/*  cartas_recompenza = [
           { name: 'carta de recompenza 1', id: 21 , card_value: 20  ,target_type:'dragdrop'},
           { name: 'carta de recompenza 2', id: 22 , card_value: 20  ,target_type:'dragdrop'},
           { name: 'carta de recompenza 3', id: 23 , card_value: 20 ,target_type:'dragdrop' },
@@ -341,7 +334,7 @@ function play(){
           { name: 'carta de recompenza 8', id: 28, card_value: 50   ,target_type:'dragdrop'},
           { name: 'carta de recompenza 9', id: 29, card_value: 50  ,target_type:'dragdrop' },
           { name: 'carta de recompenza 10', id: 30, card_value: 50  ,target_type:'dragdrop' }
-        ];
+        ]; */
 
         cartas_recompenza.sort(function() {return Math.random() - 0.5});
 
