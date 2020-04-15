@@ -84,7 +84,20 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22 -  </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.2 - texto en la carta </h2>
+      <p style=" color: #a0aec1bf;"> 15/4/2020</p>
+      <p> para empezar a remplazar los cuadrados rojos por las cartas verdaderas necesito en principio 3 cosas, el nombre de la carta, el texto de la carta y su imagen. Despues puedo agregar el coste y el marco etc.</p>
+      <h3> texto </h3>
+      <p> ya que el nombre de la carta ya aparece automaticamente voy a pasar al texto. lo primero es agregar el elemento text dentro de las cartas en el array, despues dentro de el codigod e robar cartas incluyo esto </p>
+      <pre><code>
+        var results = todas_las_cartas.filter(function (nickname) { return nickname.id == card_id; });
+        var firstObj = (results.length > 0) ? results[0] : null;
+        $("#mano").append('&ltcarta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="'+ card_target +'">'+card_name +'&lt/br>'+ firstObj.text +'&lt/carta>');
+      </pre></code>
+      <h3> valor </h3>
+       <p> el unico problema es que el texto esta hardcodeado, asi que voy a tener que pensar en una manera de que el valor espesifico dentro de el texto este vinculado al valor de esa carta especifica.</p>
+      
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.1 - mejorando las recompenzas </h2>
       <p style=" color: #a0aec1bf;"> 14/4/2020</p>
       <p> por ahora el sistema de recompenzas funciona con cartas pre-hardcodeadas, asi que voy a cambiar eso. Para empezar voy a hacer que la lista de cartas de recompenzas sea una copia de la lista de cartas completas.</p>
       <p> y se veria asi:</p>
@@ -106,8 +119,41 @@ h3{ color: #155799;}
         { name: 'carta de recompenza 10', id: 30, card_value: 50  ,target_type:'dragdrop' }
       ];     
       </pre></code>
+      <h3> filtrar las cartas recompenza </h3>
       <p> ahora tengo que crear una especie de filtro, algo asi como cartas que se pueden recibir como recompenza. de esa menera puedo tener cartas que no van a aparecer como tal.</p>
+      <p> lo que hice fue darle un nuevo atributo en las cartas iniciales llamada reward, es un boolean. Dentro  de show_victory_screen() puse un codigo que filtra un array que contiene solo las cartas con la opcion reward true</p>
+      <pre><code>
+        var reward_cards = todas_las_cartas.filter(function (nickname) { return nickname.reward == true; });   
+      </pre></code>
+      <p>Y despues hize que la variable cartas_reward fuera un clon de rewadr_cards, asi que el codigo que las mezcla y las muestra sigue funcionando igual. </p>
+      <pre><code>
+        var cartas_recompenza = reward_cards.slice();
+      </pre></code>
+      <h3> filtrar las cartas por rareza</h3>
       <P> Una vez filtradas las cartas, deberia poder filtrar las cartas ya filtradas por rareza. dando una minima posibilidad de cartas raras aun en la version normal.</P>
+      <p> bien. Antes que nada tengo que darle rareza a las cartas, supongo que puedo trabajar con un sistema de cartas comunes, raras, epicas y legendarias.</p>
+      <p> si agrego un filtro extra el codigo queda asi:</p>
+      <pre><code>
+        var reward_cards = todas_las_cartas.filter(function (nickname) { return nickname.reward == true; });
+        var rarity_filter_reward_cards =  reward_cards.filter(function (nickname) { return nickname.rareza == "comun"; });
+        var cartas_recompenza = rarity_filter_reward_cards.slice();
+      </pre></code>
+      <p> ahora lo que puedo hacer es agregar una carta rara asi se mezcla con las demas</p>
+      <pre><code>
+        cartas_recompenza.push({ name: 'curacion', id: 1, card_value: 10, reward: false ,  rareza:'rara', target_type:'dragdrop2', },);
+      </pre></code>
+      <p> este codigo agrega esta carta rara especifica a la seleccion de cartas comunes que pueden tocar como recompenza .Eventualmente me gustaria 1 carta legendaria, 3 epicas y 15 rara de cada 100 comunes o algo asi.</p>
+      <p> en fin, tengo que hacer que la carta rara sea cualquiera y no hardcodeada.</p>
+      <pre><code>
+        var cartas_raras = reward_cards.filter(function (nickname) { return nickname.rareza == "rara"; });//filtra las cartas raras
+        cartas_raras.sort(function() {return Math.random() - 0.5});// mezclar cartas
+        var firstObj = (cartas_raras.length > 0) ? cartas_raras[0] : null;//primer carta
+      
+         cartas_recompenza.push(firstObj);
+      </pre></code>
+
+      
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22 - IA enemiga </h2>
       <p style=" color: #a0aec1bf;"> 14/4/2020</p>
       <p> ahora el jugador tiene variedad de efectos en cartas, pero los enemigos siguen atacando con 10 puntos cada vez. para hacer el uego mas interesante tengo que mejorar la IA de los eneemigos </p>

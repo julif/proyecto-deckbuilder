@@ -67,7 +67,6 @@
   </section>
 <!--  battle stage ----------------------------------------------------------------------- -->
   <section id="battle_stage" style="display: none;">
-    <h2>battle stage</h2>
     <div id="battle_zone" style="display: flex;" class='drop2'>  
       <div id="jugador"  >  <div class='pdv' id="pdv_player" > </div>  <img  id="player_img_div" src="img/1.png"> </div>  
       <div id="enemys"></div>
@@ -137,15 +136,20 @@
 
   //  var carta_a_agregar_id;
   //  var carta_a_agregar_nombre;
+  var especific_value = 50;
 
   var todas_las_cartas = [
-    { name: 'curacion', id: 1, card_value: 10, target_type:'dragdrop2', },
-    { name: 'robar', id: 2, card_value: 10 , target_type:'dragdrop2'},
-    { name: 'ataque normal', id: 3, card_value: 10, target_type:'dragdrop'},
-    { name: 'ataque pesado', id: 4, card_value: 40 , target_type:'dragdrop'},
-    { name: 'ataque super pesado', id: 5 , card_value: 50  ,target_type:'dragdrop'}
+    { name: 'curacion', id: 1, card_value: 10, reward: true ,  rareza:'rara', target_type:'dragdrop2', text:' cura 20puntos de vida' },
+    { name: 'robar', id: 2, card_value: 10 , reward: true, rareza:'rara', target_type:'dragdrop2', text:' roba 2 cartas del mazo'},
+    { name: 'ataque normal', id: 3, card_value: 15,reward: true,  rareza:'comun',target_type:'dragdrop', text: ' <span class="a3" >10</span> de daños a un enemigo'},
+    { name: 'ataque pesado', id: 4, card_value: 40 , reward: true, rareza:'comun',target_type:'dragdrop', text:' 40 de daño a un enemigo'},
+    { name: 'ataque super pesado', id: 5 , card_value: 50  ,reward: true, rareza:'comun',target_type:'dragdrop', text:' 50 de daño a un enemigo'}
   ];
 console.log(todas_las_cartas);
+
+
+          
+
 
 
     //seleccionar un personaje --------------------------------------------------------------------------------------
@@ -194,7 +198,16 @@ var char_div=  document.getElementById("char");
          max_hand_Size = 4; 
          char_div.innerHTML= "<img  src='img/2.png'></br>Personaje 2: Shacta </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/2.png";
-         var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque normal", "ataque normal"];
+         var cartas_iniciales = [
+           "curacion", 
+           "robar", 
+           "ataque normal", 
+           "ataque normal", 
+           "ataque normal", 
+           "ataque pesado", 
+           "ataque normal", 
+           "ataque normal"
+          ];
       break
       case "char_3":
        
@@ -205,7 +218,16 @@ var char_div=  document.getElementById("char");
         char_div.innerHTML= "<img  src='img/3.png'></br>Personaje 2: Nero </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
         document.getElementById("player_img_div").src="img/3.png";
 
-        var cartas_iniciales = ["curacion", "robar", "ataque normal", "ataque normal", "ataque normal", "ataque pesado", "ataque pesado", "ataque pesado"];
+        var cartas_iniciales = [
+          "curacion", 
+          "robar", 
+          "ataque normal", 
+          "ataque normal", 
+          "ataque normal", 
+          "ataque pesado", 
+          "ataque pesado", 
+          "ataque pesado"
+        ];
       break
       default:
         char_div.innerHTML= " Error ";
@@ -322,7 +344,27 @@ function play(){
 
     document.getElementById("victory_screen").style.display = "flex";
 
-    var cartas_recompenza = todas_las_cartas.slice();
+    
+    
+    var reward_cards = todas_las_cartas.filter(function (nickname) { return nickname.reward == true; });
+
+    var rarity_filter_reward_cards =  reward_cards.filter(function (nickname) { return nickname.rareza == "comun"; });
+       //console.log(reward_cards);
+       var num_aleatorio = Math.floor(Math.random() * 10) + 1; //returns a random integer between 1 and 10 
+
+
+    var cartas_recompenza = rarity_filter_reward_cards.slice();
+
+
+    //var cartas_raras = todas_las_cartas.filter(function (nickname) { return nickname.rareza == "rara"; });
+
+
+    var cartas_raras = reward_cards.filter(function (nickname) { return nickname.rareza == "rara"; });//filtra las cartas raras
+   cartas_raras.sort(function() {return Math.random() - 0.5});// mezclar cartas
+   var firstObj = (cartas_raras.length > 0) ? cartas_raras[0] : null;//primer carta
+
+    cartas_recompenza.push(firstObj);
+   // console.log(cartas_recompenza);
 /*  cartas_recompenza = [
           { name: 'carta de recompenza 1', id: 21 , card_value: 20  ,target_type:'dragdrop'},
           { name: 'carta de recompenza 2', id: 22 , card_value: 20  ,target_type:'dragdrop'},
@@ -424,7 +466,20 @@ for (i = 0; i < player_loot; i++) {
         $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="dragdrop">'+ card_name +'</carta>');
       }
       */
-      $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="'+ card_target +'">'+ card_name +'</carta>');
+      var results = todas_las_cartas.filter(function (nickname) { return nickname.id == card_id; });
+        var firstObj = (results.length > 0) ? results[0] : null;
+        //console.log(" nombre: "+firstObj.name);
+        //console.log(" id: "+firstObj.id);
+        //console.log(" card_value: "+firstObj.card_value);
+        //console.log(" target_type: "+firstObj.target_type);
+
+        
+        //document.getElementById("a3").innerHTML= firstObj.card_value;
+      $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="'+ card_target +'">'+card_name +'</br>'+ firstObj.text +'</carta>');
+      //document.getElementsByClassName("a3")[0].innerHTML= 15 ;
+     // $(this).find(".a3").text("Hello world");
+    // $( ".a3" ).text(firstObj.card_value);
+     
     }
     else if ( mazolength == 0) {
       re_mezclar(); 
