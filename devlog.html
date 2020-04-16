@@ -84,6 +84,48 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.4 -  </h2>
+      <p style=" color: #a0aec1bf;"> 16/4/2020</p>
+      <p> la seleccion de enemigos funciona por el momento con un if. </p>
+      <pre><code>
+        function show_enemy(a) {
+          var i;
+          for(i = 0; i < arguments.length; i++) {
+            a = arguments[i];
+            if ( a == "enemy_1" ) {
+              enemy_img = 'https://opengameart.org/sites/default/files/slime_idle_0.gif';
+              enemy_initial_health = 100;
+            }
+            if ( a == "enemy_2" ) {
+              enemy_img = 'https://opengameart.org/sites/default/files/slime_walk_0.gif';
+              enemy_initial_health = 200;
+            }
+            document.getElementById("enemys").innerHTML+="&ltenemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'>&ltp id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"&lt/p>&ltimg src="+ enemy_img +"  height='150' width='auto'> &lt/enemy>";
+          }
+      
+        }// show_enemy();
+      </pre></code>
+      <p>Quiero cambiarla para que los enemigos se declaren en un array </p>
+      <pre><code>
+        function show_enemy(a) {
+          var enemy_id = a;
+          var i;
+          for(i = 0; i < arguments.length; i++) {
+            enemy_id = arguments[i];
+      
+             var results = enemigos.filter(function (nickname) { return nickname.id == enemy_id; });
+              var firstObj = (results.length > 0) ? results[0] : null;
+      
+              enemy_img = firstObj.enemy_img;
+              enemy_initial_health = firstObj.enemy_initial_health;
+      
+            document.getElementById("enemys").innerHTML+="&ltenemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'>&ltp id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"&lt/p>&ltimg src="+ enemy_img +"  height='150' width='auto'> &lt/enemy>";
+          }
+      
+        }// show_enemy();
+      </pre></code>
+      <p> esta version no se ve mucho mas compacta, pero en realidad al no tener que actualizarla por cada enemigo termina siendo mucho mas conveniente.</p>
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.3 - cartas de efecto con valor </h2>
       <p style=" color: #a0aec1bf;"> 16/4/2020</p>
       <p> hasta ahora lof efectos de las cartas globales estan hardcodeados, por eso el valor de su carta esta en null .La idea es hacerlas dinamicas. </p>
@@ -101,6 +143,7 @@ h3{ color: #155799;}
           }
         }
         </pre></code>
+
 
 
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.2 - texto en la carta </h2>

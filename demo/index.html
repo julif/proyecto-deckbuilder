@@ -138,6 +138,11 @@
   //  var carta_a_agregar_nombre;
   var especific_value = 50;
 
+  var enemigos = [
+    { name: 'slime 1', id: "enemy_1", enemy_initial_health: 100, enemy_img: 'https://opengameart.org/sites/default/files/slime_idle_0.gif'  },
+    { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'https://opengameart.org/sites/default/files/slime_walk_0.gif'}
+  ];
+
   var todas_las_cartas = [
     { name: 'curacion', id: 1, card_value: 30, reward: true ,  rareza:'rara', target_type:'dragdrop2', text:'  puntos de vida al jugador' },
     { name: 'robar', id: 2, card_value: 2 , reward: true, rareza:'rara', target_type:'dragdrop2', text:' roba  del mazo'},
@@ -431,17 +436,17 @@ for (i = 0; i < player_loot; i++) {
   
  }
   function show_enemy(a) {
+    var enemy_id = a;
     var i;
     for(i = 0; i < arguments.length; i++) {
-      a = arguments[i];
-      if ( a == "enemy_1" ) {
-        enemy_img = 'https://opengameart.org/sites/default/files/slime_idle_0.gif';
-        enemy_initial_health = 100;
-      }
-      if ( a == "enemy_2" ) {
-        enemy_img = 'https://opengameart.org/sites/default/files/slime_walk_0.gif';
-        enemy_initial_health = 200;
-      }
+      enemy_id = arguments[i];
+
+      var results = enemigos.filter(function (nickname) { return nickname.id == enemy_id; });
+        var firstObj = (results.length > 0) ? results[0] : null;
+
+        enemy_img = firstObj.enemy_img;
+        enemy_initial_health = firstObj.enemy_initial_health;
+
       document.getElementById("enemys").innerHTML+="<enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ a +" style='display: inline-block;'><p id='pdv_"+ a +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  height='150' width='auto'> </enemy>";
     }
 
