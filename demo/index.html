@@ -139,11 +139,11 @@
   var especific_value = 50;
 
   var todas_las_cartas = [
-    { name: 'curacion', id: 1, card_value: 10, reward: true ,  rareza:'rara', target_type:'dragdrop2', text:' cura 20puntos de vida' },
-    { name: 'robar', id: 2, card_value: 10 , reward: true, rareza:'rara', target_type:'dragdrop2', text:' roba 2 cartas del mazo'},
-    { name: 'ataque normal', id: 3, card_value: 15,reward: true,  rareza:'comun',target_type:'dragdrop', text: ' <span class="a3" >10</span> de daños a un enemigo'},
-    { name: 'ataque pesado', id: 4, card_value: 40 , reward: true, rareza:'comun',target_type:'dragdrop', text:' 40 de daño a un enemigo'},
-    { name: 'ataque super pesado', id: 5 , card_value: 50  ,reward: true, rareza:'comun',target_type:'dragdrop', text:' 50 de daño a un enemigo'}
+    { name: 'curacion', id: 1, card_value: 30, reward: true ,  rareza:'rara', target_type:'dragdrop2', text:'  puntos de vida al jugador' },
+    { name: 'robar', id: 2, card_value: 2 , reward: true, rareza:'rara', target_type:'dragdrop2', text:' roba  del mazo'},
+    { name: 'ataque normal', id: 3, card_value: 10,reward: true,  rareza:'comun',target_type:'dragdrop', text: ' de daños a un enemigo'},
+    { name: 'ataque pesado', id: 4, card_value: 40 , reward: true, rareza:'comun',target_type:'dragdrop', text:' de daño a un enemigo'},
+    { name: 'ataque super pesado', id: 5 , card_value: 50  ,reward: true, rareza:'comun',target_type:'dragdrop', text:' de daño a un enemigo'}
   ];
 console.log(todas_las_cartas);
 
@@ -475,7 +475,7 @@ for (i = 0; i < player_loot; i++) {
 
         
         //document.getElementById("a3").innerHTML= firstObj.card_value;
-      $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="'+ card_target +'">'+card_name +'</br>'+ firstObj.text +'</carta>');
+      $("#mano").append('<carta  id="'+ card_id +'" name="'+ card_name +'"  card_value="'+ card_value +' " class="'+ card_target +'">'+card_name +'</br>'+ card_value + firstObj.text +'</carta>');
       //document.getElementsByClassName("a3")[0].innerHTML= 15 ;
      // $(this).find(".a3").text("Hello world");
     // $( ".a3" ).text(firstObj.card_value);
@@ -581,12 +581,12 @@ for (i = 0; i < player_loot; i++) {
   }
   function card_efect(a,b){ 
     var card_value = b;
-            if( a == 1){  vida_jugador = vida_jugador + 20; }
+            if( a == 1){  vida_jugador = parseInt(vida_jugador) + parseInt(card_value); }
             if( a == 2){
 
               var i = 0;
               var separador= 500;
-              for (i = 0; i <  2 ; i++ ) {
+              for (i = 0; i <  card_value ; i++ ) {
                 setTimeout(robar_carta, separador);
                 separador = separador + 500;
               };

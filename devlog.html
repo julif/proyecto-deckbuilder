@@ -84,6 +84,25 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.3 - cartas de efecto con valor </h2>
+      <p style=" color: #a0aec1bf;"> 16/4/2020</p>
+      <p> hasta ahora lof efectos de las cartas globales estan hardcodeados, por eso el valor de su carta esta en null .La idea es hacerlas dinamicas. </p>
+      <pre><code>
+        function card_efect(a,b){
+          var card_value = b;
+          if( a == 1){  vida_jugador = parseInt(vida_jugador) + parseInt(card_value); }
+          if( a == 2){
+            var i = 0;
+            var separador= 500;
+            for (i = 0; i <  card_value ; i++ ) {
+              setTimeout(robar_carta, separador);
+              separador = separador + 500;
+            };
+          }
+        }
+        </pre></code>
+
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.2 - texto en la carta </h2>
       <p style=" color: #a0aec1bf;"> 15/4/2020</p>
       <p> para empezar a remplazar los cuadrados rojos por las cartas verdaderas necesito en principio 3 cosas, el nombre de la carta, el texto de la carta y su imagen. Despues puedo agregar el coste y el marco etc.</p>
@@ -96,6 +115,10 @@ h3{ color: #155799;}
       </pre></code>
       <h3> valor </h3>
        <p> el unico problema es que el texto esta hardcodeado, asi que voy a tener que pensar en una manera de que el valor espesifico dentro de el texto este vinculado al valor de esa carta especifica.</p>
+       <pre><code>
+        card_value + firstObj.text
+      </pre></code>
+      <p> esto funciona para las cartas donde el texto es algo como "10 puntos de daño a un enemigo", mi solucion temporal es tener 2 textos. 1 para antes de el valor y otro para despues. esta solucion no es ideal pero es la mejor por el momento </p>
       
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.1 - mejorando las recompenzas </h2>
       <p style=" color: #a0aec1bf;"> 14/4/2020</p>
