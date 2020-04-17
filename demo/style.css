@@ -8,6 +8,17 @@ carta{
     list-style: none;
     color: white;
     cursor: pointer;
+    /* width: 100px;
+    background-image: url("img/cartas/ataque.png"); */
+
+
+
+    background-color: transparent;
+    width: 155px;
+    background-image: url("img/cartas/1.png");
+    height: 238px;
+    background-size: contain;
+          background-repeat: no-repeat;
 }
 .drop {
     margin: 20px 0;

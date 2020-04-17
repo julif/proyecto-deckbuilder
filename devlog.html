@@ -84,7 +84,33 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
-      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.4 -  </h2>
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.5 - carta con forma de carta </h2>
+      <p style=" color: #a0aec1bf;"> 17/4/2020</p>
+      <p> para que la carta deje de ser un simple cuadrado rojo me propuse mostrar una imagen distinta por carta .Lamentablemente se esta volviendo mas dificil de lo que crei.</p>
+      <p> mi idea inicial era poner una imagen dentro de la carta y cambiarla correspondientemente, pero al parecer no puedo poner ningun elemento dentro de la carta que nosea texto suelto, lo cual es un problema.</p>
+      <p> por el momento puedo cambiarle el css a carta, pero eso no es suficiente.</p>
+      <h3> fondo de imagen</h3>
+      <p> lo primero que probe fue cambiar el fondo por esta imagen en cada carta.</p>
+      <img src="referencias/1.png">
+      <pre><code>
+        carta {
+          padding: 10px;
+          margin: 10px;
+          margin-bottom: 5px;
+          list-style: none;
+          color: white;
+          cursor: pointer;
+          width: 107px;
+          background-image: url(img/cartas/1.png);
+          height: 166px;
+          background-size: contain;
+          background-repeat: no-repeat;
+      }
+      </pre></code>
+      <p> ahora tengo que hacer que dependiendo el id de la carta la imagen sea distinta</p>
+
+
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.22.4 - optimizando mostrar enemigos </h2>
       <p style=" color: #a0aec1bf;"> 16/4/2020</p>
       <p> la seleccion de enemigos funciona por el momento con un if. </p>
       <pre><code>
