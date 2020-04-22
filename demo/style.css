@@ -1,4 +1,8 @@
-body { background-color:#fafafa;}
+body { 
+    background-color:#fafafa;
+     margin: 0px auto;
+     overflow: hidden;
+    }
 .container { margin:0px auto;}
 carta{
     background-color: red;
@@ -14,9 +18,9 @@ carta{
 
 
     background-color: transparent;
-    width: 155px;
+    width: 130px;
     background-image: url("img/cartas/1.png");
-    height: 238px;
+    height: 200px;
     background-size: contain;
           background-repeat: no-repeat;
 }
@@ -27,17 +31,84 @@ carta{
     border-radius: 5px;
 }
 .drop2 {
-    margin: 20px 0;
-    padding: 5px;
-    border: 2px dotted orange;
-    border-radius: 5px;
+    /* margin: 20px 0; */
+    /* padding: 5px; */
+    border: 2px dotted #ffa50069;
+    /* border-radius: 5px; */
+    height: -webkit-fill-available;
 }
 .drop2.hovering {
-    background-color: #F6BF66;
+    background-color: #ffa5001f;
 }
 .drop.hovering {
-    background-color: #F6BF66;
+    background-color: #ffa5001f;
 }
 .draggable.dragging, .draggable .dragging {
     opacity: 0.5;
+}
+/* .draggable_clone{ width: 50px;} */
+
+
+
+
+
+
+
+#main_container {
+    height: 100vh;
+    width: 100vw;
+    background-color: #56655d;
+    overflow: hidden;
+}
+#top {
+    background-color: #5c6675;
+    height: 75%;
+    position: relative;
+}
+#bottom {
+    background-color: #3333406e;
+    display: flex;
+    background-image: linear-gradient(#ff000000, #2c3530);
+    height: 33.3%;
+}
+#mazo2 {
+     background-color: #121212; 
+    color: white;
+    height: 100%;
+    /* box-shadow: inset -1px -1px 0px 0px; */
+    width: 15%;
+}
+#mano2 {
+    /* background-color: #1f1f1f; */
+    height: 100%;
+    /* box-shadow: inset -1px -1px 0px 0px; */
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    /* padding: 5px; */
+}#descarte {
+    background-color: #121212; 
+    color: white;
+    height: 100%;
+    /* box-shadow: inset -1px -1px 0px 0px; */
+    width: 15%;
+}
+
+
+
+#player_section {
+    /* background-color: blue; */
+    width: 50%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#enemy_section {
+    /* background-color: red; */
+    width: 70%;
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
