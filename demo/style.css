@@ -89,7 +89,9 @@ carta{
     /* box-shadow: inset -1px -1px 0px 0px; */
     width: 70%;
     display: flex;
-    justify-content: center;
+    justify-content: center;    overflow: scroll;
+    overflow-y: hidden;
+
     /* padding: 5px; */
 }#descarte {
     background-color: #121212; 
