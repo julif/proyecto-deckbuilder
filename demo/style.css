@@ -77,6 +77,11 @@ carta{
     height: 100%;
     /* box-shadow: inset -1px -1px 0px 0px; */
     width: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
 }
 #mano2 {
     /* background-color: #1f1f1f; */
@@ -92,6 +97,10 @@ carta{
     height: 100%;
     /* box-shadow: inset -1px -1px 0px 0px; */
     width: 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -112,3 +121,14 @@ carta{
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+@media only screen and (max-width: 800px) {
+    #top {height: 60%;}
+    #bottom {height: 40%;}
+
+    #top img{ width: 100px; height: auto;}
+    carta {margin-top: 2px; width: 78px;}
+  }

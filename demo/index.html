@@ -94,15 +94,20 @@
     </div> <!-- top -->
     <div id="bottom">
       <div id="mazo2">  
-        <p> mazo: <span id="mazo_length"></span></p>
-        <p>Mano:  <span id="mano_length"></span></p>
+        <div>        <p> mazo: <span id="mazo_length"></span></p>
+         
+        </div>
+
       </div>
       <div id="mano2">
         <div  id="mano" style="display: flex;"> </div>
       </div>
       <div id="descarte">
-        <p>Pila de descarte:  <span id="pila_descarte_length"></span> </p>
+        <div>
+          <p>Pila de descarte:  <span id="pila_descarte_length"></span> </p>
         <button onclick="end_turn()" > terminar turno  </button></br>
+        </div>
+        
 
 
       </div>
@@ -114,6 +119,7 @@
       
     </div><!-- bottom -->
     <div  style="background-color: #e4e4e4;display: flex; position: fixed; top: 0;left: -90000000px;"> 
+      <p>Mano:  <span id="mano_length"></span></p>
       <div>
         <h3>mazo:</h3>
         <ul id="mazo"></ul>
