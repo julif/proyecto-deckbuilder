@@ -27,13 +27,13 @@ carta{
 .drop {
     margin: 20px 0;
     padding: 5px;
-    border: 2px dotted orange;
+    /* border: 2px dotted orange; */
     border-radius: 5px;
 }
 .drop2 {
     /* margin: 20px 0; */
     /* padding: 5px; */
-    border: 2px dotted #ffa50069;
+    /* border: 2px dotted #ffa50069; */
     /* border-radius: 5px; */
     height: -webkit-fill-available;
 }
@@ -59,17 +59,25 @@ carta{
     width: 100vw;
     background-color: #56655d;
     overflow: hidden;
+
+    background-image: url(img/000.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 #top {
-    background-color: #5c6675;
+    /* background-color: #5c6675; */
     height: 75%;
     position: relative;
+
+   
 }
 #bottom {
-    background-color: #3333406e;
+    /* background-color: #3333406e; */
     display: flex;
     background-image: linear-gradient(#ff000000, #2c3530);
-    height: 33.3%;
+    /* height: 33.3%; */
+    height: 25%;
 }
 #mazo2 {
      background-color: #121212; 
@@ -89,7 +97,8 @@ carta{
     /* box-shadow: inset -1px -1px 0px 0px; */
     width: 70%;
     display: flex;
-    justify-content: center;    overflow: scroll;
+    justify-content: center;   
+     /* overflow: scroll; */
     overflow-y: hidden;
 
     /* padding: 5px; */
