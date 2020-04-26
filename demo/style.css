@@ -75,7 +75,7 @@ carta{
 #bottom {
     /* background-color: #3333406e; */
     display: flex;
-    background-image: linear-gradient(#ff000000, #2c3530);
+    /* background-image: linear-gradient(#ff000000, #2c3530); */
     /* height: 33.3%; */
     height: 25%;
 }
@@ -132,6 +132,19 @@ carta{
     justify-content: center;
     align-items: center;
 }
+
+
+
+
+#player_section { 
+    /* justify-content: flex-end;  */
+    padding-left: 15%;
+}
+#enemy_section { 
+    /* justify-content: end;     width: 70%; */
+    padding-right: 15%;
+} 
+
 
 
 
