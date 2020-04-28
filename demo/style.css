@@ -25,11 +25,16 @@ carta{
           background-repeat: no-repeat;
 }
 .drop {
-    margin: 20px 0;
-    padding: 5px;
-    /* border: 2px dotted orange; */
+    /* margin: 20px 0;
+    padding: 5px; */
+    /* border: 2px dotted orange;  */
     border-radius: 5px;
+    /* display: flex!important; */
+    /* flex-wrap: wrap; */
+    /* align-items: flex-end;
+    height: 483px; */
 }
+
 .drop2 {
     /* margin: 20px 0; */
     /* padding: 5px; */
@@ -132,7 +137,14 @@ carta{
     justify-content: center;
     align-items: center;
 }
+#enemys{    display: flex;}
 
+#jugador{    height: 490px;
+    display: flex;
+    align-items: flex-end;}
+    #content_drop{ height: 490px;
+        display: flex;
+        align-items: flex-end;}
 
 #pdv_enemy_2{margin: 0px;}
 
@@ -155,4 +167,10 @@ carta{
 
     #top img{ width: 100px; height: auto;}
     carta {margin-top: 2px; width: 78px;}
+    /* .drop {
+
+        height: 190px;
+    } */
+    #content_drop{ height: 220px; }
+    #jugador{ height: 227px; }
   }

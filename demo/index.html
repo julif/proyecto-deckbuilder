@@ -83,7 +83,7 @@
     <div id="top">
       <div id="battle_zone" style="display: flex;" class='drop2'>
         <section id="player_section">
-          <div id="jugador"  >  <div class='pdv' id="pdv_player" > </div>  <img  id="player_img_div" src="img/1.png"> </div>
+          <div id="jugador"  > <div><div class='pdv' id="pdv_player" > </div>  <img  id="player_img_div" src="img/1.png"> </div> </div>
         </section>
         <!-- <section style="background-color: #ff00002e;width: 30%;"></section> -->
         <section id="enemy_section">
@@ -107,7 +107,7 @@
       <div id="descarte">
         <div style="text-align: center;">
         
-        <button onclick="end_turn()" > terminar turno  </button></br>
+        <button onclick="end_turn()"  style="background-color: red; padding: 10px;color: white;border: none;"> terminar turno  </button></br>
         </div>
         
 
@@ -182,10 +182,10 @@
   var especific_value = 50;
 
   var enemigos = [
-    { name: 'slime 1', id: "enemy_1", enemy_initial_health: 100, enemy_img: 'https://opengameart.org/sites/default/files/slime_idle_0.gif'  },
+    { name: 'slime 1', id: "enemy_1", enemy_initial_health: 100, enemy_img: 'img/4g.png'  },
     { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'img/5g.png'}
   ];
-  // { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'https://opengameart.org/sites/default/files/slime_walk_0.gif'}
+  // { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'https://opengameart.org/sites/default/files/slime_walk_0.gif'}  'https://opengameart.org/sites/default/files/slime_idle_0.gif'
   var todas_las_cartas = [
     { name: 'curacion', id: "a5", card_value: 20, reward: true ,  rareza:'rara', target_type:'dragdrop2', text:'  puntos de vida al jugador' },
     { name: 'robar', id: "a4", card_value: 2 , reward: true, rareza:'rara', target_type:'dragdrop2', text:' roba  del mazo'},
@@ -490,7 +490,7 @@ for (i = 0; i < player_loot; i++) {
         enemy_img = firstObj.enemy_img;
         enemy_initial_health = firstObj.enemy_initial_health;
 
-      document.getElementById("enemys").innerHTML+="<enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'><p id='pdv_"+ enemy_id +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  width='auto'> </enemy>";
+      document.getElementById("enemys").innerHTML+="<div id='content_drop' ><enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'><p id='pdv_"+ enemy_id +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  width='auto'> </enemy></div>";
     }
 
   }// show_enemy();
