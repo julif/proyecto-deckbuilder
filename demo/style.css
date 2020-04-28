@@ -33,6 +33,7 @@ carta{
     /* flex-wrap: wrap; */
     /* align-items: flex-end;
     height: 483px; */
+    border: 2px dotted #ffa50000;
 }
 
 .drop2 {
@@ -146,7 +147,7 @@ carta{
 #jugador{    height: 490px;
     display: flex;
     align-items: flex-end;}
-    #content_drop{ height: 490px;
+    #content_drop{ height: 488px;
         display: flex;
         align-items: flex-end;}
 
@@ -175,7 +176,7 @@ carta{
 
         height: 190px;
     } */
-    #content_drop{ height: 200px; }
+    #content_drop{ height: 198px; }
     #jugador{ height: 207px; }
     #descarte {padding-right: 10px;}
   }
