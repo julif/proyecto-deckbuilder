@@ -6,8 +6,8 @@ body {
 .container { margin:0px auto;}
 carta{
     background-color: red;
-    padding: 10px;
-    margin: 10px;
+    padding: 15px;
+    margin: 5px;
     margin-bottom: 5px;
     list-style: none;
     color: white;
@@ -46,7 +46,11 @@ carta{
     background-color: #ffa5001f;
 }
 .drop.hovering {
-    background-color: #ffa5001f;
+    /* background-color: #ffa5001f; */
+    border: 2px dotted red;
+    border-radius: 5px;
+    /* display: flex!important; */
+    background-color: #ff00003b;
 }
 .draggable.dragging, .draggable .dragging {
     opacity: 0.5;
@@ -166,7 +170,7 @@ carta{
     #bottom {height: 40%;}
 
     #top img{ width: 100px; height: auto;}
-    carta {margin-top: 2px; width: 78px;}
+    carta {margin-top: 2px; width: 72px;}
     /* .drop {
 
         height: 190px;
