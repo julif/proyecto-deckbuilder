@@ -173,4 +173,5 @@ carta{
     } */
     #content_drop{ height: 220px; }
     #jugador{ height: 227px; }
+    #descarte {padding-right: 10px;}
   }
