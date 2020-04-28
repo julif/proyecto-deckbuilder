@@ -60,7 +60,7 @@ carta{
     background-color: #56655d;
     overflow: hidden;
 
-    background-image: url(img/000.png);
+    background-image: url(img/001.png);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -80,7 +80,7 @@ carta{
     height: 25%;
 }
 #mazo2 {
-     background-color: #121212; 
+     /* background-color: #121212;  */
     color: white;
     height: 100%;
     /* box-shadow: inset -1px -1px 0px 0px; */
@@ -103,7 +103,7 @@ carta{
 
     /* padding: 5px; */
 }#descarte {
-    background-color: #121212; 
+    /* background-color: #121212;  */
     color: white;
     height: 100%;
     /* box-shadow: inset -1px -1px 0px 0px; */
@@ -134,7 +134,7 @@ carta{
 }
 
 
-
+#pdv_enemy_2{margin: 0px;}
 
 #player_section { 
     /* justify-content: flex-end;  */
