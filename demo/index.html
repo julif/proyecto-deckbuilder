@@ -15,6 +15,7 @@
     <!-- css -->
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/fullview.css"/>
+    <link rel="stylesheet" href="css/version.css"/>
     <style>
      .pdv{
        color: white;
@@ -63,8 +64,14 @@
         <i class="fa fa-expand"></i>
     </button>
   </div>
+  <div class="version" ></div>
+  <section id="main-menu"><!-- main-menu -->
+        
+    main menu
+    <button onclick="  document.getElementById('main-menu').style.display='none'; document.getElementById('seleccion_de_personajes').style.display='inherit';" > jugar </button>
+</section><!-- main-menu -->
  <!--  seleccion de personajes -----------------------------------------------------------  -->
-  <section id="seleccion_de_personajes"> 
+  <section id="seleccion_de_personajes" style="display: none;"> 
     <h2>Seleccionar personaje:</h2> 
     <div id="char_1" class="selectable_character" > seleccionar personaje 1 </div>
     <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
@@ -814,4 +821,5 @@ if (element =="enemy_1") {
          });
   }
 </script>
+<script src="js/version.js"></script>
 </html>
