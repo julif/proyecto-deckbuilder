@@ -24,7 +24,11 @@ carta{
     background-size: contain;
           background-repeat: no-repeat;
 }
-#mazo_inicial_div{ display: flex;}
+#mazo_inicial_div{ display: flex;     width: 300px;
+    flex-wrap: wrap;}
+    #mazo_inicial_div .thumbnail_card {
+        height: 86px;
+        width: 60px; }
 .thumbnail_card{height: 149px;
     width: 104px;
     background-position: center;
