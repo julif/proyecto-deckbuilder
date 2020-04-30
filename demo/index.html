@@ -63,7 +63,6 @@
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
   <section id="personaje_seleccionado" style="display: none;">
-    <h2> mazo inicial:</h2>
     <h3 id="char"></h3>
     <p id="mazo_inicial_div"></p>
     <button onclick="back_personajes()" > volver a seleccion de personajes</button>
@@ -222,7 +221,7 @@ var char_div=  document.getElementById("char");
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-         char_div.innerHTML= "  <img  src='img/1.png' style='width: 100px;'></br> Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+        //  char_div.innerHTML= "  <img  src='img/1.png' style='width: 100px;'></br> Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/1.png";
         
 
@@ -314,7 +313,7 @@ function crear_mazo_inicial(item, index) {
 
       
       
-        document.getElementById("mazo_inicial_div").innerHTML += "id: "+ item.id +" name: "+ item.name +"   card value:"+ item.card_value +" </br>"; 
+        document.getElementById("mazo_inicial_div").innerHTML += " <div class='thumbnail_card "+ item.id +"'></div>"; 
     }
     //mezclar mazo y mostrarlo en el div "mazo"
     
@@ -430,7 +429,8 @@ function play(){
 
 var i;
 for (i = 0; i < player_loot; i++) {
-  document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\''+cartas_recompenza[i].name+'\' ,\''+cartas_recompenza[i].id+'\','+ cartas_recompenza[i].card_value +',\''+ cartas_recompenza[i].target_type +'\') , volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' </div>';
+  //document.getElementById("recompenzas").innerHTML +='<div onclick="agregar_carta(\''+cartas_recompenza[i].name+'\' ,\''+cartas_recompenza[i].id+'\','+ cartas_recompenza[i].card_value +',\''+ cartas_recompenza[i].target_type +'\') , volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' </div>';
+  document.getElementById("recompenzas").innerHTML +='<div  class="thumbnail_card '+cartas_recompenza[i].id+'" onclick="agregar_carta(\''+cartas_recompenza[i].name+'\' ,\''+cartas_recompenza[i].id+'\','+ cartas_recompenza[i].card_value +',\''+ cartas_recompenza[i].target_type +'\') , volver_seleccion_enemigos()">'+cartas_recompenza[i].name+' </div>';
 }
 
 
@@ -455,7 +455,7 @@ for (i = 0; i < player_loot; i++) {
     //document.getElementById("mazo_jugador_div").innerHTML += "<carta name='"+ item.name +"' id='"+ item.id +"' class='dragdrop' > "+ item.name +" </carta>";
 
     //var papaso= $(this).index();
-    document.getElementById("mazo_a_borrar").innerHTML += "<li class='to_delete_card'  onclick='borrar("+ index +")'  name='"+ item.name +"' id='"+ item.id +" ' card_value='"+ item.card_value +"'> "+ item.name +" </li>";
+    document.getElementById("mazo_a_borrar").innerHTML += "<div class='to_delete_card thumbnail_card "+ item.id +"'  onclick='borrar("+ index +")'  name='"+ item.name +"' id='"+ item.id +" ' card_value='"+ item.card_value +"'> "+ item.name +" </div>";
 
 
 
