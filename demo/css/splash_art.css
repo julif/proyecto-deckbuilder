@@ -1,0 +1,19 @@
+#splash-art{
+  display: none;
+  background-image: url(../img/splash-art-backgorund.png);
+  background-size: cover;
+  background-position: center;
+  justify-content: center;
+  align-items: center;
+}
+#splash-art_content{    display: grid;
+  width: 100%;
+  max-width: 40%;
+}
+@media only screen and (max-width: 1200px) {
+  #splash-art_content{
+    display: grid;
+    width: 100%;
+    max-width: 60%;
+  }
+}

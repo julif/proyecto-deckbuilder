@@ -1,0 +1,18 @@
+#splash {
+  
+  /* background-color: #28334a; */
+  background-color: black!important; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+ /* z-index: 4;*/
+  
+  /*IMPORTANTE*/
+  height: 100vh;
+  margin: auto;/* quita los espacios en blanco al borde de la pagina web*/
+}
+#splash img{ 
+  height: 40%;
+  width: auto;
+}
