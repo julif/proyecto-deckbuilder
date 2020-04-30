@@ -30,7 +30,12 @@ carta{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;}
-    #recompenzas,#mazo_a_borrar{ display: flex;}
+    #recompenzas,#mazo_a_borrar{ display: flex;text-align: center;}
+    .drop, #jugador{user-select: none;
+
+        -webkit-user-select: none;
+        
+        -moz-user-select: -moz-none;}
 #recompenzas .thumbnail_card {
     padding-top: 135px;
     text-align: center;
@@ -41,6 +46,10 @@ carta{
         /* background-size: cover; */
         background-size: contain;
         background-repeat: no-repeat;
+
+        justify-content: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
 }
 #mazo_a_borrar .thumbnail_card {
     padding-top: 135px;
