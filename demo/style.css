@@ -30,7 +30,7 @@ carta{
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;}
-    #recompenzas,#mazo_a_borrar{ display: flex;text-align: center;}
+    #recompenzas,#mazo_a_borrar{ display: flex;text-align: center;    justify-content: center;}
     .drop, #jugador{user-select: none;
 
         -webkit-user-select: none;
