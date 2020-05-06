@@ -126,27 +126,22 @@
     </button>
   </div>
   <div class="version" ></div>
-
+ <!--  splash ------------------------------------------------------------------------------  -->
   <section id="splash">
     <!-- <div class="loader">Loading...</div>  -->
     <img src="img/julif.svg"  >
       <!-- <div class="version"></div> -->
       <div class="preloader"><img  id="precarga_img_splash-art" src="img/splash-art-backgorund.png"    width="100px"></div>
   </section><!-- splash -->
-
+ <!--  splash-art -----------------------------------------------------------------------  -->
   <section id="splash-art" style="display: none;" >
     <div class="version" ></div>
     <div id= "splash-art_content">
-      <img src="img/logo.png"  style="
-      width: 100%;
-  " >
+      <img src="img/logo.png"  style="width: 100%;" >
       <button onclick="fadediv(splash_art, main_menu)" style="margin-top: 10px;">Click me</button>
     </div>
-   
-
-    
   </section><!-- splash-art -->
-
+ <!--  menu principal ------------------------------------------------------------------  -->
   <section id="main-menu" ><!-- main-menu -->
         
     <h2>main menu</h2>
@@ -282,7 +277,13 @@
 
  setTimeout(fadediv, 3000, splash, splash_art);
 
+ $("#precarga_img_splash-art").on('load', function() {
 
+console.log("image loaded correctly"); 
+}).each(function() {
+
+ if($(this).prop('complete')) $(this).load();
+});
 
 
 </script>
