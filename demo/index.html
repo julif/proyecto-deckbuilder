@@ -275,11 +275,12 @@
  }
  */
 
- setTimeout(fadediv, 3000, splash, splash_art);
+
 
  $("#precarga_img_splash-art").on('load', function() {
 
-console.log("image loaded correctly"); 
+console.log("julif-image loaded correctly"); 
+setTimeout(fadediv, 3000, splash, splash_art);
 }).each(function() {
 
  if($(this).prop('complete')) $(this).load();
