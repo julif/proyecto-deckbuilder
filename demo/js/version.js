@@ -1,5 +1,5 @@
 //version
-$("div.version").html("v 0.2.25");
+$("div.version").html("v 0.2.25.1");
 
 
 
