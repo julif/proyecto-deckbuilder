@@ -273,9 +273,9 @@
 function splash_img_loaded(){
    loaded_slpash_img = true;
    //console.log( " imagen del splash: "+loaded_slpash_img);
-   setTimeout(fadediv, 2000, splash, splash_art);
+   //setTimeout(fadediv, 2000, splash, splash_art);
 }
-/* var img_splash_counter = 0;
+var img_splash_counter = 0;
 iniciar_splash();
 function iniciar_splash() {
   var myVar = setInterval(myTimer, 3000)
@@ -293,7 +293,7 @@ function iniciar_splash() {
       iniciar_splash();
     }
   }
-}//iniciar_splash */
+}//iniciar_splash
 
 
 
@@ -928,7 +928,6 @@ if (element =="enemy_1") {
            
            var porcentaje_pdv_jugador=   Math.round( parseInt(vida_jugador)/parseInt(max_vida_jugador)*100 );
            /* var porcentaje_pdv_jugador;
-
            Math.floor(  porcentaje_pdv_jugador = parseInt(vida_jugador)/parseInt(max_vida_jugador)*100 ); */
            $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
            
