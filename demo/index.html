@@ -131,10 +131,10 @@
     <!-- <div class="loader">Loading...</div>  -->
     <img src="img/julif.svg"  >
       <!-- <div class="version"></div> -->
-      <div class="preloader"><img src="img/splash-art-backgorund.png" onload="splash_img_loaded();"   width="100px"></div>
+      <div class="preloader"><img  id="precarga_img_splash-art" src="img/splash-art-backgorund.png"    width="100px"></div>
   </section><!-- splash -->
 
-  <section id="splash-art"  >
+  <section id="splash-art" style="display: none;" >
     <div class="version" ></div>
     <div id= "splash-art_content">
       <img src="img/logo.png"  style="
@@ -268,7 +268,7 @@
 
 
   
-  //setTimeout(fadediv, 2000, splash, splash_art);
+/*   //setTimeout(fadediv, 2000, splash, splash_art);
   function splash_img_loaded(){
 
      splash = document.getElementById("splash");
@@ -278,7 +278,7 @@
     //console.log( " imagen del splash: "+loaded_slpash_img);
     setTimeout(fadediv, 2000, splash, splash_art);
  }
-
+ */
 
 
 
