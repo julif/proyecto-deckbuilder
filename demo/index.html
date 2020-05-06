@@ -130,7 +130,7 @@
     <!-- <div class="loader">Loading...</div>  -->
     <img src="img/julif.svg"  >
       <!-- <div class="version"></div> -->
-      <div class="preloader"><img src="img/splash-art-backgorund.png" onload="splash_img_loaded()"   width="100px"></div>
+      <div class="preloader"><img src="img/splash-art-backgorund.png" onload=" setTimeout(fadediv, 2000, splash, splash_art);"   width="100px"></div>
   </section><!-- splash -->
 
   <section id="splash-art" style="display: none;" >
@@ -268,14 +268,14 @@
 
   
   //setTimeout(fadediv, 2000, splash, splash_art);
-  var loaded_slpash_img = false;
+ /*  var loaded_slpash_img = false;
 
 function splash_img_loaded(){
    loaded_slpash_img = true;
    //console.log( " imagen del splash: "+loaded_slpash_img);
-   //setTimeout(fadediv, 2000, splash, splash_art);
-}
-var img_splash_counter = 0;
+   setTimeout(fadediv, 2000, splash, splash_art);
+} */
+/* var img_splash_counter = 0;
 iniciar_splash();
 function iniciar_splash() {
   var myVar = setInterval(myTimer, 3000)
@@ -293,7 +293,7 @@ function iniciar_splash() {
       iniciar_splash();
     }
   }
-}//iniciar_splash
+}//iniciar_splash */
 
 
 
