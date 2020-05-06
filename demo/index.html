@@ -151,11 +151,24 @@
     <button onclick="  document.getElementById('main-menu').style.display='none'; document.getElementById('seleccion_de_personajes').style.display='inherit';" > jugar </button>
 </section><!-- main-menu -->
  <!--  seleccion de personajes -----------------------------------------------------------  -->
-  <section id="seleccion_de_personajes" style="display: none;"> 
+  <section id="seleccion_de_personajes" style="display: none; "> 
     <h2>Seleccionar personaje:</h2> 
-    <div id="char_1" class="selectable_character" > seleccionar personaje 1 </div>
-    <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
-    <div id="char_3" class="selectable_character" > seleccionar personaje 3 </div>
+    <style>
+      .selectable_character{
+        background-color: #0000005e;
+        margin: 5px;
+    height: 280px;
+    width: 150px;
+    background-size: cover;
+    background-position: center;
+      }
+    </style>
+    <div style="background-color: #eabcbc;display: flex;justify-content: center;">
+      <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/bunny.jpg&quot;);"> seleccionar personaje 1 </div>
+      <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
+      <div id="char_3" class="selectable_character" > seleccionar personaje 3 </div>
+    </div>
+  
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
   <section id="personaje_seleccionado" style="display: none;">
@@ -279,10 +292,10 @@
  */
 var preload_splash_imgs = 0;
  
-chequear_precarga("#precarga_img_splash-art");
-chequear_precarga("#precarga_img_splash-art_logo");
+precargar_imagenes("#precarga_img_splash-art");
+precargar_imagenes("#precarga_img_splash-art_logo");
 
-function chequear_precarga(a){
+function precargar_imagenes(a){
   $(a).on('load', function() {
     preload_splash_imgs++;
     if(preload_splash_imgs == 2){
