@@ -45,7 +45,8 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;    text-align: center;
+    /* width: 80%;   */
+      text-align: center;
 }
 #ceo{    width: 100px;
     height: 100px;
@@ -117,7 +118,7 @@
 
 </head>
 <body>
-  <div id="contenedor" style="background-color: white;">
+  <div id="contenedor" style="background-color: #000000;">
   <div id="full">
     <button id="fullwiev" onclick="lock('landscape')" >
         <i class="fa fa-expand"></i>
@@ -125,7 +126,14 @@
   </div>
   <div class="version" ></div>
 
-  <section id="splash-art">
+  <section id="splash">
+    <!-- <div class="loader">Loading...</div>  -->
+    <img src="img/julif.svg"  >
+      <!-- <div class="version"></div> -->
+      <div class="preloader"><img src="img/splash-art-backgorund.png" onload="splash_img_loaded()"   width="100px"></div>
+  </section><!-- splash -->
+
+  <section id="splash-art" style="display: none;" >
     <div class="version" ></div>
     <div id= "splash-art_content">
       <img src="img/logo.png"  style="
@@ -195,7 +203,7 @@
       <div id="descarte">
         <div style="text-align: center;">
         
-        <button onclick="end_turn()"  style="background-color: red; padding: 10px;color: white;border: none;"> terminar turno  </button></br>
+        <button onclick="end_turn()"  style="background-color: red; padding: 10px;color: white;border: none; user-select: none; -webkit-user-select: none; -moz-user-select: -moz-none;"> terminar turno  </button></br>
         </div>
         
 
@@ -254,6 +262,43 @@
   var splash = document.getElementById("splash");
   var splash_art = document.getElementById("splash-art");
   var main_menu = document.getElementById("main-menu");
+
+
+
+
+  
+  //setTimeout(fadediv, 2000, splash, splash_art);
+  var loaded_slpash_img = false;
+
+function splash_img_loaded(){
+   loaded_slpash_img = true;
+   //console.log( " imagen del splash: "+loaded_slpash_img);
+   //setTimeout(fadediv, 2000, splash, splash_art);
+}
+var img_splash_counter = 0;
+iniciar_splash();
+function iniciar_splash() {
+  var myVar = setInterval(myTimer, 3000)
+  function myTimer() {
+    if (img_splash_counter>10) { 
+      // alert("la aplicacion esta tomando demasiado tiempo para cargar, actualizando la app");
+      // location.reload();
+      window.location.reload(false); 
+    }
+    if (loaded_slpash_img == true) { fadediv(splash, splash_art); clearInterval(myVar);}
+    else if(loaded_slpash_img == false){
+      //alert(" recargar ");
+      img_splash_counter++;
+      console.log("carga de img_splash fallido N:"+img_splash_counter);
+      iniciar_splash();
+    }
+  }
+}//iniciar_splash
+
+
+
+
+
 
 </script>
 

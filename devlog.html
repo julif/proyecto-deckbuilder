@@ -84,6 +84,59 @@ h3{ color: #155799;}
           <li> barra de experiencia para desbloquear cartas disponibles</li>
         </ul>
       </div>
+
+      <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.25 - splash </h2>
+      <p style=" color: #a0aec1bf;"> 5/5/2020</p>
+      <p> Hace rato que no tengo la oportunidad de actualizar este proyecto, pero si lo estoy jugando mucho en mi telefono. lo cual demuestra que fue una buena idea hacerlo compatible con telefonos.</p>
+      <p> Actualmente cuando inicia el juego va directo a un splash-art aunque la imagen no halla cargado, voy a cambiar eso y depaso a hacerme publicidad con un splash con la palabra julif.</p>
+      <img src="referencias/ref1.png" >
+      <p> ahora voy a hacer que tarde 2 segundos antes de mostrar el slpash-art</p>
+      <pre><code>
+        setTimeout(fadediv, 2000, splash, splash_art);
+      </pre></code>
+      <p> bien, funciona perfecto, ahora voy a hacer que  tenga que cargar la imagen de splah-art para que se muestre.</p>
+      <h3> pre-carga</h3>
+      <p> para eso voy a necesitar un div de precarga</p>
+      <pre><code>
+        &ltdiv class="preloader">&ltimg src="img/splash-art-backgorund.png" onload="setTimeout(fadediv, 2000, splash, splash_art);"   width="100px">&lt/div>
+      </pre></code>
+      <p> con esto ya seria suficiente, pero tambien esta la segunda opcion:</p>
+      <pre><code>
+        &ltdiv class="preloader">&ltimg src="img/splash-art-backgorund.png" onload="splash_img_loaded()"   width="100px">&lt/div>
+      </pre></code>
+      <p> Entonces cuando se termine de cargar la imagen se va a ejecutar la funcion splash_img_loaded(), la cual convierte la variable loaded_slpash_img en true.</p>
+      <pre><code>
+        var loaded_slpash_img = false;
+      
+        function splash_img_loaded(){
+           loaded_slpash_img = true;
+           console.log( " imagen del splash: "+loaded_slpash_img);
+        }
+        
+      </pre></code>
+      <p> y despues tenemos a la funcion iniciar_splash, que revisa cada 3 segundos si ya termino de cargarse el splash-art, y si toma mas de 10 iteraciones simplemente reinicia la pagina.</p>
+      <pre><code>
+        var img_splash_counter = 0;
+        iniciar_splash();
+        function iniciar_splash() {
+          var myVar = setInterval(myTimer, 3000)
+          function myTimer() {
+            if (img_splash_counter>10) { 
+              // alert("la aplicacion esta tomando demasiado tiempo para cargar, actualizando la app");
+              // location.reload();
+              window.location.reload(false); 
+            }
+            if (loaded_slpash_img == true) { fadediv(splash, splash_art); clearInterval(myVar);}
+            else if(loaded_slpash_img == false){
+              //alert(" recargar ");
+              img_splash_counter++;
+              console.log("carga de img_splash fallido N:"+img_splash_counter);
+              iniciar_splash();
+            }
+          }
+        }//iniciar_splash
+      </pre></code>
+
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.24 - fullwiev </h2>
       <p style=" color: #a0aec1bf;"> 30/4/2020</p>
       <p>
@@ -92,7 +145,7 @@ h3{ color: #155799;}
          - agregado version </br>
       </p>
 
-
+     
       <h2 style="    border-bottom: solid 2px #eff0f1;"> v 0.2.23.2 - imagen de fondo </h2>
       <p style=" color: #a0aec1bf;"> 30/4/2020</p>
       <p> ya con los layout armados puedo empesar a hacer que este juego tenga imagenes.</p>

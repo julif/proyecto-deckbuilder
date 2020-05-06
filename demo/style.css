@@ -1,8 +1,28 @@
 body { 
     background-color:#fafafa;
+    background-color:#000000;
      margin: 0px auto;
      overflow: hidden;
     }
+
+
+    section {
+        height: 100vh;
+        width: 100%;
+        position: absolute;
+    }
+    section#enemy_section,  section#player_section {
+        height: auto;
+      width: 50%;
+        position: relative;
+    }
+
+    .preloader {
+        margin-left: 15000px;
+        position: fixed;
+        /* font-family: Franklin Gothic Demi; */
+    }
+
 .container { margin:0px auto;}
 carta{
     background-color: red;
@@ -24,6 +44,7 @@ carta{
     background-size: contain;
           background-repeat: no-repeat;
 }
+#seleccion_de_personajes, #personaje_seleccionado, #seleccion_de_enemigo{    background-color: #ffffff;}
 #mazo_inicial_div{ display: flex;     width: 300px;
     flex-wrap: wrap;}
     #mazo_inicial_div .thumbnail_card {
