@@ -131,7 +131,10 @@
     <!-- <div class="loader">Loading...</div>  -->
     <img src="img/julif.svg"  >
       <!-- <div class="version"></div> -->
-      <div class="preloader"><img  id="precarga_img_splash-art" src="img/splash-art-backgorund.png"    width="100px"></div>
+      <div class="preloader">
+        <img  id="precarga_img_splash-art" src="img/splash-art-backgorund.png"    width="100px">
+        <img  id="precarga_img_splash-art_logo" src="img/logo.png"    width="100px">
+      </div>
   </section><!-- splash -->
  <!--  splash-art -----------------------------------------------------------------------  -->
   <section id="splash-art" style="display: none;" >
@@ -274,17 +277,23 @@
     setTimeout(fadediv, 2000, splash, splash_art);
  }
  */
+var preload_splash_imgs = 0;
+ 
+chequear_precarga("#precarga_img_splash-art");
+chequear_precarga("#precarga_img_splash-art_logo");
 
+function chequear_precarga(a){
+  $(a).on('load', function() {
+    preload_splash_imgs++;
+    if(preload_splash_imgs == 2){
+       console.log("todas las imagenes de splash images fueron cargadas correctamente"); 
+       setTimeout(fadediv, 2000, splash, splash_art);
+      }
+  }).each(function() {
+    if($(this).prop('complete')) $(this).load();
+  });
+}
 
-
- $("#precarga_img_splash-art").on('load', function() {
-
-console.log("julif-image loaded correctly"); 
-setTimeout(fadediv, 3000, splash, splash_art);
-}).each(function() {
-
- if($(this).prop('complete')) $(this).load();
-});
 
 
 </script>
