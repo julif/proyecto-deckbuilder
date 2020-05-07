@@ -153,38 +153,87 @@
 </section><!-- main-menu -->
  <!--  seleccion de personajes -----------------------------------------------------------  -->
   <section id="seleccion_de_personajes" style="display: none; "> 
-    <h2>Seleccionar personaje:</h2> 
+    <!-- <h2>Seleccionar personaje:</h2>  -->
     <style>
       .selectable_character{
         background-color: #0000005e;
         margin: 5px;
-    height: 280px;
-    width: 150px;
+    /* height: 280px; */
+    /* width: 150px; */
+    width: 20%;
     background-size: cover;
     background-position: center;
       }
+      
     </style>
-    <div style="background-color: #eabcbc;display: flex;justify-content: center;">
+    <!-- <div style="background-color: #eabcbc;display: flex;justify-content: center;">
+     
+    </div>
+     -->
+    <style>
+      body{margin: 0px;}
+      .container{
+        height: 100vh;
+        width: 100%;
+        overflow: hidden;
+      }
+      .top-section{
+        height: 10%;
+        width:100%;
+        background-color: black;
+      }
+      .content-section{
+        height: 80%;
+        width:100%;
+        background-color: grey;
+
+        display: flex;
+    justify-content: center;
+      }
+      .bottom-section{
+        height: 10%;
+        width:100%;
+        background-color: black;
+      }
+    </style>
+
+
+    <div class="top-section"></div>
+    <div class="content-section">
       <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/bunny.jpg&quot;);"> seleccionar personaje 1 </div>
       <div id="char_2" class="selectable_character"  style="background-image: url(&quot;img/bunny2.jpg&quot;);"> seleccionar personaje 2 </div>
       <div id="char_3" class="selectable_character" style="background-image: url(&quot;img/bunny3.jpg&quot;);"> seleccionar personaje 3 </div>
     </div>
-    <button onclick="go_to_section( 'seleccion_de_personajes','main-menu','flex')" > regresar al menu </button>
+    <div class="bottom-section">
+      <button onclick="go_to_section( 'seleccion_de_personajes','main-menu','flex')" > regresar al menu </button>
+    </div>
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
   <section id="personaje_seleccionado" style="display: none;">
-    <h3 id="char"></h3>
-    <p id="mazo_inicial_div"></p>
-    <button onclick="back_personajes()" > volver a seleccion de personajes</button>
-    <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
+    <div class="top-section"></div>
+      <div class="content-section">
+        <h3 id="char"></h3>
+        <p id="mazo_inicial_div"></p>
+      </div>
+      <div class="bottom-section">
+        <button onclick="back_personajes()" > volver a seleccion de personajes</button>
+        <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
+      </div>
   </section>
   <!--  mapa de enemigos  ------------------------------------------------------------------ -->
   <section id="seleccion_de_enemigo" style="display: none;">
-    <h2> Seleccion de enemigos:</h2>
-    <!-- <button onclick="back_personajes()" > volver a seleccion de personajes</button> -->
-    <button onclick="show_enemy('enemy_1'); play()" > slime 1 </button>
-    <button onclick="show_enemy('enemy_2'); play()" > slime 2 </button>
-    <button onclick="show_enemy('enemy_1','enemy_2'); play()" > ambos slimes </button>
+   
+    <div class="top-section"></div>
+      <div class="content-section">
+        <div>
+          <h2> Seleccion de enemigos:</h2>
+          <!-- <button onclick="back_personajes()" > volver a seleccion de personajes</button> -->
+          <button onclick="show_enemy('enemy_1'); play()" > slime 1 </button>
+          <button onclick="show_enemy('enemy_2'); play()" > slime 2 </button>
+          <button onclick="show_enemy('enemy_1','enemy_2'); play()" > ambos slimes </button>
+       </div>
+      </div>
+      <div class="bottom-section"></div>
   </section>
 <!--  battle stage ----------------------------------------------------------------------- -->
 <section id="battle_stage" style="display: none;">
@@ -206,28 +255,17 @@
       <div id="mazo2">  
         <div style="text-align: center;">        <p> mazo: <span id="mazo_length"></span></p>
           <p>Pila de descarte:  <span id="pila_descarte_length"></span> </p>
-         
         </div>
-
       </div>
       <div id="mano2">
         <div  id="mano" style="display: flex;"> </div>
       </div>
       <div id="descarte">
         <div style="text-align: center;">
-        
         <button onclick="end_turn()"  style="background-color: red; padding: 10px;color: white;border: none; user-select: none; -webkit-user-select: none; -moz-user-select: -moz-none;"> terminar turno  </button></br>
         </div>
-        
-
-
       </div>
      
-      
-      
-  
-      
-      
     </div><!-- bottom -->
     <div  style="background-color: #e4e4e4;display: flex; position: fixed; top: 0;left: -90000000px;"> 
       <p>Mano:  <span id="mano_length"></span></p>
@@ -256,16 +294,12 @@
           <button onclick="location.reload();" > Reiniciar </button>
         </div>
       </div>
-
     <div id="borrar_carta" class="modal" style="display: none;" > 
       <div class="modal-content">
-    
         <h2>borrar carta</h2>
         <ul id="mazo_a_borrar"></ul>
       </div>
     </div>
-
-
   </div>
 
   </section>
@@ -300,7 +334,7 @@ function precargar_imagenes(a){
   $(a).on('load', function() {
     preload_splash_imgs++;
     if(preload_splash_imgs == 2){
-       console.log("todas las imagenes de splash images fueron cargadas correctamente"); 
+       console.log("Imagenes de splash images fueron cargadas correctamente"); 
        setTimeout(fadediv, 2000, splash, splash_art);
       }
   }).each(function() {
@@ -501,7 +535,7 @@ function volver_seleccion_enemigos(){
   document.getElementById("victory_screen").style.display = "none";
   // document.getElementById("battle_stage").style.display="none";
   // document.getElementById("seleccion_de_enemigo").style.display="inherit";
-  go_to_section( 'seleccion_de_enemigo','battle_stage');
+  go_to_section( 'battle_stage','seleccion_de_enemigo');
 
   document.getElementById("mazo").innerHTML = " ";
   document.getElementById("mazo_a_borrar").innerHTML = " "; 
