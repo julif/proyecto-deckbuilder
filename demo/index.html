@@ -148,7 +148,8 @@
   <section id="main-menu" ><!-- main-menu -->
         
     <h2>main menu</h2>
-    <button onclick="  document.getElementById('main-menu').style.display='none'; document.getElementById('seleccion_de_personajes').style.display='inherit';" > jugar </button>
+    <!-- <button onclick="  document.getElementById('main-menu').style.display='none'; document.getElementById('seleccion_de_personajes').style.display='inherit';" > jugar </button> -->
+    <button onclick="go_to_section( 'main-menu','seleccion_de_personajes')" > jugar </button>
 </section><!-- main-menu -->
  <!--  seleccion de personajes -----------------------------------------------------------  -->
   <section id="seleccion_de_personajes" style="display: none; "> 
@@ -165,17 +166,17 @@
     </style>
     <div style="background-color: #eabcbc;display: flex;justify-content: center;">
       <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/bunny.jpg&quot;);"> seleccionar personaje 1 </div>
-      <div id="char_2" class="selectable_character" > seleccionar personaje 2 </div>
-      <div id="char_3" class="selectable_character" > seleccionar personaje 3 </div>
+      <div id="char_2" class="selectable_character"  style="background-image: url(&quot;img/bunny2.jpg&quot;);"> seleccionar personaje 2 </div>
+      <div id="char_3" class="selectable_character" style="background-image: url(&quot;img/bunny3.jpg&quot;);"> seleccionar personaje 3 </div>
     </div>
-  
+    <button onclick="go_to_section( 'seleccion_de_personajes','main-menu','flex')" > regresar al menu </button>
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
   <section id="personaje_seleccionado" style="display: none;">
     <h3 id="char"></h3>
     <p id="mazo_inicial_div"></p>
     <button onclick="back_personajes()" > volver a seleccion de personajes</button>
-    <button onclick="go_to_seleecion_de_enemigos()" > enemigos </button>
+    <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
   </section>
   <!--  mapa de enemigos  ------------------------------------------------------------------ -->
   <section id="seleccion_de_enemigo" style="display: none;">
@@ -490,15 +491,17 @@ function crear_mazo_inicial(item, index) {
   //mazo_inicial= null;
   document.getElementById("mazo_inicial_div").innerHTML=" ";
   document.getElementById("mazo").innerHTML=" ";
-  document.getElementById("personaje_seleccionado").style.display="none";
-  document.getElementById("seleccion_de_personajes").style.display="inherit";
+  go_to_section( 'personaje_seleccionado','seleccion_de_personajes');
+/*   document.getElementById("personaje_seleccionado").style.display="none";
+  document.getElementById("seleccion_de_personajes").style.display="inherit"; */
 }
 function volver_seleccion_enemigos(){
   
   document.getElementById("borrar_carta").style.display = "none";
   document.getElementById("victory_screen").style.display = "none";
-  document.getElementById("battle_stage").style.display="none";
-  document.getElementById("seleccion_de_enemigo").style.display="inherit";
+  // document.getElementById("battle_stage").style.display="none";
+  // document.getElementById("seleccion_de_enemigo").style.display="inherit";
+  go_to_section( 'seleccion_de_enemigo','battle_stage');
 
   document.getElementById("mazo").innerHTML = " ";
   document.getElementById("mazo_a_borrar").innerHTML = " "; 
@@ -517,18 +520,28 @@ function volver_seleccion_enemigos(){
   
 }
 
-function go_to_seleecion_de_enemigos(){
+/* function go_to_seleecion_de_enemigos(){
 
   document.getElementById("personaje_seleccionado").style.display="none";
   document.getElementById("seleccion_de_enemigo").style.display="inherit";
 
 
 
+} */
+function go_to_section(a,b,c){
+  if( c =="flex"){
+    document.getElementById(a).style.display="none";
+document.getElementById(b).style.display="flex";
+  }
+  else{ document.getElementById(a).style.display="none";
+document.getElementById(b).style.display="inherit";}
+
 }
 function play(){
     //document.getElementById("personaje_seleccionado").style.display="none";
-    document.getElementById("seleccion_de_enemigo").style.display="none";
-    document.getElementById("battle_stage").style.display="inherit";
+/*     document.getElementById("seleccion_de_enemigo").style.display="none";
+    document.getElementById("battle_stage").style.display="inherit"; */
+    go_to_section( 'seleccion_de_enemigo','battle_stage');
     //show_enemy("enemy_1", "enemy_2");
     
 
