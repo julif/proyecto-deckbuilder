@@ -218,15 +218,41 @@
     </div>
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
+<style>
+    .personaje_imagen{
+        background-color: #89cbff;
+        width: 40%;
+
+
+        display: flex;
+    justify-content: center;
+      }
+      .personaje_imagen img{
+        height: 100%;
+      }
+      .personaje_datos{
+        background-color: #944141;
+        width: 60%;
+
+        overflow: auto;
+      }
+</style>
   <section id="personaje_seleccionado" style="display: none;">
     <div class="top-section"></div>
-      <div class="content-section">
-        <h3 id="char"></h3>
+      <div class="content-section" style="display: flex;">
+        <div class="personaje_imagen" id="personaje_img" >1</div>
+        <div  class="personaje_datos" >
+          <h3 id="char"></h3>
         <p id="mazo_inicial_div"></p>
+          <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
+
+        </div>
+        <!-- <h3 id="char"></h3>
+        <p id="mazo_inicial_div"></p> -->
       </div>
       <div class="bottom-section">
         <button onclick="back_personajes()" > volver a seleccion de personajes</button>
-        <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
+        
       </div>
   </section>
   <!--  mapa de enemigos  ------------------------------------------------------------------ -->
@@ -415,7 +441,8 @@ var char_div=  document.getElementById("char");
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-        // char_div.innerHTML= "  <img  src='img/1.png' style='width: 100px;'></br> Personaje 1: Bunny </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         document.getElementById("personaje_img").innerHTML="<img  src='img/1.png'>";
+         char_div.innerHTML= "  <h1> Bunny </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/1.png";
         
 
@@ -437,7 +464,8 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
-         char_div.innerHTML= "<img  src='img/2.png'></br>Personaje 2: Shacta </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         document.getElementById("personaje_img").innerHTML="<img  src='img/2.png'>";
+         char_div.innerHTML= "<h1>Shacta </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/2.png";
          var cartas_iniciales = [
            "curacion", 
@@ -456,7 +484,8 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
         max_hand_Size = 5;  
-        char_div.innerHTML= "<img  src='img/3.png'></br>Personaje 2: Nero </br> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+        document.getElementById("personaje_img").innerHTML="<img  src='img/3.png'>";
+        char_div.innerHTML= "<h1> Nero </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
         document.getElementById("player_img_div").src="img/3.png";
 
         var cartas_iniciales = [
