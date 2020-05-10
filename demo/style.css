@@ -243,7 +243,7 @@ carta{
 
     .normal_enemy{width: 100px !important; height: auto; }
     .big_enemy{width: 150px !important; height: auto; }
-    .boss_enemy{width: 200px !important; height: auto; }
+    .boss_enemy{width: 210px !important; height: auto; }
 
     carta {margin-top: 2px; width: 72px;}
     /* .drop {
