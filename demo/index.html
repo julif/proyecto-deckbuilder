@@ -209,9 +209,9 @@
 
     <div class="top-section"></div>
     <div class="content-section">
-      <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/bunny.jpg&quot;);"> seleccionar personaje 1 </div>
-      <div id="char_2" class="selectable_character"  style="background-image: url(&quot;img/bunny2.jpg&quot;);"> seleccionar personaje 2 </div>
-      <div id="char_3" class="selectable_character" style="background-image: url(&quot;img/bunny3.jpg&quot;);"> seleccionar personaje 3 </div>
+      <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/img_01.png&quot;);"> seleccionar personaje 1 </div>
+      <div id="char_2" class="selectable_character"  style="background-image: url(&quot;img/img_02.png&quot;);"> seleccionar personaje 2 </div>
+      <div id="char_3" class="selectable_character" style="background-image: url(&quot;img/img_03.png&quot;);"> seleccionar personaje 3 </div>
     </div>
     <div class="bottom-section">
       <button onclick="go_to_section( 'seleccion_de_personajes','main-menu','flex')" > regresar al menu </button>
@@ -266,6 +266,7 @@
           <button onclick="show_enemy('enemy_1'); play()" > slime 1 </button>
           <button onclick="show_enemy('enemy_2'); play()" > slime 2 </button>
           <button onclick="show_enemy('enemy_1','enemy_2'); play()" > ambos slimes </button>
+          <button onclick="show_enemy('enemy_3'); play()" > mini-boss </button>
        </div>
       </div>
       <div class="bottom-section"></div>
@@ -401,8 +402,9 @@ function precargar_imagenes(a){
   var especific_value = 50;
 
   var enemigos = [
-    { name: 'slime 1', id: "enemy_1", enemy_initial_health: 100, enemy_img: 'img/4g.png'  },
-    { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'img/5g.png'}
+    { name: 'slime 1', id: "enemy_1", enemy_initial_health: 100, enemy_class: 'normal_enemy'  ,enemy_img: 'img/4g.png'  },
+    { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200,  enemy_class: 'big_enemy'  ,enemy_img: 'img/5g.png'},
+    { name: 'mini-boss', id: "enemy_3", enemy_initial_health: 500,  enemy_class: 'boss_enemy'  ,enemy_img: 'img/6g.png'}
   ];
   // { name: 'slime 2', id: "enemy_2", enemy_initial_health: 200, enemy_img: 'https://opengameart.org/sites/default/files/slime_walk_0.gif'}  'https://opengameart.org/sites/default/files/slime_idle_0.gif'
   var todas_las_cartas = [
@@ -441,9 +443,9 @@ var char_div=  document.getElementById("char");
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-         document.getElementById("personaje_img").innerHTML="<img  src='img/1.png'>";
+         document.getElementById("personaje_img").innerHTML="<img  src='img/img_01.png'>";
          char_div.innerHTML= "  <h1> Bunny </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
-         document.getElementById("player_img_div").src="img/1.png";
+         document.getElementById("player_img_div").src="img/player_sprite_01.png";
         
 
          var cartas_iniciales = [
@@ -464,9 +466,9 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
-         document.getElementById("personaje_img").innerHTML="<img  src='img/2.png'>";
+         document.getElementById("personaje_img").innerHTML="<img  src='img/img_02.png'>";
          char_div.innerHTML= "<h1>Shacta </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
-         document.getElementById("player_img_div").src="img/2.png";
+         document.getElementById("player_img_div").src="img/player_sprite_02.png";
          var cartas_iniciales = [
            "curacion", 
            "robar", 
@@ -484,9 +486,9 @@ var char_div=  document.getElementById("char");
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
         max_hand_Size = 5;  
-        document.getElementById("personaje_img").innerHTML="<img  src='img/3.png'>";
+        document.getElementById("personaje_img").innerHTML="<img  src='img/img_03.png'>";
         char_div.innerHTML= "<h1> Nero </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
-        document.getElementById("player_img_div").src="img/3.png";
+        document.getElementById("player_img_div").src="img/player_sprite_03.png";
 
         var cartas_iniciales = [
           "curacion", 
@@ -723,9 +725,10 @@ for (i = 0; i < player_loot; i++) {
         var firstObj = (results.length > 0) ? results[0] : null;
 
         enemy_img = firstObj.enemy_img;
+        enemy_class = firstObj.enemy_class;
         enemy_initial_health = firstObj.enemy_initial_health;
 
-      document.getElementById("enemys").innerHTML+="<div id='content_drop' ><enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'><p id='pdv_"+ enemy_id +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  width='auto'> </enemy></div>";
+      document.getElementById("enemys").innerHTML+="<div id='content_drop' ><enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'><p id='pdv_"+ enemy_id +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  class='"+ enemy_class +"' width='auto'> </enemy></div>";
     }
 
   }// show_enemy();
@@ -1011,6 +1014,27 @@ if (element =="enemy_1") {
          // setTimeout( new_turn(), 500);
          
           vida_jugador = vida_jugador-10;
+          console.log("ataque normal de slime 2");
+         }
+  
+}
+//ataques enemigo 2
+else if (element =="enemy_3") {
+  var aleatorio = Math.round(Math.random()*10);
+         
+  if (aleatorio == 1 ) {
+    vida_jugador = vida_jugador-50;
+          console.log("super ataque 2");
+}
+         else if( aleatorio <= 5 &&  aleatorio > 1){ //50%
+
+          vida_jugador = vida_jugador-40;
+          console.log("ataque pesado de slime 2");
+         }
+         else{
+         // setTimeout( new_turn(), 500);
+         
+          vida_jugador = vida_jugador-30;
           console.log("ataque normal de slime 2");
          }
   

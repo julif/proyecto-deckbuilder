@@ -209,6 +209,7 @@ carta{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 #enemys{    display: flex;}
 
@@ -239,6 +240,11 @@ carta{
     #bottom {height: 40%;}
 
     #top img{ width: 100px; height: auto;}
+
+    .normal_enemy{width: 100px !important; height: auto; }
+    .big_enemy{width: 150px !important; height: auto; }
+    .boss_enemy{width: 210px !important; height: auto; }
+
     carta {margin-top: 2px; width: 72px;}
     /* .drop {
 
@@ -247,4 +253,10 @@ carta{
     #content_drop{ height: 200px; }
     #jugador{ height: 207px; }
     #descarte {padding-right: 10px;}
+
+
+    #player_section, #enemy_section {
+
+        align-items: flex-end;
+    }
   }
