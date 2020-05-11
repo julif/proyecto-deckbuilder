@@ -1,5 +1,5 @@
 //version
-$("div.version").html("v 0.2.28");
+$("div.version").html("v 0.2.29");
 
 
 // $("#precarga_img_splash-art").load(function(){

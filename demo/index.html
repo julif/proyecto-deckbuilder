@@ -152,7 +152,7 @@
     <img src="img/logo.png"  style="width: 100%;filter: brightness(0);margin-bottom: 60px;" >
     <!-- <button onclick="  document.getElementById('main-menu').style.display='none'; document.getElementById('seleccion_de_personajes').style.display='inherit';" > jugar </button> -->
     <div style="display: grid;">
-  <button onclick="go_to_section( 'main-menu','seleccion_de_personajes')"  style="height: 40px;    border: none;
+  <button onclick="go_to_section( 'main-menu','seleccion_de_personajes');personajeID = 'char_1'; select_personaje();"  style="height: 40px;    border: none;
   background-color: #7295d0;
   color: white;
   font-size: 20px;"> jugar </button>
@@ -164,16 +164,7 @@
   <section id="seleccion_de_personajes" style="display: none; "> 
     <!-- <h2>Seleccionar personaje:</h2>  -->
     <style>
-      .selectable_character{
-        background-color: #0000005e;
-        margin: 5px;
-    /* height: 280px; */
-    /* width: 150px; */
-    width: 20%;
-    background-size: cover;
-    background-position: center;
-      }
-      
+  /*  */
     </style>
     <!-- <div style="background-color: #eabcbc;display: flex;justify-content: center;">
      
@@ -189,12 +180,18 @@
       .top-section{
         height: 10%;
         width:100%;
-        background-color: black;
+       /* background-color: black; */
+
+  background-image: url("img/top_background.png");
+
+background-position: bottom;
+background-size: cover;
+
       }
       .content-section{
         height: 80%;
         width:100%;
-        background-color: grey;
+        /* background-color: grey; */
 
         display: flex;
     justify-content: center;
@@ -202,32 +199,182 @@
       .bottom-section{
         height: 10%;
         width:100%;
-        background-color: black;
+         /* background-color: black; */
+  background-image: url("img/bottom_background.png");
+
+background-position: top;
+background-size: cover;
       }
+
+
+
+
+      #seleccion_de_personajes, #personaje_seleccionado, #seleccion_de_enemigo {
+    /* background-color: #ffffff; */
+    background-color: #4586a9;
+    background-image: url(img/fondo_figurageometrica2.png);
+    background-position: center;
+    background-size: contain;
+}
+
+      .personajes_seleccion {
+/* background-color: #3a759e; */
+/* width: 7%; */
+/* padding: 10px; */
+display: grid;
+padding: 1rem;
+grid-gap: 1rem;
+grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+/* grid-template-rows: repeat(2, 150px); */
+grid-template-rows: repeat(8, 100px);
+font-size: 2rem;
+overflow: auto;
+}
+
+.personajes_seleccion div {
+background-color: rebeccapurple;
+color: white;
+padding: 1rem;
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+background-size: cover;
+background-position: center;
+background-repeat: no-repeat;
+
+/* border: 8px #2a353a solid; */
+border: 8px #000000 solid;
+cursor: pointer;
+}
+.personajes_seleccion div:hover {
+    box-shadow: 0 0 0px 4px #2face0;
+}
+ .active{ 
+border: 8px #ffa93e solid !important;
+box-shadow: none !important;
+}
+.personaje_imagen {
+    width: 40%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    font-family: fantasy;
+    font-size: 3vw;
+}
+.personaje_datos {
+    /* background-color: #3a759e; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 54%;
+    /* background-color: #0e384e; */
+}
+.datos_container {
+    display: block;
+    text-align: center;
+    /* background-color: black; */
+    background-color: black;
+    color: white;
+    /* padding: 30px; */
+    border-radius: 32px;
+    /* width: 325px; */
+    width: 90%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (max-width: 900px) {
+/* .personaje_imagen {
+background-color: red;
+width: 40%;
+} */
+.personaje_datos {
+width: 47%;
+}
+.personajes_seleccion{    grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));grid-template-rows: repeat(8, 50px);}
+.datos_container {
+ 
+  border-radius: 15px;
+
+}
+.titulo{
+  font-size: 4vw;
+  text-shadow: 1px 1px 0 #000,
+  -1px 1px 0 #000,
+  1px -1px 0 #000,
+  -1px -1px 0 #000,
+  0px 1px 0 #000,
+  0px -1px 0 #000,
+  -1px 0px 0 #000,
+  1px 0px 0 #000,
+  2px 2px 0 #000,
+  -2px 2px 0 #000,
+  2px -2px 0 #000,
+  -2px -2px 0 #000,
+  0px 2px 0 #000,
+  0px -2px 0 #000,
+  -2px 0px 0 #000,
+  2px 0px 0 #000,
+  1px 2px 0 #000,
+  -1px 2px 0 #000,
+  1px -2px 0 #000,
+  -1px -2px 0 #000,
+  2px 1px 0 #000,
+  -2px 1px 0 #000,
+  2px -1px 0 #000,
+  -2px -1px 0 #000;}
+.personajes_seleccion div{  border: 4px black solid; }
+.active{ border: 4px #ffa93e solid !important;}
+
+
+
+}
     </style>
 
 
     <div class="top-section"></div>
-    <div class="content-section">
-      <div id="char_1" class="selectable_character"  style="background-image: url(&quot;img/img_01.png&quot;);"> seleccionar personaje 1 </div>
-      <div id="char_2" class="selectable_character"  style="background-image: url(&quot;img/img_02.png&quot;);"> seleccionar personaje 2 </div>
-      <div id="char_3" class="selectable_character" style="background-image: url(&quot;img/img_03.png&quot;);"> seleccionar personaje 3 </div>
+    <div class="content-section" style="display: flex;">
+      <div class="personajes_seleccion">
+        <div id="char_1"  class="selectable_character active"  style="background-image: url( &quot;img/icon_01.png&quot;);" ></div>
+        <div id="char_2" class="selectable_character"  style="background-image: url( &quot;img/icon_02.png&quot;);"></div>
+        <div id="char_3" class="selectable_character"  style="background-image: url( &quot;img/icon_03.png&quot;);"></div>
+      </div>
+      <!--  -->
+      <div class="personaje_imagen" id="personaje_img" style="background-image: url(&quot;img/img_01.png&quot;);" > <div class="nombre"></div> </div>
+      <div  class="personaje_datos" > 
+        <div class="datos_container">
+          <div>
+            <div class="titulo" id="char">Personaje 1</div>
+            <p> texto de el personaje </p>
+            <button onclick="go_to_section( 'seleccion_de_personajes','seleccion_de_enemigo')" > continuar </button>
+          </div>
+        </div>
+      </div>
+      
+     
+
     </div>
     <div class="bottom-section">
       <button onclick="go_to_section( 'seleccion_de_personajes','main-menu','flex')" > regresar al menu </button>
+      
     </div>
   </section>
 <!--  personaje -------------------------------------------------------------------------- -->
 <style>
-    .personaje_imagen{
+    /* .personaje_imagen{
         background-color: #89cbff;
         width: 40%;
 
 
         display: flex;
     justify-content: center;
-      }
-      .personaje_imagen img{
+      } */
+      /* .personaje_imagen img{
         height: 100%;
       }
       .personaje_datos{
@@ -235,14 +382,14 @@
         width: 60%;
 
         overflow: auto;
-      }
+      } */
 </style>
   <section id="personaje_seleccionado" style="display: none;">
     <div class="top-section"></div>
       <div class="content-section" style="display: flex;">
         <div class="personaje_imagen" id="personaje_img" >1</div>
         <div  class="personaje_datos" >
-          <h3 id="char"></h3>
+          <!-- <h3 id="char"></h3> -->
         <p id="mazo_inicial_div"></p>
           <button onclick="go_to_section( 'personaje_seleccionado','seleccion_de_enemigo')" > enemigos </button>
 
@@ -431,8 +578,8 @@ console.log(todas_las_cartas);
     }));
     function select_personaje() {
 
-document.getElementById("seleccion_de_personajes").style.display="none";
-document.getElementById("personaje_seleccionado").style.display="inherit";
+// document.getElementById("seleccion_de_personajes").style.display="none";
+// document.getElementById("personaje_seleccionado").style.display="inherit";
 
 var char_div=  document.getElementById("char");
     switch (personajeID) { 
@@ -443,8 +590,16 @@ var char_div=  document.getElementById("char");
           
          max_vida_jugador = 200;
          vida_jugador =  max_vida_jugador;
-         document.getElementById("personaje_img").innerHTML="<img  src='img/img_01.png'>";
-         char_div.innerHTML= "  <h1> Bunny </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+
+         document.getElementById("char_1").classList.remove("active");
+         document.getElementById("char_2").classList.remove("active");
+         document.getElementById("char_3").classList.remove("active");
+
+         document.getElementById("char_1").classList.add("active");
+        
+        //  document.getElementById("personaje_img").style.backgroundImage="<img  src='img/img_01.png'>";
+         document.getElementById("personaje_img").style.backgroundImage = "url('img/img_01.png')";
+         char_div.innerHTML= "  <h1> Personaje 1 </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/player_sprite_01.png";
         
 
@@ -461,13 +616,19 @@ var char_div=  document.getElementById("char");
 
       break
       case "char_2":
+
+      document.getElementById("char_1").classList.remove("active");
+         document.getElementById("char_2").classList.remove("active");
+         document.getElementById("char_3").classList.remove("active");
+
+         document.getElementById("char_2").classList.add("active");
   
         player_loot= 2 ;
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
          max_hand_Size = 4; 
-         document.getElementById("personaje_img").innerHTML="<img  src='img/img_02.png'>";
-         char_div.innerHTML= "<h1>Shacta </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+         document.getElementById("personaje_img").style.backgroundImage = "url('img/img_02.png')";
+         char_div.innerHTML= "<h1> Personaje 2 </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/player_sprite_02.png";
          var cartas_iniciales = [
            "curacion", 
@@ -481,13 +642,20 @@ var char_div=  document.getElementById("char");
           ];
       break
       case "char_3":
+
+
+      document.getElementById("char_1").classList.remove("active");
+         document.getElementById("char_2").classList.remove("active");
+         document.getElementById("char_3").classList.remove("active");
+
+         document.getElementById("char_3").classList.add("active");
        
         player_loot= 1 ;
         max_vida_jugador = 300;
          vida_jugador =  max_vida_jugador;
-        max_hand_Size = 5;  
-        document.getElementById("personaje_img").innerHTML="<img  src='img/img_03.png'>";
-        char_div.innerHTML= "<h1> Nero </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
+        max_hand_Size = 4;  
+        document.getElementById("personaje_img").style.backgroundImage = "url('img/img_03.png')";
+        char_div.innerHTML= "<h1>  Personaje 3 </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
         document.getElementById("player_img_div").src="img/player_sprite_03.png";
 
         var cartas_iniciales = [
