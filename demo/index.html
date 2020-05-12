@@ -25,7 +25,26 @@
      .pdv{
        color: white;
        background-color: red;
+       /* padding: 5px; */
+       min-height: 18px;
+       /* position: absolute; */
+       min-height: 18px;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 1;
      }
+     .pdv2 {
+      width: 100%;
+    background-color: #ffffff;
+    background-color: #ff4646;
+    /* background-color: #9e9494; */
+    height: 100%;
+    position: absolute;
+    -webkit-transition: width 1s;
+    transition: width 1.2s;
+    z-index: 0;
+}
     </style>
     <style>
       .modal {
@@ -420,12 +439,49 @@ width: 47%;
       <div class="bottom-section"></div>
   </section>
 <!--  battle stage ----------------------------------------------------------------------- -->
+<style>
+  .pdv_container{
+    background-color: #461717;
+    border: 4px black solid;
+    /* text-align: center; */
+    position: relative;
+    overflow: hidden;
+    min-height: 22px;
+  }
+  .pdv_numero{
+    color: white;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* background-color: green; */
+    /* text-align: center; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+  }
+</style>
 <section id="battle_stage" style="display: none;">
   <div id="main_container">
     <div id="top">
       <div id="battle_zone" style="display: flex;" class='drop2'>
         <section id="player_section">
-          <div id="jugador"  > <div><div class='pdv' id="pdv_player" > </div>  <img  id="player_img_div" src="img/1.png"> </div> </div>
+          <div id="jugador"  > 
+            <div>
+
+            
+             <div class="pdv_container">
+              <span class="pdv_numero" >
+                <span id="pdv_player_number"></span><span id="pdv_player_max_number"></span>
+            </span>
+            <div class='pdv2' id="pdv_player_fondo" ></div>
+               <div class='pdv' id="pdv_player" ></div>
+              <!-- <div  id="pdv_player_number" >numero</div> -->
+             </div>
+              
+               <img  id="player_img_div" src="img/1.png"> 
+            </div> 
+          </div>
         </section>
         <!-- <section style="background-color: #ff00002e;width: 30%;"></section> -->
         <section id="enemy_section">
@@ -599,6 +655,7 @@ var char_div=  document.getElementById("char");
          document.getElementById("char_1").classList.add("active");
         
         //  document.getElementById("personaje_img").style.backgroundImage="<img  src='img/img_01.png'>";
+       
          document.getElementById("personaje_img").style.backgroundImage = "url('img/img_01.png')";
          char_div.innerHTML= "  <h1> Personaje 1 </h1> player loot: "+ player_loot +" </br> vida jugador: "+ vida_jugador;
          document.getElementById("player_img_div").src="img/player_sprite_01.png";
@@ -674,8 +731,8 @@ var char_div=  document.getElementById("char");
         char_div.innerHTML= " Error ";
       }
 
-
-
+ 
+     // document.getElementById("pdv_player_max_number").innerHTML= " / " +max_vida_jugador;// maxima vida de el jugador 
 
 
  // crear el array  de mazo inicial ------------------
@@ -897,7 +954,7 @@ for (i = 0; i < player_loot; i++) {
         enemy_class = firstObj.enemy_class;
         enemy_initial_health = firstObj.enemy_initial_health;
 
-      document.getElementById("enemys").innerHTML+="<div id='content_drop' ><enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'><p id='pdv_"+ enemy_id +"' class='pdv'>"+ enemy_initial_health +"</p><img src="+ enemy_img +"  class='"+ enemy_class +"' width='auto'> </enemy></div>";
+      document.getElementById("enemys").innerHTML+="<div id='content_drop' ><enemy class='drop' initial_health='"+ enemy_initial_health +"'  health='"+ enemy_initial_health +"' id="+ enemy_id +" style='display: inline-block;'>  <div class='pdv_container'> <span class='pdv_numero' ><span  id='pdv_"+ enemy_id +"_number'>"+ enemy_initial_health +"</span></span><div class='pdv2'  id='pdv_"+ enemy_id +"_fondo' ></div><div id='pdv_"+ enemy_id +"' class='pdv'></div></div><img src="+ enemy_img +"  class='"+ enemy_class +"' width='auto'> </enemy></div>";
     }
 
   }// show_enemy();
@@ -972,11 +1029,12 @@ for (i = 0; i < player_loot; i++) {
 
             document.getElementById(droptarget.id).setAttribute("health", enemy_health );
             
-            $("#pdv_"+droptarget.id).html( enemy_health );
+            $("#pdv_"+droptarget.id+"_number").html( enemy_health );
+        
             //document.getElementById("#pdv_"+droptarget.id).style.color = "blue";
             var porcentaje_pdv_enemy = parseInt(enemy_health)/parseInt(enemy_initial_health)*100;
             $("#pdv_"+droptarget.id).css({'color':'white','width': porcentaje_pdv_enemy +"%" ,'background':'#ff1700'});//cambiar el css de el droptarget
-
+            $("#pdv_"+droptarget.id+"_fondo").css({'color':'white','width': porcentaje_pdv_enemy +"%" ,});//cambiar el css de el droptarget
 
            if( enemy_health <= 0 ){ 
              //alert("muerto")
@@ -1024,9 +1082,13 @@ for (i = 0; i < player_loot; i++) {
           
 
            
-            document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador 
+            document.getElementById("pdv_player_number").innerHTML= vida_jugador;// vida de el jugador 
+ 
+
+            
             var porcentaje_pdv_jugador = parseInt(vida_jugador)/parseInt(max_vida_jugador)*100;
             $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
+            $("#pdv_player_fondo").css({'color':'white','width': porcentaje_pdv_jugador +"%" });//cambiar el css 
 
             $("#pila_de_descarte").append( "<li class='pila_descarte_card' name='"+ card_name +"' id='"+ card_ID +"' card_value='"+ card_value+"'  target_type='"+ card_target +"'>"+ card_name + "</li>");
              //alert(" drop 2");
@@ -1083,7 +1145,7 @@ for (i = 0; i < player_loot; i++) {
 function new_turn(){
   turno_jugador = true;
 
-  document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador
+  document.getElementById("pdv_player_number").innerHTML= vida_jugador;// vida de el jugador
 
   var elements = $("#mano").find(".draggable"); // busca cada carta dentro de la mano
   var data = Array();
@@ -1211,12 +1273,13 @@ else if (element =="enemy_3") {
          
 
           
-           document.getElementById("pdv_player").innerHTML= vida_jugador;// vida de el jugador 
+           document.getElementById("pdv_player_number").innerHTML= vida_jugador;// vida de el jugador 
            
            var porcentaje_pdv_jugador=   Math.round( parseInt(vida_jugador)/parseInt(max_vida_jugador)*100 );
            /* var porcentaje_pdv_jugador;
            Math.floor(  porcentaje_pdv_jugador = parseInt(vida_jugador)/parseInt(max_vida_jugador)*100 ); */
            $("#pdv_player").css({'color':'white','width': porcentaje_pdv_jugador +"%" ,'background':'#ff1700'});//cambiar el css 
+           $("#pdv_player_fondo").css({'color':'white','width': porcentaje_pdv_jugador +"%" });//cambiar el css 
            
            console.log("vida jugador: " + porcentaje_pdv_jugador+"%");
 
