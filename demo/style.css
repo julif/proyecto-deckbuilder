@@ -236,6 +236,12 @@ carta{
 #player_img_div{ border: 2px dotted #ffa50000; }
 
 @media only screen and (max-width: 800px) {
+
+
+
+  
+
+
     #top {height: 60%;}
     #bottom {height: 40%;}
 

@@ -45,6 +45,19 @@
     transition: width 1.2s;
     z-index: 0;
 }
+
+
+
+@media only screen and (max-width: 800px) {
+
+
+.pdv_container{
+    border: 3px black solid !important;
+
+    min-height: 16px !important;
+}
+
+ }
     </style>
     <style>
       .modal {
@@ -1030,6 +1043,14 @@ for (i = 0; i < player_loot; i++) {
             document.getElementById(droptarget.id).setAttribute("health", enemy_health );
             
             $("#pdv_"+droptarget.id+"_number").html( enemy_health );
+
+            document.getElementById("player_img_div").src="img/char1_figth.png";
+            setTimeout(myFunction, 500)
+            function myFunction() {
+              document.getElementById("player_img_div").src="img/player_sprite_01.png";
+}
+          
+
         
             //document.getElementById("#pdv_"+droptarget.id).style.color = "blue";
             var porcentaje_pdv_enemy = parseInt(enemy_health)/parseInt(enemy_initial_health)*100;
