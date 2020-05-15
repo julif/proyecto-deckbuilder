@@ -454,12 +454,16 @@ width: 47%;
 <!--  battle stage ----------------------------------------------------------------------- -->
 <style>
   .pdv_container{
-    background-color: #461717;
+    /* background-color: #461717; */
     border: 4px black solid;
     /* text-align: center; */
     position: relative;
     overflow: hidden;
     min-height: 22px;
+    background-color: #330b0b9e;
+
+    /* width: 200px; */
+
   }
   .pdv_numero{
     color: white;
@@ -1044,11 +1048,13 @@ for (i = 0; i < player_loot; i++) {
             
             $("#pdv_"+droptarget.id+"_number").html( enemy_health );
 
-            document.getElementById("player_img_div").src="img/char1_figth.png";
-            setTimeout(myFunction, 500)
-            function myFunction() {
-              document.getElementById("player_img_div").src="img/player_sprite_01.png";
-}
+
+            // animacion de pelea
+            // document.getElementById("player_img_div").src="img/char1_figth.png";
+            // setTimeout(myFunction, 500)
+            // function myFunction() {
+            //   document.getElementById("player_img_div").src="img/player_sprite_01.png";
+            // }
           
 
         
