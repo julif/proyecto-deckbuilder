@@ -1,0 +1,29 @@
+/*  Proyecto deckbulider Julif v 0.1 */
+body{
+  margin: 0px auto;
+  padding: 0px;
+  font-family: "proxima-nova",sans-serif;
+}
+html ,body{
+  height: 100%;
+  width: 100%;
+}
+#div_principal{
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+.flex_center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#aspect_ratio_mockup_img{ 
+  height: 56.25vw;
+  max-height: 100%;
+}
+aspect_ratio {
+  position: absolute;
+  background-color: #424b73;
+}
+

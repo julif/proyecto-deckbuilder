@@ -4,11 +4,11 @@ juego web Deckbuilder.
 
 ## proyecto
 
-la idea es hacer videojuego de cartas basado en slay the spire con la estetica de darkest dungeons.
+la idea es hacer videojuego de cartas basado en slay the spire.
 
 ## Autor
 
- - [Julian Filardi](http://julifweb.com/)
+ - [Julian Filardi](https://julif.github.io/)
 
 ## Licencia
 
