@@ -19,6 +19,14 @@
       margin: 0px auto;
       font-family: "proxima-nova",sans-serif;
       background-color: #243140;
+
+      -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
     }
     carta{
       display: block;
@@ -32,7 +40,11 @@
     border: 3px solid black;
     cursor: pointer;
     }
-    .drop_zone{
+    #enemigos{
+      display: flex;
+      padding: 10px;
+    }
+    enemigo{
       background-color: #ad3d3d;
     height: 150px;
     width: 100px;
@@ -49,15 +61,9 @@
   </style>
 </head>
 <body>
-  <h1>version dragg 0.1.2 </h1> 
-  <p style="color: #8c9eb3;"> enemigos multiples </p>
-  <div style="
-  display: flex;
-  padding: 10px;
-">
-<div class="drop_zone" target="vida_enemiga" variable="puntos_vida_enemigo">  <enemigo   id="vida_enemiga"></enemigo> </div>
-<div class="drop_zone" target="vida_enemiga2" variable="puntos_vida_enemigo2">   <enemigo   id="vida_enemiga2"></enemigo>  </div>
-</div>
+  <h1>version dragg 0.1.3.2 </h1> 
+  <p style="color: #8c9eb3;"> cambiando .dropzone por enemigo  </p>
+  <div id="enemigos" ></div>
 <mano>
   <carta> carta </carta>
   <carta> carta </carta>
@@ -66,78 +72,71 @@
 
 </body>
 <script type="text/javascript">
-    var puntos_vida_enemigo = 1;
-    document.getElementById("vida_enemiga").innerHTML = puntos_vida_enemigo;
-
-    var puntos_vida_enemigo2 = 1;
-    document.getElementById("vida_enemiga2").innerHTML = puntos_vida_enemigo2;
-
- /*    function reducir_vida_rival(e) {
-      puntos_vida_enemigo = puntos_vida_enemigo - 1;
-      document.getElementById("vida_enemiga").innerHTML = puntos_vida_enemigo;
-      e.remove();
-
-      console.log( this);
-    } */
-
-       //------------
-       function reducir_vida_rival(a,b) {
-      a = a - 1;
-      document.getElementById(b).innerHTML = a; 
-      event_target.remove();
-    }
-
-    // ---------------------------------------------------------------------------------------------------
-    // ------------------------ dragg and drop para computadora ------------------------------------------
-    // ---------------------------------------------------------------------------------------------------
-    var event_target;
-    //timer para click mobile
-    var timer;
-    var touchDuration = 115;
-    var long_touch = false;
-
-    $('carta').draggable({
-      appendTo: "body",
-      containment: "window",
-      cursor: "move",
-      helper: "clone",
-      revert: true,
-      revertDuration: 0
-    });
-    //click
-    $('carta').click(function(){ alert("click"); });
-    //dragg start
-    $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0.2 ; event_target = event.target;  
-      firstY = event.clientY;  
-      firstX = event.clientX;  
-      long_touch = false; timer = setTimeout(function () {long_touch = true;}, touchDuration);  });
-    //dragg stop
-    $( "body" ).on( ".carta dragstop", function( event, ui ) { event.target.style.opacity=1; ui.helper.remove(); if (timer) { clearTimeout(timer);} if(  long_touch == false ){ 
-      currentY = event.clientY; 
-      resultadoY = firstY-currentY; 
-      currentX = event.clientX; 
-      resultadoX = firstX-currentX; 
-      /*  si el mouse se mueve mas de 5 pixeles */ 
-      if ( resultadoY > -5 &&  resultadoY < 5 ) {  alert("click Y");  return} 
-      if ( resultadoX > -5 &&  resultadoX < 5 ) {  alert("click X");  return} 
-    
-    } else if(  long_touch == true ){}
-     });
-    //drop
-    $(".drop_zone").droppable({   drop: function(event, ui) { 
-      
-      // reducir_vida_rival(event_target); 
-    
-      reducir_vida_rival(   eval(event.target.attributes.variable.value) ,event.target.attributes.target.value);
-    
-    }   }); 
-
-
-
-
-
-
-
-
+  //arrays
+  // ---------------------------------------------------------------------------------------------------
+  var enemigos = [
+    { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1,},
+    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 1,},
+    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 2,}
+  ];
+  var enemigos_en_tablero = [];
+ // ---------------------------------------------------------------------------------------------------
+ // agregar a los enemigos en el array "enemigos_en_tablero"
+  agregar_enemigos_a_tablero("enemy_1");
+  agregar_enemigos_a_tablero("enemy_2");
+  // mostrar enemigos en el tablero
+  enemigos_en_tablero.forEach(mostrar_enemigo_en_tablero);
+// ---------------------------------------------------------------------------------------------------
+  function agregar_enemigos_a_tablero(id){
+    var enemigo = enemigos.find(enemigo => enemigo.id === id);
+    enemigos_en_tablero.push(enemigo);
+  }
+  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > "+ enemigo.nombre +"</br>"+ enemigo.puntos_de_vida +" </enemigo>";}
+   
+  //------------
+  //a = id del enemigo
+  function reducir_vida_rival(a) {
+    var enemigo = enemigos_en_tablero.find(enemigo => enemigo.id === a);
+    enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
+    document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
+    event_target.remove();
+  }
+  // ---------------------------------------------------------------------------------------------------
+  // ------------------------ dragg and drop para computadora ------------------------------------------
+  // ---------------------------------------------------------------------------------------------------
+  var event_target;
+  //timer para click mobile
+  var timer;
+  var touchDuration = 115;
+  var long_touch = false;
+  $('carta').draggable({
+    appendTo: "body",
+    containment: "window",
+    cursor: "move",
+    helper: "clone",
+    revert: true,
+    revertDuration: 0
+  });
+  //click
+  $('carta').click(function(){ alert("click"); });
+  //dragg start
+  $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0.2 ; event_target = event.target;  
+    firstY = event.clientY;  
+    firstX = event.clientX;  
+    long_touch = false; timer = setTimeout(function () {long_touch = true;}, touchDuration);  });
+  //dragg stop
+  $( "body" ).on( ".carta dragstop", function( event, ui ) { event.target.style.opacity=1; ui.helper.remove(); if (timer) { clearTimeout(timer);} if(  long_touch == false ){ 
+    currentY = event.clientY; 
+    resultadoY = firstY-currentY; 
+    currentX = event.clientX; 
+    resultadoX = firstX-currentX; 
+    /*  si el mouse se mueve mas de 5 pixeles */ 
+    if ( resultadoY > -5 &&  resultadoY < 5 ) {  alert("click Y");  return} 
+    if ( resultadoX > -5 &&  resultadoX < 5 ) {  alert("click X");  return} 
+  
+  } else if(  long_touch == true ){}
+   });
+  //drop
+  $("enemigo").droppable({   drop: function(event, ui) {  reducir_vida_rival( event.target.id);}   }); 
 </script>
 </html>
