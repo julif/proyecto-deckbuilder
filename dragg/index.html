@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <!-- version: dragg 0.2 -->
+  <!-- version: dragg 0.1.4 -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -61,8 +61,8 @@
   </style>
 </head>
 <body>
-  <h1>version dragg 0.1.3.2 </h1> 
-  <p style="color: #8c9eb3;"> cambiando .dropzone por enemigo  </p>
+  <h1>version dragg 0.1.4 </h1> 
+  <p style="color: #8c9eb3;"> Reconociendo cuando la vida de un rival llega a 0  </p>
   <div id="enemigos" ></div>
 <mano>
   <carta> carta </carta>
@@ -97,9 +97,20 @@
   //a = id del enemigo
   function reducir_vida_rival(a) {
     var enemigo = enemigos_en_tablero.find(enemigo => enemigo.id === a);
-    enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
-    document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
-    event_target.remove();
+
+
+
+    if (enemigo.puntos_de_vida > 0) {
+      enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
+      document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
+      event_target.remove();
+
+      if (enemigo.puntos_de_vida == 0){document.getElementById(enemigo.id).style.backgroundColor="#282930";}
+      
+    } else {
+      
+    }
+
   }
   // ---------------------------------------------------------------------------------------------------
   // ------------------------ dragg and drop para computadora ------------------------------------------

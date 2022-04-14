@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <!-- version: click 0.2 -->
+  <!-- version: click 0.1.4 -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,8 +72,8 @@ mano {
   <modal id="modal">
     <div id="enemigos_modal"> </div>
   </modal>
- <h1>version click 0.1.3.1.1 </h1> 
- <p style="color: #8c9eb3;"> enemigos multiples </p>
+ <h1>version click 0.1.4 </h1> 
+ <p style="color: #8c9eb3;"> Reconociendo cuando la vida de un rival llega a 0 </p>
  <div id="enemigos" style="
  display: flex;
  padding: 10px;
@@ -116,9 +116,17 @@ mano {
   //------------
   function reducir_vida_rival(a) {
     var enemigo = enemigos_en_tablero.find(enemigo => enemigo.id === a);
-    enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
-    document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
-    event_target.remove();
+    if (enemigo.puntos_de_vida > 0) {
+      enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
+      document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
+      event_target.remove();
+
+      if (enemigo.puntos_de_vida == 0){document.getElementById(enemigo.id).style.backgroundColor="#282930";}
+      
+    } else {
+      
+    }
+
   }
   function mostrar_modal() { document.getElementById("modal").style.display = "flex";  event_target.style.opacity= "0.05";}
   function esconder_modal() { document.getElementById("modal").style.display = "none"; event_target.style.opacity= "1";}
