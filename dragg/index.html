@@ -22,7 +22,7 @@
       /* --enemy-card-width: calc(var(--enemy-card-height) / 1.4); */
     }
 
-    @media only screen and (max-width: 800px) {:root {--card-height: 110px;--enemy-card-height:  150px;}}
+    @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}}
 
     html, body {
     height: 100%;
@@ -57,6 +57,10 @@ img{
       height: 100%;
     width: 100%; 
       background-color: #243140;
+      background-image: url("full_background4.png");
+      background-image: url(full_background4.png);
+    background-position: center;
+    background-size: cover;
     }
     #version{
       position: absolute;
@@ -75,7 +79,7 @@ img{
       display: flex;
       justify-content: center;
       align-items: center;
-      border: 3px solid black;
+      border: 5px solid black;
       cursor: pointer;
       /* background-image: url(1.png); */
       background-position: center;
@@ -83,6 +87,9 @@ img{
 
 
       aspect-ratio: 1/1.4;
+    }
+    carta:hover{
+      margin-bottom: 25px;
     }
     #enemigos{
       display: flex;
@@ -98,7 +105,7 @@ img{
       background-color: #ad3d3d;
       /* height: 150px;
       width: 100px; */
-      border: 3px solid black;
+      border: 6px solid black;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -111,7 +118,7 @@ img{
      
       height: var(--enemy-card-height); 
       aspect-ratio: 1/1.4;
-
+      max-height: 80%;
       /* background-image: url(3.png); */
       background-position: center;
       background-size: cover; 
@@ -121,6 +128,7 @@ img{
       display: flex;
       justify-content: center;
       align-items: center;
+      background-color: #1b2033;
     
     }
 
