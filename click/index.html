@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <!-- version: click 0.1.4 -->
+  <!-- version: click 0.1.4.1 -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,7 @@ mano {
   <modal id="modal">
     <div id="enemigos_modal"> </div>
   </modal>
- <h1>version click 0.1.4 </h1> 
+ <h1>version click 0.1.4.1 </h1> 
  <p style="color: #8c9eb3;"> Reconociendo cuando la vida de un rival llega a 0 </p>
  <div id="enemigos" style="
  display: flex;
@@ -89,9 +89,9 @@ mano {
 <script type="text/javascript">
   //arrays
   var enemigos = [
-    { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1,},
-    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 1,},
-    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 2,}
+    { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1, status: "vivo",},
+    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, status: "vivo",},
+    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, status: "vivo",}
   ];
   var enemigos_en_tablero = [];
   // agregar a los enemigos en el array "enemigos_en_tablero"
@@ -121,7 +121,13 @@ mano {
       document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
       event_target.remove();
 
-      if (enemigo.puntos_de_vida == 0){document.getElementById(enemigo.id).style.backgroundColor="#282930";}
+      if (enemigo.puntos_de_vida == 0){
+        document.getElementById(enemigo.id).style.backgroundColor="#282930";
+        enemigo.status= "muerto";
+      }
+
+      var enemigos_vivos = enemigos_en_tablero.filter(enemigo => enemigo.status === "vivo");
+      if( enemigos_vivos.length == 0){ setTimeout(function(){ alert("victoria!!") }, 500);}
       
     } else {
       
