@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <!-- version: 0.2 -->
+  <!-- version: 0.2.2 -->
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -51,6 +51,8 @@ img{
       -ms-user-select: none; /* Internet Explorer/Edge */
       user-select: none; /* Non-prefixed version, currently
       supported by Chrome, Edge, Opera and Firefox */
+
+      background-color: #060912;
     }
     #contenido{
     display: block;
@@ -179,6 +181,24 @@ img{
 #contenedor:-msRequestFullscreen >  #full #fullwiev {display: none;} /* IE/Edge */
 
 
+
+aspect_ratio {
+    background-color: #b3515194;
+    width: 100%;
+    width: 100vw;
+    height: 56.25vw;
+    max-height: 100vh;
+    max-width: 177.78vh;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+
   </style>
 </head>
 <body id="contenedor" >
@@ -186,11 +206,13 @@ img{
     <img src="expand-solid.svg">  
  
  </button></div>
-  <div id="contenido"> 
+
+
+ <aspect_ratio>
   <!-- <img src="expand-solid.svg"> -->
  
 
-  <div id="version"> v0.2.1 </div>
+  <div id="version"> v0.2.2 </div>
  
   <div id="enemigos" ></div>
   <mano>
@@ -202,6 +224,7 @@ img{
      <carta> carta </carta>
   </mano>
 </div>
+</aspect_ratio>
 </body>
 <script type="text/javascript">
   //arrays
