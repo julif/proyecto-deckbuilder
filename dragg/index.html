@@ -133,6 +133,8 @@ body{
 
 
       aspect-ratio: 1/1.4;
+
+      transition: margin 0.3s;
     }
     .carta:hover{
       margin-bottom: 25px;
@@ -303,9 +305,13 @@ body{
       // document.getElementById('div_principal').style.width=  +"150px";
     
       $('.carta').css('height',height1/3.7 +'px');
+      // $('.carta').css('boxShadow',0 0 0px 5px black);
+      $('.carta').css('box-shadow', '0 0 0px '+ height1/100 +'px black');
 
 
       $('.enemigo').css('height',height1/2.4 +'px');
+
+      $('.enemigo').css('box-shadow', '0 0 0px '+ height1/100 +'px black');
 
 
 
