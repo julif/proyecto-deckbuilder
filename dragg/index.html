@@ -42,18 +42,20 @@
         /* background-color: #ff00008a;     */  }
 
         aspect_ratio {
-    /* background-color: #b3515194; */
-    width: 100%;
-    width: 100vw;
-    height: 56.25vw;
-    max-height: 100vh;
-    max-width: 177.78vh;
+          background-color: #3b508794;
+    /* width: 100%; */
+    /* width: 100vw; */
+    /* height: 56.25vw; */
+    /* max-height: 100vh; */
+    /* max-width: 177.78vh; */
     margin: auto;
+    height: 100%;
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
+    aspect-ratio: 17.9/10;
 }
 
 
@@ -233,15 +235,18 @@ body{
   </head>
   <body id="contenedor"  onresize="myFunction_set()">
     <div id="full">  <button id="fullwiev" onclick="lock('landscape')"><img src="expand-solid.svg"></button></div>
-  
+
     <div id="contenedor_div">
       <img  id="imagen_size1" src="full_background4.png">
       <div id="div_principal">
+
+
+
         <aspect_ratio id="aspect_ratio">
 
-
+          <div id="version"> v0.2.2 </div>
           
-  <div id="version"> v0.2.2 </div>
+
  
   <div id="enemigos" ></div>
   <mano>
