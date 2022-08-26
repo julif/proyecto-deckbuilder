@@ -107,11 +107,12 @@ body{
     left: 5px;
     color: #ffffff40;
     }
-    carta{
+    .carta{
       display: block;
       /* width: var(--card-width); */
-      height: var(--card-height);
-      max-height: 90%;
+      /* height: var(--card-height); */
+      /* height: 10px; */
+      /* max-height: 90%; */
       background: #e2e2e7;
       margin-right: 5px;
       /* margin-left: 5px; */
@@ -129,7 +130,7 @@ body{
 
       aspect-ratio: 1/1.4;
     }
-    carta:hover{
+    .carta:hover{
       margin-bottom: 25px;
     }
     #enemigos{
@@ -170,7 +171,7 @@ body{
       justify-content: center;
       align-items: center;
       /* background-color: #1b2033; */
-      overflow-x: auto;
+      /* overflow-x: auto; */
     
     }
 
@@ -236,7 +237,7 @@ body{
     <div id="contenedor_div">
       <img  id="imagen_size1" src="full_background4.png">
       <div id="div_principal">
-        <aspect_ratio>
+        <aspect_ratio id="aspect_ratio">
 
 
           
@@ -244,12 +245,13 @@ body{
  
   <div id="enemigos" ></div>
   <mano>
-    <carta> carta </carta>
-    <carta> carta </carta>
-    <carta> carta </carta>
-     <carta> carta </carta>
-     <carta> carta </carta>
-     <carta> carta </carta>
+    <carta class="carta"> carta </carta>
+    <carta class="carta" > carta </carta>
+    <carta class="carta"> carta </carta>
+     <carta class="carta"> carta </carta>
+     <carta class="carta"> carta </carta>
+     <carta class="carta"> carta </carta>
+     <carta class="carta"> carta </carta>
   </mano>
 </div>
         </aspect_ratio>
@@ -271,6 +273,18 @@ body{
       
       document.getElementById('div_principal').style.width= width1 +"px";
       document.getElementById('div_principal').style.height= height1 +"px";
+
+
+
+
+      // document.getElementById('div_principal').style.width=  +"150px";
+    
+      $('.carta').css('height',height1/3.7 +'px');
+
+
+      $('.enemigo').css('height',height1/2.4 +'px');
+
+
     }
   </script>
 
@@ -296,7 +310,7 @@ body{
     var enemigo = enemigos.find(enemigo => enemigo.id === id);
     enemigos_en_tablero.push(enemigo);
   }
-  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > "+ enemigo.nombre +"</br>"+ enemigo.puntos_de_vida +" </enemigo>";}
+  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' class='enemigo' > "+ enemigo.nombre +"</br>"+ enemigo.puntos_de_vida +" </enemigo>";}
    
   //------------
   //a = id del enemigo
@@ -376,5 +390,12 @@ function lock(orientation) {
   fullScreen();
    screen.orientation.lock(orientation);
 }
+
+
+
+
+
+
+
 </script>
 </html>
