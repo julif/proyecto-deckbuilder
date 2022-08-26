@@ -1,0 +1,330 @@
+<!doctype html>
+<html>
+<head>
+  <!-- version: 0.2.2 -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!--  dragg -->
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="jquery.ui.touch_punch.min.js.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    :root {
+      --card-height: 190px;
+        /* 110px */
+             /* 200px */
+      /* --card-width: calc(var(--card-height) / 1.4); */
+
+      --enemy-card-height:  260px;
+       /* 150px */
+      /* --enemy-card-width: calc(var(--enemy-card-height) / 1.4); */
+    }
+
+    @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}}
+
+    html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+img{
+  width: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    /* fill: red; */
+    filter: invert(1);
+}
+    body{
+      margin: 0px auto;
+      font-family: "proxima-nova",sans-serif;
+    
+
+      -webkit-touch-callout: none; /* iOS Safari */
+      -webkit-user-select: none; /* Safari */
+      -khtml-user-select: none; /* Konqueror HTML */
+      -moz-user-select: none; /* Old versions of Firefox */
+      -ms-user-select: none; /* Internet Explorer/Edge */
+      user-select: none; /* Non-prefixed version, currently
+      supported by Chrome, Edge, Opera and Firefox */
+
+      background-color: #060912;
+    }
+    #contenido{
+    display: block;
+      height: 100%;
+    width: 100%; 
+      background-color: #243140;
+      background-image: url("full_background4.png");
+      background-image: url(full_background4.png);
+    background-position: center;
+    background-size: cover;
+    }
+    #version{
+      position: absolute;
+    bottom: 5px;
+    left: 5px;
+    color: #ffffff40;
+    }
+    carta{
+      display: block;
+      /* width: var(--card-width); */
+      height: var(--card-height);
+      max-height: 90%;
+      background: #e2e2e7;
+      margin-right: 5px;
+      /* margin-left: 5px; */
+      margin-right: -20px;
+      margin-left: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 5px solid black;
+      cursor: pointer;
+      /* background-image: url(1.png); */
+      background-position: center;
+      background-size: cover;
+
+
+      aspect-ratio: 1/1.4;
+    }
+    carta:hover{
+      margin-bottom: 25px;
+    }
+    #enemigos{
+      display: flex;
+      /* padding: 10px; */
+
+
+      justify-content: center;
+      align-items: center;
+      background-color: #3788d5;
+    height: 70%;
+    }
+    enemigo{
+      background-color: #ad3d3d;
+      /* height: 150px;
+      width: 100px; */
+      border: 6px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      /* margin-right: 5px;
+      margin-left: 5px; */
+      margin: 2%;
+      text-align: center;
+     /*  height: 214px;
+      width: 150px; */
+     
+      height: var(--enemy-card-height); 
+      aspect-ratio: 1/1.4;
+      max-height: 80%;
+      /* background-image: url(3.png); */
+      background-position: center;
+      background-size: cover; 
+    }
+    mano {
+      height: 30%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #1b2033;
+      overflow-x: auto;
+    
+    }
+
+
+
+    #full {
+    background-color: transparent;
+    color: white;
+    /* font-family: sans-serif; */
+    margin: 10px;
+    /* float: right; */
+    position: absolute;
+    /* border-radius: 20%; */
+    right: 0px;
+    /* transition: 0.5s; */
+    /* -webkit-transition: 0.5s; */
+    z-index: 5;
+    top: 0;
+}
+#fullwiev {
+    background-color: black;
+    position: absolute;
+    right: 0px;
+    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    padding-top: 13px;
+    padding-bottom: 13px;
+    border: none;
+    color: #fff;
+    background-color: transparent;
+    cursor: pointer;
+    border-radius: 20%;
+    transition: 0.5s;
+    -webkit-transition: 0.5s;
+    display: inherit;
+    outline: 0;
+    text-decoration: none;
+}
+
+
+    #contenedor:requestFullscreen >   #full #fullwiev {display: none;}
+#contenedor:-moz-full-screen >  #full #fullwiev {display: none;} /* Firefox */
+#contenedor:-webkit-full-screen >  #full #fullwiev {display: none;} /* Chrome, Safari & Opera */
+#contenedor:-msRequestFullscreen >  #full #fullwiev {display: none;} /* IE/Edge */
+
+
+
+aspect_ratio {
+    background-color: #b3515194;
+    width: 100%;
+    width: 100vw;
+    height: 56.25vw;
+    max-height: 100vh;
+    max-width: 177.78vh;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+
+
+  </style>
+</head>
+<body id="contenedor" >
+  <div id="full">  <button id="fullwiev" onclick="lock('landscape')">
+    <img src="expand-solid.svg">  
+ 
+ </button></div>
+
+
+ <aspect_ratio>
+  <!-- <img src="expand-solid.svg"> -->
+ 
+
+  <div id="version"> v0.2.2 </div>
+ 
+  <div id="enemigos" ></div>
+  <mano>
+    <carta> carta </carta>
+    <carta> carta </carta>
+    <carta> carta </carta>
+     <carta> carta </carta>
+     <carta> carta </carta>
+     <carta> carta </carta>
+  </mano>
+</div>
+</aspect_ratio>
+</body>
+<script type="text/javascript">
+  //arrays
+  // ---------------------------------------------------------------------------------------------------
+  var enemigos = [
+    { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1, status: "vivo",},
+    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, status: "vivo",},
+    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, status: "vivo",}
+  ];
+  var enemigos_en_tablero = [];
+ // ---------------------------------------------------------------------------------------------------
+ // agregar a los enemigos en el array "enemigos_en_tablero"
+  agregar_enemigos_a_tablero("enemy_1"); 
+  agregar_enemigos_a_tablero("enemy_2");
+  // mostrar enemigos en el tablero
+  enemigos_en_tablero.forEach(mostrar_enemigo_en_tablero);
+// ---------------------------------------------------------------------------------------------------
+  function agregar_enemigos_a_tablero(id){
+    var enemigo = enemigos.find(enemigo => enemigo.id === id);
+    enemigos_en_tablero.push(enemigo);
+  }
+  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > "+ enemigo.nombre +"</br>"+ enemigo.puntos_de_vida +" </enemigo>";}
+   
+  //------------
+  //a = id del enemigo
+  function reducir_vida_rival(a) {
+    var enemigo = enemigos_en_tablero.find(enemigo => enemigo.id === a);
+    if (enemigo.puntos_de_vida > 0) {
+      enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
+      document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
+      event_target.remove();
+      if (enemigo.puntos_de_vida == 0){
+        document.getElementById(enemigo.id).style.backgroundColor="#282930";
+        // document.getElementById(enemigo.id).style.backgroundBlendMode="saturation";
+        enemigo.status= "muerto";
+        // document.getElementById(enemigo.id).remove();
+      }
+      /* console.log(enemigos_en_tablero) */
+      var enemigos_vivos = enemigos_en_tablero.filter(enemigo => enemigo.status === "vivo");
+   
+      //console.log(enemigos_vivos.length) ; 
+      if( enemigos_vivos.length == 0){ setTimeout(function(){ alert("victoria!!") }, 500);}
+    }
+  }
+  // ---------------------------------------------------------------------------------------------------
+  // ------------------------ dragg and drop para computadora ------------------------------------------
+  // ---------------------------------------------------------------------------------------------------
+  var event_target;
+  //timer para click mobile
+  var timer;
+  var touchDuration = 115;
+  var long_touch = false;
+  $('carta').draggable({
+    appendTo: "body",
+    containment: "window",
+    cursor: "move",
+    helper: "clone",
+    revert: true,
+    revertDuration: 0
+  });
+  //click
+  $('carta').click(function(){ alert("click"); });
+  //dragg start
+  $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0.2 ; event_target = event.target;  
+    firstY = event.clientY;  
+    firstX = event.clientX;  
+    long_touch = false; timer = setTimeout(function () {long_touch = true;}, touchDuration);  });
+  //dragg stop
+  $( "body" ).on( ".carta dragstop", function( event, ui ) { event.target.style.opacity=1; ui.helper.remove(); if (timer) { clearTimeout(timer);} if(  long_touch == false ){ 
+    currentY = event.clientY; 
+    resultadoY = firstY-currentY; 
+    currentX = event.clientX; 
+    resultadoX = firstX-currentX; 
+    /*  si el mouse se mueve mas de 5 pixeles */ 
+    if ( resultadoY > -5 &&  resultadoY < 5 ) {  alert("click Y");  return} 
+    if ( resultadoX > -5 &&  resultadoX < 5 ) {  alert("click X");  return} 
+  
+  } else if(  long_touch == true ){}
+   });
+  //drop
+  $("enemigo").droppable({   drop: function(event, ui) {  reducir_vida_rival( event.target.id);}   }); 
+</script>
+
+<script>
+  // fullscren.js
+  function fullScreen() {
+    // Kind of painful, but this is how it works for now
+    if (document.documentElement.requestFullscreen) {
+    document.getElementById("contenedor").requestFullscreen();
+    } else if (document.documentElement.mozRequestFullScreen) {
+      document.getElementById("contenedor").mozRequestFullScreen();
+    } else if (document.documentElement.webkitRequestFullscreen) {
+      document.getElementById("contenedor").webkitRequestFullscreen();
+    } else if (document.documentElement.msRequestFullscreen) {
+      document.getElementById("contenedor").msRequestFullscreen();
+    }
+}
+function lock(orientation) {
+  fullScreen();
+   screen.orientation.lock(orientation);
+}
+</script>
+</html>
