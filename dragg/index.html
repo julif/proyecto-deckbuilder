@@ -17,10 +17,16 @@
         font-family: 'Rubik', sans-serif;
         background-color: black;
       }
+      .flex_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
       #contenedor_div{
         height: 100%;
         width: 100%;
         background-color: #191525;
+        background-color: #000000;
         position: absolute;
         display: flex;
         justify-content: center;
@@ -71,7 +77,7 @@
       /* --enemy-card-width: calc(var(--enemy-card-height) / 1.4); */
     }
 
-    @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}}
+    /* @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}} */
 
 html, body {
 height: 100%;
@@ -242,6 +248,23 @@ body{
 
 
 
+
+   modal{
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    background-color: #000000b5;
+    display: none;
+    color: white;
+   }
+
+
+
     </style>
   </head>
   <body id="contenedor"  onresize="myFunction_set()">
@@ -250,28 +273,36 @@ body{
     <div id="contenedor_div">
       <img  id="imagen_size1" src="full_background4.png">
       <div id="div_principal">
+        <modal id="modal">
+          <modal_content id="modal_content" class="aspect_ratio flex_center" style="width: 540px; height: 304px;">
+            <div id="modal_text">carta3</div>
+            <button id="cerrar_modal_btn" style="position: absolute;right: 10px;top: 10px;"> cerrar modal </button>
+          </modal_content>
+        </modal>
 
 
 
         <aspect_ratio id="aspect_ratio">
 
-       
           <div id="version"> v0.3 </div>
           
+
+       
+         
 
  
   <div id="enemigos" ></div>
   <mano id="mano">
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
-    <carta class="carta"> carta </carta>
+    <carta class="carta" id="carta_1"> carta </carta>
+    <carta class="carta" id="carta_2"> carta </carta>
+    <carta class="carta" id="carta_3"> carta </carta>
+    <carta class="carta" id="carta_4"> carta </carta>
+    <carta class="carta" id="carta_5"> carta </carta>
+    <carta class="carta" id="carta_6"> carta </carta>
+    <carta class="carta" id="carta_7"> carta </carta>
+    <carta class="carta" id="carta_8"> carta </carta>
+    <carta class="carta" id="carta_9"> carta </carta>
+    <carta class="carta" id="carta_10"> carta </carta>
    
     <!-- <carta class="carta"> carta </carta>
     <carta class="carta"> carta </carta>
@@ -375,6 +406,9 @@ body{
   // ------------------------ dragg and drop para computadora ------------------------------------------
   // ---------------------------------------------------------------------------------------------------
   var event_target;
+  var carta_id;
+
+
   //timer para click mobile
   var timer;
   var touchDuration = 115;
@@ -388,9 +422,12 @@ body{
     revertDuration: 0
   });
   //click
-  $('carta').click(function(){ alert("click"); });
+  $('carta').click(function(){    event_target = event.target;  
+    carta_id =  event.target.id;  $('#modal').css("display", "flex");   $("#modal_text").html( carta_id ); });
   //dragg start
-  $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0 ; event_target = event.target;  
+  $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0 ; 
+    event_target = event.target;  
+    carta_id =  event.target.id;
     firstY = event.clientY;  
     firstX = event.clientX;  
     long_touch = false; timer = setTimeout(function () {long_touch = true;}, touchDuration);  });
@@ -401,8 +438,8 @@ body{
     currentX = event.clientX; 
     resultadoX = firstX-currentX; 
     /*  si el mouse se mueve mas de 5 pixeles */ 
-    if ( resultadoY > -5 &&  resultadoY < 5 ) {  alert("click Y");  return} 
-    if ( resultadoX > -5 &&  resultadoX < 5 ) {  alert("click X");  return} 
+    if ( resultadoY > -5 &&  resultadoY < 5 ) {    $('#modal').css("display", "flex");  return} 
+    if ( resultadoX > -5 &&  resultadoX < 5 ) {     $('#modal').css("display", "flex");  return} 
   
   } else if(  long_touch == true ){}
    });
@@ -488,6 +525,11 @@ margin =  - height1/44 ;
 $('.carta').css('marginRight', margin +'px');
 $('.carta').css('marginLeft', margin +'px');
 }
+
+
+document.getElementById('modal').addEventListener('click', function() {
+      document.getElementById('modal').style.display ="none";
+    }, false);
 
 </script>
 </html>
