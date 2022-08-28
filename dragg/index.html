@@ -11,6 +11,12 @@
     <script src="jquery.ui.touch_punch.min.js.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <style>
+      :root {
+        --card-height: 50px;
+        --enemy-card-height:  260px;
+        --cards-gap:0px;
+        /* --card-width: calc(var(--card-height) / 1.4); */
+      }
       body{
         margin: 0px auto;
         padding: 0px;
@@ -18,10 +24,10 @@
         background-color: black;
       }
       .flex_center {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
       #contenedor_div{
         height: 100%;
         width: 100%;
@@ -45,7 +51,7 @@
 
       #div_principal{
         position: absolute;
-        /* background-color: #ff00008a;     */  }
+        /* background-color: #ff00008a;     */    background-color: #1c92cbe0;  }
 
         aspect_ratio {
           /* background-color: #289eebbd; */
@@ -63,19 +69,16 @@
     right: 0;
     aspect-ratio: 17.9/10;
 }
+/* 
+#div_principal{
+  
+  perspective: 555px;
+}
+aspect_ratio{
 
+  transform: rotateX(49deg);
+} */
 
-
-:root {
-      --card-height: 190px;
-        /* 110px */
-             /* 200px */
-      /* --card-width: calc(var(--card-height) / 1.4); */
-
-      --enemy-card-height:  260px;
-       /* 150px */
-      /* --enemy-card-width: calc(var(--enemy-card-height) / 1.4); */
-    }
 
     /* @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}} */
 
@@ -122,9 +125,9 @@ body{
       /* height: 10px; */
       /* max-height: 90%; */
       background: #e2e2e7;
-/* 
-      margin-right: -20px;
-      margin-left: -20px; */
+      /* width: var(--card-width); */
+      margin-right: var(--cards-gap);
+      margin-left:  var(--cards-gap);
 
       display: flex;
       justify-content: center;
@@ -141,9 +144,14 @@ body{
       aspect-ratio: 1/1.4;
 
       /* transition: margin 0.3s; */
+      /* transition: margin 0.3s; */
+
+ 
     }
     .carta:hover{
-      margin-bottom: 25px;
+      /* margin-bottom: 25px; */
+
+      margin-bottom: var(--card-height);
     }
     #enemigos{
       display: flex;
@@ -153,7 +161,7 @@ body{
       justify-content: center;
       align-items: center;
       /* background-color: #3788d5; */
-      background-color: #289eebbd;
+      /* background-color: #289eebbd; */
 
 
 
@@ -189,7 +197,7 @@ body{
       justify-content: center;
       align-items: center;
       /* background-color: #1b2033; */
-      background-color: #1b2033db;
+      /* background-color: #1b2033db; */
       /* overflow-x: auto; */
     
     }
@@ -297,12 +305,14 @@ body{
     <carta class="carta" id="carta_2"> carta </carta>
     <carta class="carta" id="carta_3"> carta </carta>
     <carta class="carta" id="carta_4"> carta </carta>
-    <carta class="carta" id="carta_5"> carta </carta>
+   <carta class="carta" id="carta_5"> carta </carta>
+
+   
     <carta class="carta" id="carta_6"> carta </carta>
     <carta class="carta" id="carta_7"> carta </carta>
     <carta class="carta" id="carta_8"> carta </carta>
     <carta class="carta" id="carta_9"> carta </carta>
-    <carta class="carta" id="carta_10"> carta </carta>
+    <carta class="carta" id="carta_10"> carta </carta>  
    
     <!-- <carta class="carta"> carta </carta>
     <carta class="carta"> carta </carta>
@@ -346,6 +356,13 @@ body{
 
 
 
+/* $(".carta").hover(function(){
+  $(this).css("margin-bottom",  height1/15 +'px');
+  }, function(){
+  $(this).css("margin-bottom", "0px");
+});
+ */
+ $("body").get(0).style.setProperty("--card-height",  height1/20 +'px');
 
       acomodar_cartas();
 
@@ -494,14 +511,14 @@ case 1:
 margin = 0;
 break;
 case 2:
-margin = height1/40 ;
+margin =0 ;
 
 break;
 case 3:
-margin = height1/80 ;
+margin = 0 ;
 break;
 case 4:
-margin =  height1/80 ;
+margin = 0 ;
 break;
 case 5:
 margin =  - height1/200 ;
@@ -522,8 +539,12 @@ case 10:
 margin =  - height1/44 ;
 }
 
-$('.carta').css('marginRight', margin +'px');
-$('.carta').css('marginLeft', margin +'px');
+// $('.carta').css('marginRight', margin +'px');
+// $('.carta').css('marginLeft', margin +'px');
+
+$("body").get(0).style.setProperty("--cards-gap", margin +'px');
+
+
 }
 
 
