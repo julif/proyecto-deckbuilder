@@ -1,0 +1,269 @@
+:root {
+  --card-height: 20px;
+  --enemy-card-height:  260px;
+  --cards-gap:0px;
+  /* --card-width: calc(var(--card-height) / 1.4); */
+}
+ html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+body{        
+  margin: 0px auto;
+  padding: 0px;
+  font-family: 'Rubik', sans-serif;
+  background-color: black;
+  margin: 0px auto;
+  font-family: "proxima-nova",sans-serif;
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+  supported by Chrome, Edge, Opera and Firefox */
+  background-color: #060912;
+}
+.flex_center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#contenedor_div{
+  height: 100%;
+  width: 100%;
+  background-color: #191525;
+  background-color: #000000;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+#contenedor_div p{
+  color: white;
+}
+img{
+  height: 56.25vw;
+  max-height: 100%;
+}
+#div_principal{position: absolute;background-color: #1c92cbe0; display: none; }
+aspect_ratio {
+  /* background-color: #289eebbd; */
+  /* width: 100%; */
+  /* width: 100vw; */
+  /* height: 56.25vw; */
+  /* max-height: 100vh; */
+  /* max-width: 177.78vh; */
+  margin: auto;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  aspect-ratio: 17.9/10;
+ 
+}
+/* 
+#div_principal{
+
+perspective: 555px;
+}
+aspect_ratio{
+
+transform: rotateX(49deg);
+} */
+
+
+/* @media only screen and (max-width: 900px) {:root {--card-height: 110px;--enemy-card-height:  150px;}} */
+
+
+#contenido{
+display: block;
+height: 100%;
+width: 100%; 
+background-color: #243140;
+background-image: url("full_background4.png");
+background-image: url(full_background4.png);
+background-position: center;
+background-size: cover;
+}
+#version{
+position: absolute;
+bottom: 5px;
+left: 5px;
+color: #ffffff40;
+}
+.carta{
+display: block;
+/* width: var(--card-width); */
+/* height: var(--card-height); */
+/* height: 10px; */
+/* max-height: 90%; */
+background: #e2e2e7;
+/* width: var(--card-width); */
+margin-right: var(--cards-gap);
+margin-left:  var(--cards-gap);
+
+display: flex;
+justify-content: center;
+align-items: center;
+
+
+/* box-shadow: 0 0 0px 5px black;  */
+/* cursor: pointer; */
+/* background-image: url(1.png); */
+background-position: center;
+background-size: cover;
+
+
+aspect-ratio: 1/1.4;
+
+/* transition: margin 0.3s; */
+/* transition: margin 0.3s; */
+
+
+}
+.carta:hover{
+/* margin-bottom: 25px; */
+
+margin-bottom: var(--card-height);
+/* z-index: 1000; */
+}
+#enemigos{
+display: flex;
+/* padding: 10px; */
+
+
+justify-content: center;
+align-items: center;
+/* background-color: #3788d5; */
+/* background-color: #289eebbd; */
+
+
+
+height: 70%;
+}
+enemigo{
+background-color: #ad3d3d;
+/* height: 150px;
+width: 100px; */
+/* border: 6px solid black; */
+
+/* box-shadow: 0 0 0px 6px black; */
+display: flex;
+justify-content: center;
+align-items: center;
+/* margin-right: 5px;
+margin-left: 5px; */
+margin: 2%;
+text-align: center;
+/*  height: 214px;
+width: 150px; */
+
+height: var(--enemy-card-height); 
+aspect-ratio: 1/1.4;
+max-height: 80%;
+/* background-image: url(3.png); */
+background-position: center;
+background-size: cover; 
+}
+mano {
+height: 30%;
+display: flex;
+justify-content: center;
+align-items: center;
+/* background-color: #1b2033; */
+/* background-color: #1b2033db; */
+/* overflow-x: auto; */
+
+}
+
+
+
+#full {
+background-color: transparent;
+color: white;
+/* font-family: sans-serif; */
+margin: 10px;
+/* float: right; */
+position: absolute;
+/* border-radius: 20%; */
+right: 0px;
+/* transition: 0.5s; */
+/* -webkit-transition: 0.5s; */
+z-index: 5;
+top: 0;
+}
+#fullwiev {
+background-color: black;
+position: absolute;
+right: 0px;
+padding: 15px;
+padding-top: 15px;
+padding-bottom: 15px;
+padding-top: 13px;
+padding-bottom: 13px;
+border: none;
+color: #fff;
+background-color: transparent;
+cursor: pointer;
+border-radius: 20%;
+transition: 0.5s;
+-webkit-transition: 0.5s;
+display: inherit;
+outline: 0;
+text-decoration: none;
+}
+
+
+#contenedor:requestFullscreen >   #full #fullwiev {display: none;}
+#contenedor:-moz-full-screen >  #full #fullwiev {display: none;} /* Firefox */
+#contenedor:-webkit-full-screen >  #full #fullwiev {display: none;} /* Chrome, Safari & Opera */
+#contenedor:-msRequestFullscreen >  #full #fullwiev {display: none;} /* IE/Edge */
+
+#fullwiev img{
+
+width: 25px;
+position: absolute;
+top: 10px;
+right: 10px;
+/* fill: red; */
+}
+
+
+
+
+modal{
+height: 100%;
+width: 100%;
+position: absolute;
+z-index: 6;
+display: flex;
+justify-content: center;
+align-items: center;
+display: none;
+background-color: #000000b5;
+display: none;
+color: white;
+}
+
+
+section{
+height: 100%;
+width: 100%;
+
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+#game{
+display: none;
+}
+#victoria{
+background-color: #3c543c;
+display: none;
+}
