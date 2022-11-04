@@ -1,49 +1,63 @@
-<!doctype html >
+<!doctype html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="imagesloaded.pkgd.min.js"></script>
     <!--  dragg -->
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
     <script src="jquery.ui.touch_punch.min.js.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link rel="stylesheet" href="style.css">
-    <style></style>
-  </head>
-  <body id="contenedor"  onresize="myFunction_set()">
-    <div id="full">  <button id="fullwiev" onclick="lock('landscape')"><img src="expand-solid.svg"></button></div>
-    <div id="contenedor_div">
-      <img  id="imagen_guia" src="full_background4.png">
-      <div id="div_principal">
-        <modal id="modal">
-          <modal_content id="modal_content" class="aspect_ratio flex_center" style="width: 540px; height: 304px;">
-            <div id="modal_text">carta3</div>
-            <button id="cerrar_modal_btn" style="position: absolute;right: 10px;top: 10px;"> cerrar modal </button>
-          </modal_content>
-        </modal>
-        <aspect_ratio id="aspect_ratio">
-          <div id="version"> v0.4 </div>
-<!--?  menu    -->
-          <section id="menu" style="background-color: #363e52;"> menu  <button id="menu_btn"> Play </button></section>
-<!--?  game    -->
-          <section id="game">
-            <div id="enemigos" ></div>
-            <button id="btn_robar"> robar </button>
-            <mano id="mano"></mano>
-          </section>
-<!--?  victoria    -->
-          <section id="victoria"> victoria </section>
-        </aspect_ratio>
-      </div>
-      </div>
-  </body>
-  <script src="main.js"></script>
-  <script></script>
-</html>
 
-   <!--?  comentario    -->
-   <!--! comentario    -->
-   <!--TODO  comentario    -->
-   <!--*  comentario    -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body id="contenedor_full"  onresize="myFunction_set()">
+
+  <div id="full">  <button id="fullwiev" onclick="lock('landscape')"><img src="img/expand-solid.svg">  </button></div> 
+
+
+<!--?  menu    -->
+    <section id="menu">  <div id="contenedor">
+      <aspect_ratio_container>   <aspect_ratio style="
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #37486a;
+    " >  
+   <div style="text-align: center;">
+      <P>Proyecto deckbuiler sin nombre</P>
+      <p style="color: #ffffff40;;"> version 0.5.1</p>
+      <button onclick="play()"> Iniciar </button>  
+    </div>
+</aspect_ratio>
+      </div>
+    </section>
+
+    <!--?  game    -->
+    <section id="game"><div id="contenedor"><aspect_ratio_container id="aspect_ratio_container_game">   
+      <div id="top">   </div> 
+
+         
+          <!--?  victoria    -->
+      <div id="modal_victoria"> <div id="victoria_banner"> victoria </div>  </div>
+      <div id="modal"> 
+      <div id="modal_stuff">  <img src="img/cartas/00.png"> <div id="modal_descripcion"><p id="modal_text"> texto </p> </div></div>  
+      </div>
+      <aspect_ratio id="aspect_ratio">  
+      
+
+        <div id="tablero">  
+
+          <div id="enemigos" ></div>
+        
+       </div>
+       <!-- <button id="btn_robar"  style="position: absolute; z-index: 100;"> robar </button> -->
+       <div id="cartas">
+ <!--        <carta class="carta"  id="carta_1"> <div class="carta_texto "> texto </div> </carta> -->
+       </div>
+      </aspect_ratio>
+    </aspect_ratio_container></div></section>
+<script src="main.js"></script>
+</body>
+</html>
