@@ -99,9 +99,11 @@ enemigo {
 }
 
 .enemigo_hover{
-  background-color: #ad3d3d;     
+  /* background-color: #ad3d3d;     
   border: dashed 7px #623131;
-  border:  dashed 7px transparent;
+  border:  dashed 7px transparent; */
+
+  border: dashed 7px #e56d6d;
 }
 #modal_victoria{    position: absolute;
 width: 100%;
@@ -161,6 +163,7 @@ display: none;
 #modal_stuff{
   display: flex;
   height: 45%;
+  width: 90%;
 
   justify-content: center;
   align-items: center;
@@ -179,7 +182,8 @@ display: none;
   width: 500px;
   height: 0%;
   text-align: center;
-  margin-left: 49px;
+  /* margin-left: 49px; */
+  margin-left: 10%;
   pointer-events: all;
 
   /* animation-delay: 0.5s; */
