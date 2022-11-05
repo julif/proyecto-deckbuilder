@@ -1,107 +1,84 @@
 function play(){
-
   document.getElementById('menu').style.display= "none";
   document.getElementById('game').style.display= "inherit";
-
-
-
+  /*  AL EMPEZAR EL JUEGO   ---------------------------------------------- */
   var i = 0;
-  var intervalo_entre_robo = setInterval(myTimer, 300);
+  var intervalo_entre_robo = setInterval(myTimer, 150);
   function myTimer() {
     robar(); 
     i++;
     if (i== 3) {  }
   }
-
-
   myFunction_set();
-
 }
     
-
-
-
-
-
 function acomodar_cartas(){
-
-
-
-
-var height1 = document.getElementById('aspect_ratio').offsetWidth;
-
-
-//contar la cantidad de cartas en mano
-var count = $("#cartas carta").length;
-
-console.log(count);
-
-switch (count) {
-case 0:
-margin = 0;
-break;
-case 1:
-margin = 5;
-break;
-case 2:
-margin =5 ;
-
-break;
-case 3:
-margin = 5 ;
-break;
-case 4:
-margin = 5 ;
-break;
-case 5:
-margin =  5;
-break;
-case 6:
-margin =  5 ;
-break;
-case 7:
-margin =  3 ;
-break;
-case 8:
-margin =  - 2 ;
-break;
-case 9:
-margin =  - 5 ;
-break;
-case 10:
-margin =  - 10;
-}
-
-// $('.carta').css('marginRight', margin +'px');
-// $('.carta').css('marginLeft', margin +'px');
-
-$("body").get(0).style.setProperty("--cards-gap", margin +'px');
-
-
-}
+  var height1 = document.getElementById('aspect_ratio').offsetWidth;
+  //contar la cantidad de cartas en mano
+  var count = $("#cartas carta").length;
+  // console.log(count);
+  switch (count) {
+    case 0:
+      margin = 0;
+    break;
+    case 1:
+      margin = 5;
+    break;
+    case 2:
+      margin =5 ;
+    break;
+    case 3:
+      margin = 5 ;
+    break;
+    case 4:
+      margin = 5 ;
+    break;
+    case 5:
+      margin =  5;
+    break;
+    case 6:
+      margin =  5 ;
+    break;
+    case 7:
+      margin =  3 ;
+    break;
+    case 8:
+      margin =  - 2 ;
+    break;
+    case 9:
+      margin =  - 5 ;
+    break;
+    case 10:
+      margin =  - 10;
+  }
+  // $('.carta').css('marginRight', margin +'px');
+  // $('.carta').css('marginLeft', margin +'px');
+  $("body").get(0).style.setProperty("--cards-gap", margin +'px');
+} //acomodar_cartas()
 
 function myFunction_set(){
-
   var height1 = document.getElementById('aspect_ratio').offsetHeight;
   $("body").get(0).style.setProperty("--card-height",  height1/5 +'px');
 
-  acomodar_cartas();
+  $("body").get(0).style.setProperty("--dynamic-card-title-font-size",  height1/40 +'px');
 
+  
+  acomodar_cartas();
 }
 
-
-
-
-      //arrays
-  // ---------------------------------------------------------------------------------------------------
+//arrays
+// ---------------------------------------------------------------------------------------------------
   var enemigos = [
   { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1, status: "vivo",},
     { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, status: "vivo",},
     { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, status: "vivo",}
   ];
 
-
-
+  var cartas = [
+    { nombre: 'carta 1', id: "carta_1" },
+      { nombre: 'carta 2', id: "carta_2" },
+      { nombre: 'carta 3', id: "carta_3"}
+    ];
 
   var mazo =  ["carta_1", "carta_2", "carta_3"];
 
@@ -118,25 +95,26 @@ function myFunction_set(){
     var enemigo = enemigos.find(enemigo => enemigo.id === id);
     enemigos_en_tablero.push(enemigo);
   }
-  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > "+ enemigo.nombre +"</br>"+ enemigo.puntos_de_vida +" </enemigo>";}
+  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > <div class='carta_enemiga_contenedor'><div id='"+ enemigo.id +"_nombre' > "+ enemigo.nombre +"</div> <div class='carta_enemiga'> </div><div id='"+ enemigo.id +"_vida' >"+ enemigo.puntos_de_vida +"</div></div></enemigo>";}
     
-   
-/* var puntos_vida_enemigo = 1;
-    document.getElementById("vida_enemiga").innerHTML = puntos_vida_enemigo;
-
-    var puntos_vida_enemigo2 = 1;
-    document.getElementById("vida_enemiga2").innerHTML = puntos_vida_enemigo2;
-
- */
-
-
   //------------
   //a = id del enemigo
   function reducir_vida_rival(a) {
     var enemigo = enemigos_en_tablero.find(enemigo => enemigo.id === a);
     if (enemigo.puntos_de_vida > 0) {
+
+
+
       enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
-      document.getElementById(enemigo.id).innerHTML = enemigo.nombre +"</br>"+ enemigo.puntos_de_vida;
+
+
+      var cositas= enemigo.id +"_vida";
+      document.getElementById(cositas).innerHTML =  enemigo.puntos_de_vida;
+
+
+
+
+
       event_target.remove();
       if (enemigo.puntos_de_vida == 0){
         document.getElementById(enemigo.id).style.backgroundColor="#282930";
@@ -177,11 +155,13 @@ function myFunction_set(){
     });
     //click
     $('carta').click(function(){ 
+
       event_target = event.target;  
-    carta_id =  event.target.id;  
-    // $('#modal').css("display", "flex");  
-     $("#modal_text").html( carta_id ); $(event.target).addClass("clickeado"); 
-      document.getElementById('modal').style.display ="flex"; });
+      carta_id =  event.target.id;  
+      var carta = cartas.find( carta => carta.id === carta_id);
+      carta_modal(carta);
+      
+     });
     //dragg start
     $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0.2 ;  event_target = event.target;  
       firstY = event.clientY;  
@@ -194,17 +174,13 @@ function myFunction_set(){
       currentX = event.clientX; 
       resultadoX = firstX-currentX; 
       /*  si el mouse se mueve mas de 5 pixeles */ 
-      if ( resultadoY > -5 &&  resultadoY < 5 ) {       event_target = event.target;  
-    carta_id =  event.target.id; 
+      if ( resultadoY > -5 &&  resultadoY < 5 ) { 
+        event_target = event.target;
+        carta_id =  event.target.id; 
+        var carta = cartas.find( carta => carta.id === carta_id);
+        carta_modal(carta);
 
-    // $('#modal').css("display", "flex");  
-     $("#modal_text").html( carta_id );$(event.target).addClass("clickeado"); 
-      document.getElementById('modal').style.display ="flex";;  return} 
-      if ( resultadoX > -5 &&  resultadoX < 5 ) {       event_target = event.target;  
-    carta_id =  event.target.id;  
-    // $('#modal').css("display", "flex");  
-     $("#modal_text").html( carta_id );$(event.target).addClass("clickeado"); 
-      document.getElementById('modal').style.display ="flex";  return} 
+      return} 
     
     } else if(  long_touch == true ){}
      });
@@ -270,13 +246,26 @@ function myFunction_set(){
 
 /*     document.getElementById('btn_robar').addEventListener('click', function() { */
 
- 
+ function carta_modal(carta) {
+  $("#modal_text").html( carta.nombre ); 
+  $(event_target).addClass("clickeado"); 
+  document.getElementById('modal').style.display ="flex"; 
+
+  
+ }
       function robar() {
 
 
 
       if (mazo.length > 0) {
-        document.getElementById('cartas').innerHTML += '  <carta class="carta" id="'+ mazo.pop() +'"> <div class="carta_texto "> texto </div> </carta>';
+
+        var carta_id =  mazo.pop();
+        var carta = cartas.find( carta => carta.id === carta_id);
+
+
+
+
+        document.getElementById('cartas').innerHTML += '  <carta class="carta" id="'+ carta.id +'"> <div class="carta_texto "> '+ carta.nombre +' </div> </carta>';
 
 
 
@@ -295,15 +284,12 @@ function myFunction_set(){
         });
         
         $('carta').click(function(){ 
-            event_target = event.target;  
+          event_target = event.target;  
           carta_id =  event.target.id;  
-          // $('#modal').css("display", "flex");  
-           $("#modal_text").html( carta_id ); $(event.target).addClass("clickeado"); 
-            document.getElementById('modal').style.display ="flex"; });
-
-
+          var carta = cartas.find( carta => carta.id === carta_id);
+          carta_modal(carta);
+        });
       }
-
     }
 
 

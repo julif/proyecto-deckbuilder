@@ -19,13 +19,16 @@
 
 <!--?  menu    -->
     <section id="menu">  <div id="contenedor">
-      <aspect_ratio_container>   <aspect_ratio style="
+      <aspect_ratio_container style="    background-image: url(full_background4.png);">   <aspect_ratio style="
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #37486a;
+        /* background-color: #37486a; */
     " >  
-   <div style="text-align: center;">
+   <div style="text-align: center;
+   background-color: #000000d9;
+   padding: 25px;
+   color: white;">
       <P>Proyecto deckbuiler sin nombre</P>
       <p style="color: #ffffff40;;"> version 0.5.1</p>
       <button onclick="play()"> Iniciar </button>  
@@ -46,8 +49,9 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      pointer-events: none;
   ">
-       <div id="modal_stuff"> <img src="img/cartas/00.png"> <div id="modal_descripcion"><p id="modal_text"> texto </p>   </div>  </div>  
+       <div id="modal_stuff"> <img src="img/cartas/00.png"> <div id="modal_descripcion"><p id="modal_text"></p>   </div>  </div>  
       </aspect_ratio>
       </div>
       <aspect_ratio id="aspect_ratio">  

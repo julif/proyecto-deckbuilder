@@ -2,6 +2,10 @@
   --cartas-height: 25%;
 
 
+
+  --dynamic-card-title-font-size: 0px;
+
+
   --cards-gap:0px;
 
 
@@ -98,6 +102,18 @@ enemigo {
   background-color: white;
 }
 
+.carta_enemiga_contenedor{ background-color: red;
+max-height: 80%;
+box-sizing: border-box;
+overflow: hidden;
+}
+
+.carta_enemiga{    background-color: #c3c3c5;
+  height: 166px;
+  aspect-ratio: 1/1.4;
+  margin-bottom: 10px;
+  margin-top: 11px;}
+
 .enemigo_hover{
   /* background-color: #ad3d3d;     
   border: dashed 7px #623131;
@@ -105,6 +121,7 @@ enemigo {
 
   border: dashed 7px #e56d6d;
 }
+
 #modal_victoria{    position: absolute;
 width: 100%;
 height: 100%;
@@ -113,6 +130,7 @@ display: flex;
 /* background-color: #ff000075; */
 background-color: #040616c7;
 background-color: #040616ed;
+background-color: #040616f5;
 justify-content: center;
 align-items: center;
 z-index: 100;
@@ -146,6 +164,7 @@ animation-fill-mode: forwards;
   /* background-color: #ff000075; */
   background-color: #040616c7;
   background-color: #040616ed;
+  background-color: #040616f5;
   justify-content: center;
   align-items: center;
   z-index: 100;
@@ -163,7 +182,7 @@ display: none;
 #modal_stuff{
   display: flex;
   height: 45%;
-  width: 90%;
+  width: 85%;
 
   justify-content: center;
   align-items: center;
@@ -179,11 +198,11 @@ display: none;
 #modal_descripcion{
   background-color: black;
   color: white;
-  width: 500px;
+  min-width: 60%;
   height: 0%;
   text-align: center;
   /* margin-left: 49px; */
-  margin-left: 10%;
+  margin-left: 5%;
   pointer-events: all;
 
   /* animation-delay: 0.5s; */
@@ -193,6 +212,7 @@ display: none;
 
 #modal_descripcion p{
   opacity: 0;    padding-top: 20px;
+  font-size: 20px;
   animation: fade_in 1s 0.6s forwards, fall_30px 0.7s 0.6s forwards;
 }
 
@@ -251,6 +271,7 @@ carta{
   justify-content: center;
   font-weight: 600;
   font-size: 17px;
+  font-size: var(  --dynamic-card-title-font-size ); ;
   text-align: center;
   transition-timing-function: ease-in-out;
   pointer-events: none;
