@@ -102,17 +102,70 @@ enemigo {
   background-color: white;
 }
 
-.carta_enemiga_contenedor{ background-color: red;
-max-height: 80%;
+.carta_enemiga_contenedor{ 
+  /* background-color: red; */
+height: 70%;
 box-sizing: border-box;
 overflow: hidden;
 }
+#enemy_2_nombre{
+  /* background-color: blue; */
+    height:5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-.carta_enemiga{    background-color: #c3c3c5;
+.carta_enemiga{   
+  
+  /* background-color: #c3c3c5; */
   height: 166px;
+  
+  /* background-color: #c3c3c5; */
+  height: 85%;
+  width: 100%;
   aspect-ratio: 1/1.4;
-  margin-bottom: 10px;
-  margin-top: 11px;}
+
+  box-sizing: border-box;
+  padding: 9px;
+
+
+}
+#dd{
+  height: 100%;
+    /* padding: 15%; */
+    /* height: 90%; */
+    /* margin: 5%; */
+   /*  background-color: red;
+    
+    background-image: url("img/cartas/00.png");   */
+
+    background-color: #c3c3c5;
+    /* background-color: #37486a; */
+    background-size: cover;
+}
+
+#enemy_2_vida{
+  height: 10%;
+  background-color: #445060;
+
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.personaje_vida_barra{
+  background-color: green;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+}
+.personaje_puntos_vida{
+  z-index: 3;
+}
 
 .enemigo_hover{
   /* background-color: #ad3d3d;     
