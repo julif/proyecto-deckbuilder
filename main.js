@@ -2,13 +2,22 @@ function play(){
   document.getElementById('menu').style.display= "none";
   document.getElementById('game').style.display= "inherit";
   /*  AL EMPEZAR EL JUEGO   ---------------------------------------------- */
+
+  document.getElementById("mazo_lista").innerHTML = mazo;
+
   var i = 0;
-  var intervalo_entre_robo = setInterval(myTimer, 150);
-  function myTimer() {
-    robar(); 
-    i++;
-    if (i== 3) {  }
-  }
+   var intervalo_entre_robo = setInterval(myTimer, 150);
+   function myTimer() {
+    if (i== 3) {  clearInterval(myTimer);  }
+    else{
+      robar(); 
+      i++;
+      document.getElementById("mazo_lista").innerHTML = mazo;
+    }
+   
+
+     
+   }
   myFunction_set();
 }
     
@@ -56,6 +65,7 @@ function acomodar_cartas(){
   $("body").get(0).style.setProperty("--cards-gap", margin +'px');
 } //acomodar_cartas()
 
+
 function myFunction_set(){
   var height1 = document.getElementById('aspect_ratio').offsetHeight;
   $("body").get(0).style.setProperty("--card-height",  height1/5 +'px');
@@ -69,9 +79,9 @@ function myFunction_set(){
 //arrays
 // ---------------------------------------------------------------------------------------------------
   var enemigos = [
-  { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1, status: "vivo",},
-    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, status: "vivo",},
-    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, status: "vivo",}
+  { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1,puntos_de_vida_game: 1, status: "vivo",},
+    { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, puntos_de_vida_game: 2,status: "vivo",},
+    { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, puntos_de_vida_game: 3,status: "vivo",}
   ];
 
   var cartas = [
@@ -80,13 +90,22 @@ function myFunction_set(){
       { nombre: 'carta 3', id: "carta_3"}
     ];
 
+
+
+
+     // crear el array  de mazo y usados ------------------
+ mazo = [ ];
+ usados = [ ];
+
+
+
   var mazo =  ["carta_1", "carta_2", "carta_3"];
 
 
   var enemigos_en_tablero = [];
  // ---------------------------------------------------------------------------------------------------
  // agregar a los enemigos en el array "enemigos_en_tablero"
-  // agregar_enemigos_a_tablero("enemy_1");
+   agregar_enemigos_a_tablero("enemy_1");
   agregar_enemigos_a_tablero("enemy_2"); 
    // mostrar enemigos en el tablero
    enemigos_en_tablero.forEach(mostrar_enemigo_en_tablero);
@@ -95,7 +114,15 @@ function myFunction_set(){
     var enemigo = enemigos.find(enemigo => enemigo.id === id);
     enemigos_en_tablero.push(enemigo);
   }
-  function mostrar_enemigo_en_tablero(enemigo, index) {document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > <div class='carta_enemiga_contenedor'><div id='"+ enemigo.id +"_nombre' > "+ enemigo.nombre +"</div> <div class='carta_enemiga'> </div><div id='"+ enemigo.id +"_vida' >"+ enemigo.puntos_de_vida +"</div></div></enemigo>";}
+  function mostrar_enemigo_en_tablero(enemigo, index) {
+    
+    document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > <div class='carta_enemiga_contenedor'><div id='"+ enemigo.id +"_nombre'  class='personaje_nombre' > "+ enemigo.nombre +"</div> <div class='carta_enemiga'> <div id='dd'> </div></div><div id='"+ enemigo.id +"_vida' class='personaje_vida' ></div></div></enemigo>";
+    document.getElementById(enemigo.id +"_vida").innerHTML += "<div id='" +enemigo.id+"_puntos_vida' class='personaje_puntos_vida'> "+enemigo.puntos_de_vida +"</div>";
+    document.getElementById(enemigo.id +"_vida").innerHTML += "<div id='" +enemigo.id+"_vida_barra' class='personaje_vida_barra' ></div>";
+  
+
+  
+  }
     
   //------------
   //a = id del enemigo
@@ -108,8 +135,16 @@ function myFunction_set(){
       enemigo.puntos_de_vida = enemigo.puntos_de_vida - 1;
 
 
-      var cositas= enemigo.id +"_vida";
+      var cositas= enemigo.id +"_puntos_vida";
       document.getElementById(cositas).innerHTML =  enemigo.puntos_de_vida;
+
+       var porcentaje_pdv= parseInt(enemigo.puntos_de_vida)/parseInt(enemigo.puntos_de_vida_game)*100;
+
+       console.log( "enemigo.puntos_de_vida: " + enemigo.puntos_de_vida );
+       console.log( "enemigo.puntos_de_vida_game: " + enemigo.puntos_de_vida_game );
+       console.log( "porcentaje_pdv: " +porcentaje_pdv );
+
+      document.getElementById( enemigo.id + "_vida_barra").style.width =  porcentaje_pdv +"%"; 
 
 
 
