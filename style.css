@@ -135,10 +135,8 @@ overflow: hidden;
 
 
 }
-.enemigo #dd{
-  background-color: red;
-}
-#dd{
+
+.personaje_carta_img{
   height: 100%;
     /* padding: 15%; */
     /* height: 90%; */
@@ -273,6 +271,28 @@ display: none;
   animation: fade_in 1s 0.6s forwards, fall_30px 0.6s 0.6s forwards;
   pointer-events: all;
 
+}
+.muerto{
+
+  background-color: #445060;
+}
+
+.derrota{
+  height: 100%;
+  background-color: #00000099;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+   display: none; 
+}
+.muerto  .personaje_carta_img{
+  background-color: #2d2d3c;
+  
+}
+.muerto  .derrota{
+ display: flex;
+  
 }
 #modal_descripcion{
   background-color: black;

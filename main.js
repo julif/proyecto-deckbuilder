@@ -105,8 +105,9 @@ function myFunction_set(){
   var enemigos_en_tablero = [];
  // ---------------------------------------------------------------------------------------------------
  // agregar a los enemigos en el array "enemigos_en_tablero"
-   agregar_enemigos_a_tablero("enemy_1");
+    agregar_enemigos_a_tablero("enemy_1");
   agregar_enemigos_a_tablero("enemy_2"); 
+
    // mostrar enemigos en el tablero
    enemigos_en_tablero.forEach(mostrar_enemigo_en_tablero);
 // ---------------------------------------------------------------------------------------------------
@@ -115,8 +116,18 @@ function myFunction_set(){
     enemigos_en_tablero.push(enemigo);
   }
   function mostrar_enemigo_en_tablero(enemigo, index) {
-    
-    document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > <div class='carta_enemiga_contenedor'><div id='"+ enemigo.id +"_nombre'  class='personaje_nombre' > "+ enemigo.nombre +"</div> <div class='carta_enemiga'> <div id='dd'> </div></div><div id='"+ enemigo.id +"_vida' class='personaje_vida' ></div></div></enemigo>";
+/*     
+    document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' > <div class='carta_enemiga_contenedor'><div id='"+ enemigo.id +"_nombre'  class='personaje_nombre' > "+ enemigo.nombre +"</div> <div class='carta_enemiga'> <div id='dd' class='personaje_carta_img'> </div></div><div id='"+ enemigo.id +"_vida' class='personaje_vida' ></div></div></enemigo>"; */
+    document.getElementById("enemigos").innerHTML += " <enemigo id='"+ enemigo.id +"' ></enemigo>";
+
+
+    document.getElementById( enemigo.id).innerHTML += "  <div class='carta_enemiga_contenedor' id='"+ enemigo.id +"carta_enemiga_contenedor'></div>";
+
+
+    document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div id='"+ enemigo.id +"_nombre'  class='personaje_nombre' > "+ enemigo.nombre +"</div>" 
+    document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div class='carta_enemiga'> <div id='dd' class='personaje_carta_img'> <div class='derrota'> derrotado </div> </div></div>" 
+    document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div id='"+ enemigo.id +"_vida' class='personaje_vida' ></div>" 
+
     document.getElementById(enemigo.id +"_vida").innerHTML += "<div id='" +enemigo.id+"_puntos_vida' class='personaje_puntos_vida'> "+enemigo.puntos_de_vida +"</div>";
     document.getElementById(enemigo.id +"_vida").innerHTML += "<div id='" +enemigo.id+"_vida_barra' class='personaje_vida_barra' ></div>";
   
@@ -152,7 +163,9 @@ function myFunction_set(){
 
       event_target.remove();
       if (enemigo.puntos_de_vida == 0){
-        document.getElementById(enemigo.id).style.backgroundColor="#282930";
+        //document.getElementById(enemigo.id).style.backgroundColor="#282930";
+
+        document.getElementById(enemigo.id).classList.add("muerto");
         // document.getElementById(enemigo.id).style.backgroundBlendMode="saturation";
         enemigo.status= "muerto";
         // document.getElementById(enemigo.id).remove();
