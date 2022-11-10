@@ -28,7 +28,7 @@
    <div style="text-align: center;
    background-color: #000000d9;
    padding: 25px;
-   color: white;">
+   color: white;    user-select: none;">
       <P>Proyecto deckbuiler sin nombre</P>
       <p style="color: #ffffff40;;"> version 0.5.1</p>
       <button onclick="play()"> Iniciar </button>  
@@ -39,6 +39,7 @@
 
     <!--?  game    -->
     <section id="game"><div id="contenedor"><aspect_ratio_container id="aspect_ratio_container_game">   
+      <div id="cartas_fondo"></div>
       <div id="top">   </div> 
 
          
@@ -51,7 +52,7 @@
       align-items: center;
       pointer-events: none;
   ">
-       <div id="modal_stuff"> <img src="img/cartas/00.png"> <div id="modal_descripcion"><p id="modal_text"></p>   </div>  </div>  
+       <div id="modal_stuff"> <img  id="modal_carta_img" > <div id="modal_descripcion"><p id="modal_text"></p>   </div>  </div>  
       </aspect_ratio>
       </div>
       <aspect_ratio id="aspect_ratio">  

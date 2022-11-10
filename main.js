@@ -85,9 +85,9 @@ function myFunction_set(){
   ];
 
   var cartas = [
-    { nombre: 'carta 1', id: "carta_1" },
-      { nombre: 'carta 2', id: "carta_2" },
-      { nombre: 'carta 3', id: "carta_3"}
+    { nombre: 'carta 1', src:"00.png", id: "carta_1" },
+      { nombre: 'carta 2',src:"01.png", id: "carta_2" },
+      { nombre: 'carta 3',src:"02.png", id: "carta_3"}
     ];
 
 
@@ -125,7 +125,7 @@ function myFunction_set(){
 
 
     document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div id='"+ enemigo.id +"_nombre'  class='personaje_nombre' > "+ enemigo.nombre +"</div>" 
-    document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div class='carta_enemiga'> <div id='dd' class='personaje_carta_img'> <div class='derrota'> derrotado </div> </div></div>" 
+    document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div class='carta_enemiga'> <div id='"+ enemigo.id +"_carta_img' class='personaje_carta_img'  > <div class='derrota'> derrotado </div> </div></div>" 
     document.getElementById(  enemigo.id +'carta_enemiga_contenedor').innerHTML +=  "<div id='"+ enemigo.id +"_vida' class='personaje_vida' ></div>" 
 
     document.getElementById(enemigo.id +"_vida").innerHTML += "<div id='" +enemigo.id+"_puntos_vida' class='personaje_puntos_vida'> "+enemigo.puntos_de_vida +"</div>";
@@ -193,6 +193,11 @@ function myFunction_set(){
     var touchDuration = 115;
     var long_touch = false;
 
+
+
+
+    var carta_src;
+
     $('carta').draggable({
       appendTo: "body",
       containment: "window",
@@ -206,6 +211,7 @@ function myFunction_set(){
 
       event_target = event.target;  
       carta_id =  event.target.id;  
+      carta_src =  event.target.src; 
       var carta = cartas.find( carta => carta.id === carta_id);
       carta_modal(carta);
       
@@ -225,6 +231,8 @@ function myFunction_set(){
       if ( resultadoY > -5 &&  resultadoY < 5 ) { 
         event_target = event.target;
         carta_id =  event.target.id; 
+        carta_src =  event.target.src; 
+
         var carta = cartas.find( carta => carta.id === carta_id);
         carta_modal(carta);
 
@@ -299,6 +307,8 @@ function myFunction_set(){
   $(event_target).addClass("clickeado"); 
   document.getElementById('modal').style.display ="flex"; 
 
+  document.getElementById('modal_carta_img').src ="img/cartas/" +  carta.src  ; 
+
   
  }
       function robar() {
@@ -313,7 +323,7 @@ function myFunction_set(){
 
 
 
-        document.getElementById('cartas').innerHTML += '  <carta class="carta" id="'+ carta.id +'"> <div class="carta_texto "> '+ carta.nombre +' </div> </carta>';
+        document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"> <div class="carta_texto "> '+ carta.nombre +' </div> </carta>';
 
 
 
@@ -333,7 +343,8 @@ function myFunction_set(){
         
         $('carta').click(function(){ 
           event_target = event.target;  
-          carta_id =  event.target.id;  
+          carta_id =  event.target.id; 
+          carta_src =  event.target.src;  
           var carta = cartas.find( carta => carta.id === carta_id);
           carta_modal(carta);
         });
