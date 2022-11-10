@@ -359,14 +359,14 @@ carta{
 /*    margin-bottom: var(--card-height); */
 }
 .carta_texto{
-  height: 30%;
+  height: 29%;
   /* max-height: 15%; */
   width: 100%;
-  background-color: white;
+  /* background-color: white; */
   position: absolute;
   bottom: 0px;
   transition: height 0.4s;
-  display: flex;
+  /* display: flex; */
   justify-content: center;
   font-weight: 600;
   font-size: 17px;
@@ -374,9 +374,21 @@ carta{
   text-align: center;
   transition-timing-function: ease-in-out;
   pointer-events: none;
-
+  color: red;
   display: none;
+
+  
 }
+
+.carta_nombre{
+  color: white;
+text-transform: uppercase;
+}
+.carta_descripcion{
+  color: #696f81;
+
+}
+
 
 #cartas_fondo{
   height: var(--cartas-height);

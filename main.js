@@ -70,7 +70,7 @@ function myFunction_set(){
   var height1 = document.getElementById('aspect_ratio').offsetHeight;
   $("body").get(0).style.setProperty("--card-height",  height1/5 +'px');
 
-  $("body").get(0).style.setProperty("--dynamic-card-title-font-size",  height1/40 +'px');
+  $("body").get(0).style.setProperty("--dynamic-card-title-font-size",  height1/95 +'px');
 
   
   acomodar_cartas();
@@ -79,15 +79,15 @@ function myFunction_set(){
 //arrays
 // ---------------------------------------------------------------------------------------------------
   var enemigos = [
-  { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1,puntos_de_vida_game: 1, status: "vivo",},
+  { nombre: 'enemigo 1', id: "enemy_1", puntos_de_vida: 1, puntos_de_vida_game: 1, status: "vivo",},
     { nombre: 'enemigo 2', id: "enemy_2", puntos_de_vida: 2, puntos_de_vida_game: 2,status: "vivo",},
     { nombre: 'mini-boss', id: "enemy_3", puntos_de_vida: 3, puntos_de_vida_game: 3,status: "vivo",}
   ];
 
   var cartas = [
-    { nombre: 'carta 1', src:"00.png", id: "carta_1" },
-      { nombre: 'carta 2',src:"01.png", id: "carta_2" },
-      { nombre: 'carta 3',src:"02.png", id: "carta_3"}
+    { nombre: 'carta 1', src:"00.png", id: "carta_1", descripcion: "haz 10 de daño a un enemigo" },
+      { nombre: 'bola de fuego',src:"01.png", id: "carta_2", descripcion: " haz 10 de daño a un enemigo" },
+      { nombre: 'optimismo injustificado',src:"02.png", id: "carta_3", descripcion: "roba 2 cartas"}
     ];
 
 
@@ -323,9 +323,12 @@ function myFunction_set(){
 
 
 
-        document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"> <div class="carta_texto "> '+ carta.nombre +' </div> </carta>';
+        document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"></carta>';
 
+        document.getElementById(carta.id).innerHTML += '  <div  id="' + carta.id +'_texto " class="carta_texto "></div> ';
 
+        document.getElementById(carta.id+ "_texto ").innerHTML += ' <div class="carta_nombre" > '+ carta.nombre +' </div>';
+        document.getElementById(carta.id+ "_texto ").innerHTML +=  '<div class="carta_descripcion" >'+ carta.descripcion +' </div>';
 
         myFunction_set();
 
