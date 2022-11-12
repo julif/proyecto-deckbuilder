@@ -3,16 +3,32 @@ function play(){
   document.getElementById('game').style.display= "inherit";
   /*  AL EMPEZAR EL JUEGO   ---------------------------------------------- */
 
-  document.getElementById("mazo_lista").innerHTML = mazo;
+  // document.getElementById("mazo_lista").innerHTML = mazo;
+
+
+
+
+ mazo.forEach(mostrar_mazo_en_lista);
+
+
+  function mostrar_mazo_en_lista(carta, index){
+   document.getElementById("mazo_lista").innerHTML += "<li >"+ carta +"</li>";
+ 
+ }
+
+// document.getElementById("mazo_lista").innerHTML = mazo;
 
   var i = 0;
    var intervalo_entre_robo = setInterval(myTimer, 150);
    function myTimer() {
-    if (i== 3) {  clearInterval(myTimer);  }
+    if (i== 2) {  clearInterval(myTimer);    }
     else{
       robar(); 
       i++;
-      document.getElementById("mazo_lista").innerHTML = mazo;
+
+      
+       //document.getElementById("mazo_lista").innerHTML = mazo;
+       $('#mazo_lista li:last-child').remove();
     }
    
 
@@ -68,7 +84,7 @@ function acomodar_cartas(){
 
 function myFunction_set(){
   var height1 = document.getElementById('aspect_ratio').offsetHeight;
-  $("body").get(0).style.setProperty("--card-height",  height1/5 +'px');
+  $("body").get(0).style.setProperty("--card-height",  height1/4.5 +'px');
 
   $("body").get(0).style.setProperty("--dynamic-card-title-font-size",  height1/95 +'px');
 
@@ -86,8 +102,8 @@ function myFunction_set(){
 
   var cartas = [
     { nombre: 'carta 1', src:"00.png", id: "carta_1", descripcion: "haz 10 de daño a un enemigo" },
-      { nombre: 'bola de fuego',src:"01.png", id: "carta_2", descripcion: " haz 10 de daño a un enemigo" },
-      { nombre: 'optimismo injustificado',src:"02.png", id: "carta_3", descripcion: "roba 2 cartas"}
+      { nombre: 'bola de fuego',src:"00.png", id: "carta_2", descripcion: " haz 10 de daño a un enemigo" },
+      { nombre: 'optimismo injustificado',src:"00.png", id: "carta_3", descripcion: "roba 2 cartas"}
     ];
 
 
@@ -95,17 +111,18 @@ function myFunction_set(){
 
      // crear el array  de mazo y usados ------------------
  mazo = [ ];
+ mano = [ ];
  usados = [ ];
 
 
 
-  var mazo =  ["carta_1", "carta_2", "carta_3"];
+  var mazo =  ["carta_1", "carta_2", "carta_3", "carta_1"];
 
 
   var enemigos_en_tablero = [];
  // ---------------------------------------------------------------------------------------------------
  // agregar a los enemigos en el array "enemigos_en_tablero"
-    agregar_enemigos_a_tablero("enemy_1");
+    // agregar_enemigos_a_tablero("enemy_1");
   agregar_enemigos_a_tablero("enemy_2"); 
 
    // mostrar enemigos en el tablero
@@ -162,6 +179,9 @@ function myFunction_set(){
 
 
       event_target.remove();
+  /*     ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
+
+
       if (enemigo.puntos_de_vida == 0){
         //document.getElementById(enemigo.id).style.backgroundColor="#282930";
 
@@ -193,6 +213,8 @@ function myFunction_set(){
     var touchDuration = 115;
     var long_touch = false;
 
+  var carta_id;
+
 
 
 
@@ -220,6 +242,7 @@ function myFunction_set(){
     $( "body" ).on( "dragstart",  function( event, ui ) {   event.target.style.opacity=0.2 ;  event_target = event.target;  
       firstY = event.clientY;  
       firstX = event.clientX;  
+      carta_id =  event.target.id; 
       long_touch = false; timer = setTimeout(function () {long_touch = true;}, touchDuration);  });
     //dragg stop
     $( "body" ).on( ".carta dragstop", function( event, ui ) { event.target.style.opacity=1; ui.helper.remove(); if (timer) { clearTimeout(timer);} if(  long_touch == false ){ 
@@ -244,8 +267,8 @@ function myFunction_set(){
     $("enemigo").droppable({   
     
       over: function(event, ui) {  $(this).addClass("enemigo_hover"); },
-      out: function(event, ui) {   $(this).removeClass("enemigo_hover"); }, 
-      drop: function(event, ui) {  reducir_vida_rival( event.target.id);  $(this).removeClass("enemigo_hover");}  
+      out: function(event, ui) {   $(this).removeClass("enemigo_hover"); },  
+      drop: function(event, ui) {  reducir_vida_rival( event.target.id);  $(this).removeClass("enemigo_hover");   document.getElementById("descarte_lista").innerHTML += "<li>"+carta_id+"</li> "; document.getElementById(  'li_'+ carta_id ).remove(); }  
     
     }); 
 
@@ -319,6 +342,10 @@ function myFunction_set(){
 
         var carta_id =  mazo.pop();
         var carta = cartas.find( carta => carta.id === carta_id);
+
+
+        document.getElementById('mano_lista').innerHTML += "<li id='li_"+ carta_id +"' >"+ carta_id +"</li>"
+
 
 
 

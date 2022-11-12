@@ -26,6 +26,7 @@ body{
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background-color: #080512;
 }
 aspect_ratio_container {
   /* background-image: url("full_background4.png");  */
@@ -41,6 +42,7 @@ aspect_ratio_container {
   position: relative;
 
   background-color: #ffffff;
+ 
 }
 aspect_ratio {
   /* background-image: url("1080.png");  */
@@ -118,6 +120,7 @@ overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 700;
 }
 
 .carta_enemiga{   
@@ -151,12 +154,14 @@ overflow: hidden;
 }
 
 
-#mazo_lista{
+#listas_datos{
   position: absolute;
   top: 5px;
   left: 5px;
   background-color: #00000096;
   color: white;
+  padding: 12px;
+  padding-top: 0;
 }
 /* #enemy_2_vida{
   height: 10%;
@@ -170,8 +175,8 @@ overflow: hidden;
     position: relative;
 } */
 .personaje_vida{
-  height: 10%;
-  background-color: #445060;
+  height:5%;
+  background-color: #192132;
 
 
 
@@ -181,7 +186,7 @@ overflow: hidden;
     position: relative;
 }
 .personaje_vida_barra{
-  background-color: green;
+  background-color: #b33e3e;
     position: absolute;
     width: 100%;
     height: 100%;
@@ -507,3 +512,46 @@ background-image: url("full_background4.png");
     from { margin-top: -30px;}
     to {  margin-top: 0px;}
   }
+
+
+
+
+  aspect_ratio_container{
+    background-color: #2e6fb3;
+  }
+
+  enemigo{
+    background-color: transparent;
+    border: dashed 7px #3838763d;
+  }
+  .personaje_vida{
+    background-color: #000000a3;
+  }
+  .personaje_puntos_vida {
+    z-index: 3;
+    font-weight: 700;
+    color: white;
+}
+.enemigo_hover{
+  border: dashed 7px #ffffff3d;
+}
+.personaje_carta_img{
+  background-color: #192132;
+
+   background-image: url("img/personajes/01.png");  
+
+  background-size: cover;
+}
+.muerto {
+  background-color: #0000003d;
+  filter: grayscale(1);
+}
+
+.carta_enemiga_contenedor {
+  /* background-color: red; */
+  height: 60%;
+  overflow: inherit;
+}
+.personaje_vida{
+  border: 6px solid black;
+}
