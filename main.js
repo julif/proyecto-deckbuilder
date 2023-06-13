@@ -352,10 +352,11 @@ function myFunction_set(){
 
         document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"></carta>';
 
+        // no funciona en mi telefono
+/* 
         document.getElementById(carta.id).innerHTML += '  <div  id="' + carta.id +'_texto " class="carta_texto "></div> ';
-
         document.getElementById(carta.id+ "_texto ").innerHTML += ' <div class="carta_nombre" > '+ carta.nombre +' </div>';
-        document.getElementById(carta.id+ "_texto ").innerHTML +=  '<div class="carta_descripcion" >'+ carta.descripcion +' </div>';
+        document.getElementById(carta.id+ "_texto ").innerHTML +=  '<div class="carta_descripcion" >'+ carta.descripcion +' </div>'; */
 
         myFunction_set();
 
