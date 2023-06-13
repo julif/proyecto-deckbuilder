@@ -350,7 +350,7 @@ function myFunction_set(){
 
 
 
-        document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"></carta>';
+        document.getElementById('cartas').innerHTML += '  <carta  style="background-image: url(\'img/cartas/'+carta.src +' \' )" class="carta" id="'+ carta.id +'"   onclick="carta_modal('+ carta.id +')" ></carta>';
 
         // no funciona en mi telefono
 /* 
